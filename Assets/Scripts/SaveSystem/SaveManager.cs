@@ -1,6 +1,8 @@
 using System.IO;
 using UnityEngine;
 
+
+
 public static class SaveManager
 {
     private static readonly string savePath = Application.persistentDataPath + "/save.json";
