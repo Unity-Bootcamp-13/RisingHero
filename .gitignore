@@ -12,6 +12,11 @@
 /[Uu]ser[Ss]ettings/
 *.log
 
+# Ignore specific third-party asset folders
+/[Aa]ssets/Gif/
+/[Aa]ssets/Cainos/
+/[Aa]ssets/Violet Theme Ui/
+
 # By default unity supports Blender asset imports, *.blend1 blender files do not need to be commited to version control.
 *.blend1
 *.blend1.meta
@@ -68,7 +73,7 @@ sysinfo.txt
 *.unitypackage.meta
 *.app
 
-# Crashlytics generated file
+# Crashlytics generated file	
 crashlytics-build.properties
 
 # Packed Addressables
