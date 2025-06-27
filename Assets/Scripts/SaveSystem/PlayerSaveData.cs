@@ -9,6 +9,7 @@ public class PlayerSaveData
     public List<StageClearData> clearedStages = new();
     public List<OwnedWeapon> ownedWeapons = new();
     public int equippedWeaponId = -1;
+    public string currentStage = "Stage_01";  // ← main 브랜치의 필드 수동 병합
 }
 
 [Serializable]
