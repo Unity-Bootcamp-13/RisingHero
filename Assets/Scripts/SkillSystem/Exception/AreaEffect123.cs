@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class AreaEffect : MonoBehaviour
+public class AreaEffect123 : MonoBehaviour
 {
     public SkillCaster Caster {  get; private set; }
     public float Damage { get; private set; }
@@ -11,8 +11,8 @@ public class AreaEffect : MonoBehaviour
     public float DamageTickInterval { get; private set; }
     public GameObject HitEffectPrefab { get; private set; }
 
-    private SphereCollider areaCollider;
-    private HashSet<Targetable> targetsInArea = new HashSet<Targetable>();
+    private CircleCollider2D areaCollider;
+    private HashSet<Targetable123> targetsInArea = new HashSet<Targetable123>();
     private float tickTimer;
 
     public void Initialize(SkillCaster caster, float damage, float radius, float duration, float damageTickInterval, GameObject hitEffect)
@@ -24,10 +24,10 @@ public class AreaEffect : MonoBehaviour
         DamageTickInterval = damageTickInterval;
         HitEffectPrefab = hitEffect;
 
-        areaCollider = GetComponent<SphereCollider>();
+        areaCollider = GetComponent<CircleCollider2D>();
 
         if (areaCollider == null)
-            areaCollider = gameObject.AddComponent<SphereCollider>();
+            areaCollider = gameObject.AddComponent<CircleCollider2D>();
 
         areaCollider.isTrigger = true;
         areaCollider.radius = Radius;
@@ -52,18 +52,18 @@ public class AreaEffect : MonoBehaviour
         Destroy(gameObject);    // 범위 지속 시간 종료 시 제거 (풀링 고려)
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        Targetable hitTarget = other.GetComponent<Targetable>();
+        Targetable123 hitTarget = other.GetComponent<Targetable123>();
 
         // 타겟에 시전자 본인도 제외해야 함
         if (hitTarget != null && hitTarget.gameObject != Caster.gameObject)
             targetsInArea.Add(hitTarget);
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        Targetable hitTarget = other.GetComponent<Targetable>();
+        Targetable123 hitTarget = other.GetComponent<Targetable123>();
 
         if (hitTarget != null)
             targetsInArea.Remove(hitTarget);
@@ -72,11 +72,11 @@ public class AreaEffect : MonoBehaviour
     private void ApplyDamageOnce()
     {
         // Collider.OverlapSphere 또는 Physics.SphereCastAll을 사용하여 즉시 범위 내 모든 타겟에게 피해 적용
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, Radius, LayerMask.GetMask("Enemy"));
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, Radius, LayerMask.GetMask("Enemy"));
         
-        foreach (Collider hitCollider in hitColliders)
+        foreach (Collider2D hitCollider in hitColliders)
         {
-            Targetable target = hitCollider.GetComponent<Targetable>();
+            Targetable123 target = hitCollider.GetComponent<Targetable123>();
 
             if (target != null && target.gameObject != Caster.gameObject)
                 ApplyDamageToTarget(target);
@@ -90,7 +90,7 @@ public class AreaEffect : MonoBehaviour
             yield return new WaitForSeconds(DamageTickInterval);
 
             // 범위 내 모든 타겟에게 피해 적용
-            foreach (Targetable target in new List<Targetable>(targetsInArea))
+            foreach (Targetable123 target in new List<Targetable123>(targetsInArea))
             {
                 if (target != null)
                     ApplyDamageToTarget(target);
@@ -98,7 +98,7 @@ public class AreaEffect : MonoBehaviour
         }
     }
 
-    private void ApplyDamageToTarget(Targetable target)
+    private void ApplyDamageToTarget(Targetable123 target)
     {
         target.TakeDamage(Damage);
 

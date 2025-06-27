@@ -19,11 +19,11 @@ public class AreaSkillDefinition : SkillDefinition
         return true;
     }
 
-    public override void ExecuteSkill(SkillCaster caster, Targetable target, Vector3? castPosition = null)
+    public override void ExecuteSkill(SkillCaster caster, Targetable123 target, Vector3? castPosition = null)
     {
         if (AreaEffectPrefab == null)
         {
-            Debug.LogError($"범위스킬{SkillName}에 이펙트 설정이 되어 있지 않습니다!");
+            Debug.LogError($"범위스킬 {SkillName}에 이펙트 설정이 되어 있지 않습니다!");
             return;
         }
 

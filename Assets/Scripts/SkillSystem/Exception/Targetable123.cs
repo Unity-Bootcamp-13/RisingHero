@@ -1,14 +1,14 @@
 using UnityEngine;
 using System;
 
-public class Targetable : MonoBehaviour
+public class Targetable123 : MonoBehaviour
 {
     public string TargetName = "Target";
     public float MaxHealth = 100f;          // 임시 최대 체력 100 설정
     public float CurrentHealth {  get; private set; }
 
-    public event Action<float, Targetable> OnHealthChanged; // 체력 변화
-    public event Action<Targetable> OnDied;                 // 사망
+    public event Action<float, Targetable123> OnHealthChanged; // 체력 변화
+    public event Action<Targetable123> OnDied;                 // 사망
 
     private void Awake()
     {

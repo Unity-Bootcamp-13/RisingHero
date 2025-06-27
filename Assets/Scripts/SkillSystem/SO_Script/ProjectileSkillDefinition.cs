@@ -25,7 +25,7 @@ public class ProjectileSkillDefinition : SkillDefinition
     }
 
     // 투사체 스킬의 실행 로직
-    public override void ExecuteSkill(SkillCaster caster, Targetable target, Vector3? castPosition = null)
+    public override void ExecuteSkill(SkillCaster caster, Targetable123 target, Vector3? castPosition = null)
     {
         if (ProjectilePrefab == null)
         {
@@ -34,20 +34,23 @@ public class ProjectileSkillDefinition : SkillDefinition
         }
 
         Vector3 spawnPosition = caster.transform.position;  // 투사체의 발사 시작 좌표
-        Vector3 direction;      // 투사체의 방향
+        Vector2 direction;      // 투사체의 방향
 
         // 타겟이 소멸했거나 타겟이 지정되지 않은 경우
         if (target == null)
         {
             // 예외 처리 : 타겟 소멸 시, 시전자의 현재 정면 방향으로 발사
-            direction = caster.transform.forward;
+            direction = new Vector2(caster.transform.forward.x, caster.transform.forward.y).normalized;
         }
 
         else
         {
             // 위치 및 방향 계산
-            direction = (target.transform.position - spawnPosition).normalized;
+            direction = (new Vector2(target.transform.position.x, target.transform.position.y) - new Vector2(spawnPosition.x, spawnPosition.y)).normalized;
         }
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.Euler(0, 0, angle); // Rotate around Z-axis
 
         // 발사체 생성 및 초기화 (풀링 적용 예정)
         GameObject projectileGO = Instantiate(ProjectilePrefab, spawnPosition, Quaternion.LookRotation(direction));
@@ -64,7 +67,7 @@ public class ProjectileSkillDefinition : SkillDefinition
                 speed: ProjectileSpeed,
                 damage: calculatedDamage,
                 lifetime: ProjectileLifetime,
-                hitEffect: HitEffectPrefab,
+                hitEffect: HitEffect,
                 direction: direction,
                 target: target, // 타겟 정보를 넘겨주어 유도탄 등에 활용 가능
                 pierce: PierceTargets

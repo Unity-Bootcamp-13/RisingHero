@@ -1,9 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 [CreateAssetMenu(fileName = "NewSkillDefinition", menuName = "Skills/Base Skill Definition")]
 public abstract class SkillDefinition : ScriptableObject
 {
+    [Header("Skill ID")]
+    public int SkillID;     // 스킬의 고유 ID. 에디터에서 수동 할당도 되고, 자동으로 설정도 가능.
+
     [Header("Basic Skill Info")]
     public string SkillName = "New Skill";
     public Sprite SkillIcon;
@@ -49,5 +53,20 @@ public abstract class SkillDefinition : ScriptableObject
     /// <summary>
     /// 스킬의 실행 로직
     /// </summary>
-    public abstract void ExecuteSkill(SkillCaster caster, Targetable target, Vector3? castPosition = null);
+    public abstract void ExecuteSkill(SkillCaster caster, Targetable123 target, Vector3? castPosition = null);
+
+    internal void ExecuteSkill(SkillCaster123 skillCaster123, Targetable123 target, Vector3? castPosition)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal void ExecuteSkill(SkillCaster123 skillCaster123, Targetable123 targetable123)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal bool CanCastSkill(CharacterStats123 characterStats, Dictionary<SkillDefinition, float> skillCooldowns)
+    {
+        throw new NotImplementedException();
+    }
 }
