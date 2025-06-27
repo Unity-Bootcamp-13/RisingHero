@@ -109,6 +109,16 @@ public class WeaponInfoUI : MonoBehaviour
 
         if (weaponLevelUp.TryUpgradeWeapon(SelectedWeapon.weaponId))
         {
+            WeaponStatus.Instance.ApplyAllWeaponStats();
+
+            var save = saveService.Load();
+            if (save.equippedWeaponId == SelectedWeapon.weaponId)
+            {
+                var equippedData = WeaponStatus.Instance.FindWeaponDataById(SelectedWeapon.weaponId);
+                var owned = save.ownedWeapons.Find(w => w.weaponId == SelectedWeapon.weaponId);
+                weaponEquip.Equip(equippedData, owned.level);
+            }
+
             Display(SelectedWeapon);
             coinUI?.UpdateCoinUI();
         }

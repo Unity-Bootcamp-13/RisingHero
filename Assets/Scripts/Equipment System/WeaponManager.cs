@@ -21,7 +21,7 @@ public class WeaponManager : MonoBehaviour
 
         weaponStatus?.Initialize(saveService, playerStatus);
         weaponEquip?.Initialize(saveService, weaponStatus);
-        weaponLevelUp?.Initialize(saveService, weaponStatus, weaponEquip);
+        weaponLevelUp?.Initialize(saveService);
         weaponInfoUI?.Initialize(saveService, weaponEquip, weaponLevelUp, coinUI);
 
         foreach (var slot in weaponSlotUIs)

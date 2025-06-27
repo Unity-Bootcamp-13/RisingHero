@@ -7,21 +7,17 @@ public class WeaponLevelUp : MonoBehaviour
     [SerializeField] private float costMultiplier = 1.5f;
 
     private ISaveService saveService;
-    private WeaponStatus weaponStatus;
-    private WeaponEquip weaponEquip;
 
-    public void Initialize(ISaveService saveService, WeaponStatus weaponStatus, WeaponEquip weaponEquip)
+    public void Initialize(ISaveService saveService)
     {
         this.saveService = saveService;
-        this.weaponStatus = weaponStatus;
-        this.weaponEquip = weaponEquip;
     }
 
     public bool TryUpgradeWeapon(int weaponId)
     {
-        if (saveService == null || weaponStatus == null)
+        if (saveService == null)
         {
-            Debug.LogError("[WeaponLevelUp] SaveService 또는 WeaponStatus가 초기화되지 않았습니다.");
+            Debug.LogError("[WeaponLevelUp] SaveService가 초기화되지 않았습니다.");
             return false;
         }
 
@@ -33,7 +29,7 @@ public class WeaponLevelUp : MonoBehaviour
             return false;
         }
 
-        var weaponData = weaponStatus.FindWeaponDataById(weaponId);
+        var weaponData = WeaponStatus.Instance.FindWeaponDataById(weaponId);
         if (weaponData == null)
         {
             Debug.LogWarning("무기 데이터를 찾을 수 없습니다.");
@@ -42,7 +38,7 @@ public class WeaponLevelUp : MonoBehaviour
 
         if (owned.level >= weaponData.maxLevel)
         {
-            Debug.Log("이미 최대 레벨에 도달했습니다.");
+            Debug.Log("이미 최대 레벨입니다.");
             return false;
         }
 
@@ -56,23 +52,10 @@ public class WeaponLevelUp : MonoBehaviour
         save.coin -= upgradeCost;
         owned.level++;
         saveService.Save(save);
-        Debug.Log("[WeaponLevelUp] 저장 완료 - 코인: " + save.coin + ", 무기 레벨: " + owned.level);
 
-        weaponStatus.ApplyAllWeaponStats();
-
-        if (save.equippedWeaponId == weaponId)
-        {
-            var equippedData = weaponStatus.FindWeaponDataById(weaponId);
-            weaponEquip?.Equip(equippedData, owned.level);
-        }
-
-        CoinUI coinUI = Object.FindFirstObjectByType<CoinUI>();
-        coinUI?.UpdateCoinUI();
-
-        Debug.Log($"[WeaponUpgrade] 무기 {weaponData.weaponName} 강화 완료 → Lv.{owned.level} (코스트: {upgradeCost})");
+        Debug.Log($"[WeaponLevelUp] 무기 ID {weaponId} → Lv.{owned.level} (Cost: {upgradeCost})");
         return true;
     }
-
 
     public int CalculateUpgradeCost(int currentLevel)
     {
