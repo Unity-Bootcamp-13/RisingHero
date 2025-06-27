@@ -1,13 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class GachaManager : MonoBehaviour
 {
-    [Header("가챠 테이블 (무기, 스킬 등)")]
-    [SerializeField] private GachaTableSO currentTable;
-
     [Header("보상 출력 UI")]
     [SerializeField] private Transform rewardParentPanel;
     [SerializeField] private float spawnInterval = 0.1f;
@@ -18,10 +16,21 @@ public class GachaManager : MonoBehaviour
     [Header("가챠 닫기 버튼")]
     [SerializeField] private GameObject closeButton;
 
-    public void SetTable(GachaTableSO table)
+    [Header("가중치 리스트")]
+    [SerializeField] private List<int> rewardWeights;
+
+    [Header("아이콘 박스 프리팹")]
+    [SerializeField] private GameObject rewardPrefab;
+
+    private int totalWeight = 0;
+    private List<GameObject> rewardPool = new List<GameObject>();
+
+
+    private void Start()
     {
-        currentTable = table;
+        TotalWeight();
     }
+
 
     public void RollOnce() => StartCoroutine(SpawnRewardsOneByOne(GetRandomRewards(1)));
     public void RollTen() => StartCoroutine(SpawnRewardsOneByOne(GetRandomRewards(10)));
@@ -29,55 +38,94 @@ public class GachaManager : MonoBehaviour
     private List<int> GetRandomRewards(int count)
     {
         List<int> results = new();
-        int totalWeight = 0;
-
-        foreach (int weight in currentTable.rewardWeights)
-            totalWeight += weight;
 
         for (int i = 0; i < count; i++)
         {
-            int rand = Random.Range(1, totalWeight + 1);
-            int cumulative = 0;
-
-            for (int j = 0; j < currentTable.rewardWeights.Count; j++)
-            {
-                cumulative += currentTable.rewardWeights[j];
-                if (rand <= cumulative)
-                {
-                    results.Add(j);
-                    break;
-                }
-            }
+            results.Add(GachaRandomReward());
         }
 
         return results;
     }
 
+    private int GachaRandomReward()
+    {
+        int rand = Random.Range(1, totalWeight + 1);
+        int cumulative = 0;
+        for (int i = 0; i < rewardWeights.Count; i++)
+        {
+            cumulative += rewardWeights[i];
+            if (rand <= cumulative)
+            {
+                return i; // 해당 인덱스 반환
+            }
+        }
+        throw new System.Exception("가중치가 보상 아이템의 가중치합보다 크다!");
+    }
+
     private IEnumerator SpawnRewardsOneByOne(List<int> rewardIndexes)
     {
-        // 버튼 비활성화
-        foreach (GameObject btn in gachaButtons)
-            btn.SetActive(false);
+        SetGachaButtonsActive(false);
 
-        // 기존 보상 제거
-        foreach (Transform child in rewardParentPanel)
-            Destroy(child.gameObject);
+        // 기존 보상 False
+        foreach (GameObject pool in rewardPool)
+            pool.SetActive(false);
 
         yield return new WaitForSeconds(spawnInterval);
 
-        foreach (int index in rewardIndexes)
+        foreach (int id in rewardIndexes)
         {
-            if (index > 0 && index < currentTable.rewardDataList.Count)
+            if (id > 0 && id < rewardWeights.Count)
             {
                 //Instantiate(currentTable.rewardPrefabs[index], rewardParentPanel);
-                var icon = Instantiate(currentTable.rewardPrefabs, rewardParentPanel);
-                icon.GetComponent<RewardIcon>()?.Setup(currentTable.rewardDataList[index]);
+                var icon = Instantiate(rewardPrefab, rewardParentPanel); //어차피 여기서 받아서 뒤에 아이콘에 넣을 필요가 없다.
+                rewardPool.Add(icon);
+
+                icon.GetComponent<RewardIcon>().Setup(id);
             }
             yield return new WaitForSeconds(spawnInterval);
         }
 
-        // 버튼 재활성화
-        foreach (GameObject btn in gachaButtons)
-            btn.SetActive(true);
+        SetGachaButtonsActive(true);
     }
+
+    private void TotalWeight()
+    {
+        foreach (int weight in rewardWeights)
+        {
+            totalWeight += weight;
+        }
+    }
+
+    private void SetGachaButtonsActive(bool active)
+    {
+        foreach (GameObject btn in gachaButtons)
+        {
+            btn.SetActive(active);
+        }
+        closeButton.SetActive(active);
+    }
+
+    /*private void ExceptionGacha()
+    {
+        if (currentTable == null)
+        {
+            Debug.LogError("Gacha Table is not set!");
+            return;
+        }
+        if (currentTable.rewardDataList == null || currentTable.rewardDataList.Count == 1)
+        {
+            Debug.LogError("Reward data list is empty!");
+            return;
+        }
+        if (currentTable.rewardWeights == null || currentTable.rewardWeights.Count != currentTable.rewardDataList.Count)
+        {
+            Debug.LogError("Reward weights are not set correctly!");
+            return;
+        }
+        if (currentTable.rewardPrefabs == null)
+        {
+            Debug.LogError("Reward prefab is not set!");
+            return;
+        }
+    }*/
 }

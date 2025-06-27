@@ -1364,11 +1364,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646d90ed548f6b9459134e19e5de02d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTable: {fileID: 11400000, guid: 3fd986b2b44d145438b447a8b8d44667, type: 2}
   rewardParentPanel: {fileID: 1126051629}
   spawnInterval: 0.1
-  gachaButtons: []
+  gachaButtons:
+  - {fileID: 1109505812}
+  - {fileID: 789657444}
   closeButton: {fileID: 868711719}
+  rewardWeights: 000000000a0000000a0000000a0000000a0000000a0000000a0000000a0000000a0000000a000000
+  rewardPrefab: {fileID: 2781328042274017771, guid: 09ca46288728d8d48850af644ef78ed2, type: 3}
 --- !u!4 &326656666
 Transform:
   m_ObjectHideFlags: 0
@@ -1694,7 +1697,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 326656665}
         m_TargetAssemblyTypeName: GachaManager, Assembly-CSharp
-        m_MethodName: TenTest
+        m_MethodName: RollTen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
