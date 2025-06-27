@@ -3,18 +3,29 @@ using UnityEngine;
 public class StageSystem : MonoBehaviour
 {
     private GameObject currentStageInstance;
+    private ISaveService saveService;
+
+    public void Initialize(ISaveService saveService)
+    {
+        this.saveService = saveService;
+    }
 
     private void Start()
     {
+        if (saveService == null)
+        {
+            Debug.LogError("[StageSystem] SaveService가 초기화되지 않았습니다.");
+            return;
+        }
+
         LoadStage();
     }
 
     void LoadStage()
     {
-        PlayerSaveData saveData = SaveManager.Load();
+        PlayerSaveData saveData = saveService.Load();
         string stageName = saveData.currentStage;
 
-        // Resources/Tilemaps/{stageName}.prefab 로 프리팹 로드
         GameObject stagePrefab = Resources.Load<GameObject>($"Tilemaps/{stageName}");
 
         if (stagePrefab == null)
@@ -23,13 +34,11 @@ public class StageSystem : MonoBehaviour
             return;
         }
 
-        // 기존 인스턴스 제거
         if (currentStageInstance != null)
         {
             Destroy(currentStageInstance);
         }
 
-        // 새 스테이지 프리팹 인스턴스 생성
         currentStageInstance = Instantiate(stagePrefab, Vector3.zero, Quaternion.identity);
     }
 }
