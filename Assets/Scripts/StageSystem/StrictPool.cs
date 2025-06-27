@@ -63,7 +63,6 @@ public class StrictPool : MonoBehaviour
     {
         if (!poolDictionary.ContainsKey(type))
         {
-            Debug.LogWarning($"[ObjectPoolManager] 풀 타입 '{type}' 없음");
             return null;
         }
 
@@ -87,7 +86,6 @@ public class StrictPool : MonoBehaviour
         {
             if (!poolInfoLookup.TryGetValue(type, out Pool pool) || pool.prefab == null)
             {
-                Debug.LogError($"[ObjectPoolManager] '{type}'에 대한 프리팹 정보가 없습니다.");
                 return null;
             }
 
@@ -108,7 +106,6 @@ public class StrictPool : MonoBehaviour
     {
         if (!poolDictionary.ContainsKey(type))
         {
-            Debug.LogWarning($"[ObjectPoolManager] 반환하려는 풀 타입 '{type}'이 존재하지 않습니다.");
             return;
         }
 
