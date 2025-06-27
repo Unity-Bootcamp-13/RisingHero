@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerSaveData
 {
     public List<StageClearData> clearedStages = new List<StageClearData>();
+    public string currentStage = "Stage_01";
 }
 
 [Serializable]
