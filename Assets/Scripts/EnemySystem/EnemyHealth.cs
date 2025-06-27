@@ -22,7 +22,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     public void TakeDamage(int amount)
     {
-        if (isInvincible) return; // 무적 상태면 무시
+        if (isInvincible) return;
 
         currentHp = Mathf.Max(currentHp - amount, 0);
 

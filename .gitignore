@@ -16,6 +16,7 @@
 /[Aa]ssets/Gif/
 /[Aa]ssets/Cainos/
 /[Aa]ssets/Violet Theme Ui/
+/[Aa}ssets/JMO Assets/
 
 # By default unity supports Blender asset imports, *.blend1 blender files do not need to be commited to version control.
 *.blend1

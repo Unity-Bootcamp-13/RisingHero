@@ -72,12 +72,12 @@ public class Enemy : MonoBehaviour
         StopAllCoroutines();
         health?.ResetHealth();
 
-        AliveEnemyManager.Instance?.Register(transform);
+        AliveEnemyManager.Register(this);
     }
 
     private void OnDisable()
     {
-        AliveEnemyManager.Instance?.Unregister(transform);
+        AliveEnemyManager.Unregister(this);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
