@@ -1345,6 +1345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 326656666}
   - component: {fileID: 326656665}
+  - component: {fileID: 326656667}
   m_Layer: 0
   m_Name: GachaTest
   m_TagString: Untagged
@@ -1365,13 +1366,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rewardParentPanel: {fileID: 1126051629}
-  spawnInterval: 0.1
+  rewardPrefab: {fileID: 2781328042274017771, guid: 09ca46288728d8d48850af644ef78ed2, type: 3}
   gachaButtons:
   - {fileID: 1109505812}
   - {fileID: 789657444}
   closeButton: {fileID: 868711719}
-  rewardWeights: 000000000a0000000a0000000a0000000a0000000a0000000a0000000a0000000a0000000a000000
-  rewardPrefab: {fileID: 2781328042274017771, guid: 09ca46288728d8d48850af644ef78ed2, type: 3}
 --- !u!4 &326656666
 Transform:
   m_ObjectHideFlags: 0
@@ -1387,6 +1386,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1843014103}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &326656667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326656664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48544844f5643a842944d938d970ebe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListId: 0
+  onClickEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_CallsDirty: 1
 --- !u!1 &351760821
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,9 +1711,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 326656665}
-        m_TargetAssemblyTypeName: GachaManager, Assembly-CSharp
-        m_MethodName: RollTen
+      - m_Target: {fileID: 789657446}
+        m_TargetAssemblyTypeName: GachaButton, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3279,6 +3295,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 789657445}
+  - component: {fileID: 789657446}
   m_Layer: 5
   m_Name: TenGacha
   m_TagString: Untagged
@@ -3308,6 +3325,19 @@ RectTransform:
   m_AnchoredPosition: {x: 126.99997, y: -423}
   m_SizeDelta: {x: 100, y: 72.94873}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &789657446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789657444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b82bac02640d7d4c99914bd3e4989c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listId: 2
 --- !u!1 &844962102
 GameObject:
   m_ObjectHideFlags: 0
@@ -4748,6 +4778,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1109505813}
+  - component: {fileID: 1109505814}
   m_Layer: 5
   m_Name: OneGacha
   m_TagString: Untagged
@@ -4777,6 +4808,19 @@ RectTransform:
   m_AnchoredPosition: {x: -95, y: -423}
   m_SizeDelta: {x: 100, y: 72.94873}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1109505814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109505812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b82bac02640d7d4c99914bd3e4989c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listId: 1
 --- !u!1 &1110521598
 GameObject:
   m_ObjectHideFlags: 0
@@ -7834,13 +7878,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 326656665}
-        m_TargetAssemblyTypeName: GachaManager, Assembly-CSharp
-        m_MethodName: SetTable
-        m_Mode: 2
+      - m_Target: {fileID: 1109505814}
+        m_TargetAssemblyTypeName: GachaButton, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: GachaTableSO, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -8625,6 +8669,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1995863564}
   m_CullTransparentMesh: 1
+--- !u!1 &2073915175
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2073915177}
+  - component: {fileID: 2073915176}
+  - component: {fileID: 2073915178}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2073915176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073915175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93be143bab386404f8da08d2134c39bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2073915177
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073915175}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2073915178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073915175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc8a7be5f4f8f794eb2d89d804331720, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2079390725
 GameObject:
   m_ObjectHideFlags: 0
@@ -9068,3 +9169,4 @@ SceneRoots:
   - {fileID: 1373215206}
   - {fileID: 947094217}
   - {fileID: 258006271}
+  - {fileID: 2073915177}

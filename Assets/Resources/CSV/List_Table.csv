@@ -1,0 +1,6 @@
+﻿list_id,group_id,required_item,required_cost,reward_amount
+int,int,string,int,int
+1,101,diamond,100,1
+2,101,diamond,1000,10
+3,201,diamond,500,1
+4,201,diamond,2500,10
