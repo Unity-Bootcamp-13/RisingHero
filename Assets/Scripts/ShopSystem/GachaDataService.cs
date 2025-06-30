@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 public interface IGachaDataService
 {
@@ -17,18 +14,40 @@ public class GachaDataService : IGachaDataService
 
     public GachaDataService()
     {
-        var listTable = ListTableData.LoadFromCSV("CSV/List_Table");
-        var itemList = ListItemData.LoadFromCSV("CSV/List_Item");
+        List<ListTableData> listTable = ListTableData.LoadFromCSV("CSV/List_Table");
+        List<ListItemData> itemList = ListItemData.LoadFromCSV("CSV/List_Item");
 
-        listTableMap = new();
-        foreach (var entry in listTable)
+        InitializeListTableMap(listTable);
+        InitializeItemGroupMap(itemList);
+    }
+
+    /// <summary>
+    /// listTable 데이터를 Dictionary에 매핑
+    /// </summary>
+    private void InitializeListTableMap(List<ListTableData> listTable)
+    {
+        listTableMap = new Dictionary<int, ListTableData>();
+
+        foreach (ListTableData entry in listTable)
+        {
             listTableMap[entry.ListId] = entry;
+        }
+    }
 
-        itemGroupMap = new();
-        foreach (var item in itemList)
+    /// <summary>
+    /// itemList 데이터를 GroupId 기준으로 Dictionary에 분류
+    /// </summary>
+    private void InitializeItemGroupMap(List<ListItemData> itemList)
+    {
+        itemGroupMap = new Dictionary<int, List<ListItemData>>();
+
+        foreach (ListItemData item in itemList)
         {
             if (!itemGroupMap.ContainsKey(item.GroupId))
-                itemGroupMap[item.GroupId] = new();
+            {
+                itemGroupMap[item.GroupId] = new List<ListItemData>();
+            }
+
             itemGroupMap[item.GroupId].Add(item);
         }
     }
@@ -38,8 +57,11 @@ public class GachaDataService : IGachaDataService
     /// </summary>
     public ListTableData GetListTable(int listId)
     {
-        if (!listTableMap.TryGetValue(listId, out var data))
+        if (!listTableMap.TryGetValue(listId, out ListTableData data))
+        {
             throw new KeyNotFoundException($"ListId {listId}에 해당하는 ListTableData가 없습니다.");
+        }
+
         return data;
     }
 
@@ -48,10 +70,11 @@ public class GachaDataService : IGachaDataService
     /// </summary>
     public List<ListItemData> GetItemsForGroup(int groupId)
     {
-        if (!itemGroupMap.TryGetValue(groupId, out var items))
+        if (!itemGroupMap.TryGetValue(groupId, out List<ListItemData> items))
+        {
             throw new KeyNotFoundException($"GroupId {groupId}에 해당하는 ListItemData가 없습니다.");
+        }
 
         return items;
     }
 }
-

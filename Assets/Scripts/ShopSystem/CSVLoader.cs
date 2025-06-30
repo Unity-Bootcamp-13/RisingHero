@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public interface ICSVLoadable
@@ -20,14 +17,22 @@ public class CSVLoader
     {
         if (reader == null)
             reader = new CSVReader();
+
         if (parser == null)
             parser = new CSVParser();
 
         string[] lines = reader.ReadLines(resourcePath);
         List<Dictionary<string, object>> rawData = parser.Parse(lines);
 
-        var result = new List<T>();
-        foreach (var row in rawData)
+        return ConvertToObjects<T>(rawData);
+    }
+
+    private static List<T> ConvertToObjects<T>(List<Dictionary<string, object>> rawData)
+        where T : ICSVLoadable, new()
+    {
+        List<T> result = new List<T>();
+
+        foreach (Dictionary<string, object> row in rawData)
         {
             try
             {
