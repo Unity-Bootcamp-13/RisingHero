@@ -13,7 +13,7 @@ public class ProjectilePool : MonoBehaviour
     public class PoolInfo
     {
         public string key;             // Unique identifier for the projectile type
-        public GameObject prefab;      // Prefab to pool
+        public GameObject prefab;      // PrefabName to pool
         public int initialSize = 10;   // Number of instances to pre-instantiate
     }
 
