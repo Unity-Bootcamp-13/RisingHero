@@ -9,11 +9,12 @@ public class GachaManager : MonoBehaviour
     [SerializeField] private GameObject[] gachaButtons;
     [SerializeField] private GameObject closeButton;
 
-    private GachaDataService dataService;
+    private IGachaDataService dataService;
 
-    private void Awake()
+    private void Start()
     {
-        dataService = new GachaDataService();
+        IGachaDataService service = new GachaDataService();
+        Init(service);
     }
 
     private void OnEnable()
@@ -24,6 +25,11 @@ public class GachaManager : MonoBehaviour
     private void OnDisable()
     {
         GachaEventBus.OnGachaRoll -= RollGacha;
+    }
+
+    public void Init(IGachaDataService service)
+    {
+        dataService = service;
     }
 
     public void RollGacha(int listId)
