@@ -10,7 +10,7 @@ public interface ICSVLoadable
     void LoadFromDictionary(Dictionary<string, object> dict);
 }
 
-internal class CSVLoader
+public class CSVLoader
 {
     public static List<T> Load<T>(
          string resourcePath,
@@ -18,8 +18,10 @@ internal class CSVLoader
          ICSVParser parser = null
     ) where T : ICSVLoadable, new()
     {
-        reader ??= new CSVReader();
-        parser ??= new CSVParser();
+        if (reader == null)
+            reader = new CSVReader();
+        if (parser == null)
+            parser = new CSVParser();
 
         string[] lines = reader.ReadLines(resourcePath);
         List<Dictionary<string, object>> rawData = parser.Parse(lines);
