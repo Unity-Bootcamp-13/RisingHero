@@ -65,9 +65,9 @@ public class CSVParser : ICSVParser
     {
         switch (typeStr.ToLower())
         {
-            case "int": return s => int.TryParse(s, out int i) ? i : 0;
-            case "float": return s => float.TryParse(s, out float f) ? f : 0f;
-            case "bool": return s => bool.TryParse(s, out bool b) ? b : false;
+            case "int": return s => int.Parse(s);
+            case "float": return s => float.Parse(s);
+            case "bool": return s => bool.Parse(s);
             case "string": return s => s;
             default:
                 Debug.LogWarning($"[CSVParser] 알 수 없는 타입 '{typeStr}', string 처리");
