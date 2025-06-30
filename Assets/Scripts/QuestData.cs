@@ -1,0 +1,19 @@
+[System.Serializable]
+public class QuestData
+{
+    public int questId;
+    public string questType; 
+    public int goalValue;
+    public int currentValue;
+    public int rewardExp;
+    public int rewardGold;
+    public int rewardJewel;
+    public bool isCompleted;
+}
+
+public enum QuestType
+{
+    Kill,
+    Upgrade,
+    Gacha
+}
