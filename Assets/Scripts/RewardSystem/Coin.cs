@@ -8,17 +8,28 @@ public class Coin : MonoBehaviour
     private Transform playerTransform;
     private bool isBeingPulled = false;
 
+    private void Update()
+    {
+        if (isBeingPulled && playerTransform != null)
+        {
+            Vector3 direction = (playerTransform.position - transform.position).normalized;
+            transform.position += direction * moveSpeed * Time.deltaTime;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            gameObject.SetActive(false); // Layer·Î ¼öÁ¤
+            CoinBuffer.Instance.AddBufferedCoin(coinValue);
+            gameObject.SetActive(false);
         }
     }
 
-    public void PullTowardPlayer()
+    public void PullTowardPlayer(Transform player)
     {
         isBeingPulled = true;
+        playerTransform = player;
     }
 
     public void SetValue(int value)
@@ -29,5 +40,6 @@ public class Coin : MonoBehaviour
     private void OnDisable()
     {
         isBeingPulled = false;
+        playerTransform = null;
     }
 }
