@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -52,4 +52,4 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.position += (Vector3)(moveDirection * moveSpeed * Time.deltaTime);
     }
-}
+}*/

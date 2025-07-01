@@ -5,7 +5,23 @@ public class AuraSkillBehaviour : ISkillBehaviour
 {
     public void Execute(SkillData data, Transform casterTransform)
     {
-        var aura = GameObject.Instantiate(Resources.Load<GameObject>(data.PrefabName), casterTransform.position, Quaternion.identity);
-        aura.transform.SetParent(casterTransform); // 플레이어의 자식으로 넣어야 함
+        var prefab = Resources.Load<GameObject>(data.PrefabName);
+        var auraObject = GameObject.Instantiate(prefab, casterTransform.position,Quaternion.identity);
+
+        var aura = auraObject.GetComponent<Aura>();
+
+        if (aura != null)
+        {
+            LayerMask targetLayer = LayerMask.GetMask("Enemy");
+
+            aura.Initialize(
+                damage: data.Power,
+                radius: data.Range,
+                tickInterval: 1f,
+                duration: 4f,   // 0 이하로 설정 시 영구 지속
+                caster: casterTransform,
+                targetLayer: targetLayer
+            );
+        }
     }
 }
