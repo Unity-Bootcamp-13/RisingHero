@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
-public class GachaManager : MonoBehaviour
+public class GachaManager : MonoBehaviour 
 {
     [SerializeField] private Transform rewardParentPanel;
     [SerializeField] private GameObject rewardPrefab;
@@ -10,6 +11,10 @@ public class GachaManager : MonoBehaviour
     [SerializeField] private GameObject closeButton;
 
     private IGachaDataService dataService;
+    public void Init(IGachaDataService service)
+    {
+        dataService = service;
+    }
 
     private void Start()
     {
@@ -27,10 +32,6 @@ public class GachaManager : MonoBehaviour
         GachaEventBus.OnGachaRoll -= RollGacha;
     }
 
-    public void Init(IGachaDataService service)
-    {
-        dataService = service;
-    }
 
     public void RollGacha(int listId)
     {
@@ -40,6 +41,10 @@ public class GachaManager : MonoBehaviour
             Debug.LogError($"[GachaManager] ListId {listId} 에 해당하는 테이블이 없습니다.");
             return;
         }
+
+        if (!DiamondManager.Instance.HasEnoughDiamond(table.RequiredCost))
+            return;
+        CostRoll(table);
 
         List<ListItemData> itemList = dataService.GetItemsForGroup(table.GroupId);
 
@@ -104,6 +109,14 @@ public class GachaManager : MonoBehaviour
         foreach (var btn in gachaButtons)
             btn.SetActive(active);
         closeButton.SetActive(active);
+    }
+
+    private void CostRoll(ListTableData table)
+    {
+        if (table.RequiredItem == "diamond")
+            DiamondManager.Instance.CostDiamond(table.RequiredCost);
+        else
+            Debug.LogError($"[GachaManager] 지원하지 않는 아이템: {table.RequiredItem}");
     }
 }
 

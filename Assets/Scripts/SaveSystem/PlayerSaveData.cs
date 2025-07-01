@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerSaveData
 {
     public int coin = 0;
+    public int diamond = 0;
     public List<StageClearData> clearedStages = new();
     public List<OwnedWeapon> ownedWeapons = new();
     public int equippedWeaponId = -1;
