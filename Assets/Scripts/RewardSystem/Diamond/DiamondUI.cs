@@ -12,10 +12,6 @@ class DiamondUI : MonoBehaviour
     [SerializeField] private TMP_Text diamondText;
     [SerializeField] private GameObject notEnoughDiamond;
 
-    private void Start()
-    {
-    }
-
     public void UpdateDiamondUI(int diamond)
     {
         diamondText.text = diamond.ToString();

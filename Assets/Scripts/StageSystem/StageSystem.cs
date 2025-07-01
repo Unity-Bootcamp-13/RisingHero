@@ -1,14 +1,24 @@
 using UnityEngine;
 
-public class StageSystem : MonoBehaviour
+public interface IStageSystem
+{
+    void LoadStage();
+    void SaveStage(string stage);
+    PlayerSaveData LoadData();
+}
+
+public class StageSystem : MonoBehaviour, IStageSystem
 {
     private GameObject currentStageInstance;
     private ISaveService saveService;
+
+    PlayerSaveData saveData;
 
     public void Initialize(ISaveService saveService)
     {
         this.saveService = saveService;
     }
+
 
     private void Start()
     {
@@ -18,15 +28,15 @@ public class StageSystem : MonoBehaviour
             return;
         }
 
+        saveData = saveService.Load();
         LoadStage();
     }
 
-    void LoadStage()
+    public void LoadStage()
     {
-        PlayerSaveData saveData = saveService.Load();
         string stageName = saveData.currentStage;
 
-        GameObject stagePrefab = Resources.Load<GameObject>($"Tilemaps/{stageName}");
+        /*GameObject stagePrefab = Resources.Load<GameObject>($"Tilemaps/{stageName}");
 
         if (stagePrefab == null)
         {
@@ -39,6 +49,17 @@ public class StageSystem : MonoBehaviour
             Destroy(currentStageInstance);
         }
 
-        currentStageInstance = Instantiate(stagePrefab, Vector3.zero, Quaternion.identity);
+        currentStageInstance = Instantiate(stagePrefab, Vector3.zero, Quaternion.identity);*/
+    }
+
+    public void SaveStage(string stage)
+    {
+        saveData.currentStage = stage;
+        saveService.Save(saveData);
+    }
+
+    public PlayerSaveData LoadData()
+    {
+        return saveService.Load();
     }
 }

@@ -1,0 +1,56 @@
+[
+  {
+    "unlock_stage_id": 1,
+    "common_stage_id": 1,
+    "unlock_stage_name": "UnlockStage_01",
+    "unlock_stage_clear": "TRUE"
+  },
+  {
+    "unlock_stage_id": 2,
+    "common_stage_id": 2,
+    "unlock_stage_name": "UnlockStage_02",
+    "unlock_stage_clear": "FALSE"
+  },
+  {
+    "unlock_stage_id": 3,
+    "common_stage_id": 3,
+    "unlock_stage_name": "UnlockStage_03",
+    "unlock_stage_clear": "FALSE"
+  },
+  {
+    "unlock_stage_id": 4,
+    "common_stage_id": 4,
+    "unlock_stage_name": "UnlockStage_04",
+    "unlock_stage_clear": "FALSE"
+  },
+  {
+    "unlock_stage_id": 5,
+    "common_stage_id": 5,
+    "unlock_stage_name": "UnlockStage_05",
+    "unlock_stage_clear": "FALSE"
+  },
+  {
+    "unlock_stage_id": 6,
+    "common_stage_id": 6,
+    "unlock_stage_name": "UnlockStage_06",
+    "unlock_stage_clear": "FALSE"
+  },
+  {
+    "unlock_stage_id": 7,
+    "common_stage_id": 7,
+    "unlock_stage_name": "UnlockStage_07",
+    "unlock_stage_clear": "FALSE"
+  },
+  {
+    "unlock_stage_id": 8,
+    "common_stage_id": 8,
+    "unlock_stage_name": "UnlockStage_08",
+    "unlock_stage_clear": "FALSE"
+  },
+  {
+    "unlock_stage_id": 9,
+    "common_stage_id": 9,
+    "unlock_stage_name": "UnlockStage_09",
+    "unlock_stage_clear": "FALSE"
+  }
+]

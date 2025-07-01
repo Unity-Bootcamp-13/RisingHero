@@ -15,6 +15,8 @@ public class DiamondManager : MonoBehaviour, IDiamondManager
 
     public static IDiamondManager Instance { get; private set; }
 
+    private PlayerSaveData data;
+
     private void Awake()
     {
         ISaveService saveService = new JsonSaveService();
@@ -30,7 +32,7 @@ public class DiamondManager : MonoBehaviour, IDiamondManager
 
     private void Start()
     {
-        PlayerSaveData data = diamondService.LoadData();
+        data = diamondService.LoadData();
         diamondUI.UpdateDiamondUI(data.diamond);
     }
 
@@ -41,7 +43,6 @@ public class DiamondManager : MonoBehaviour, IDiamondManager
 
     public void CostDiamond(int cost)
     {
-        PlayerSaveData data = diamondService.LoadData();
         data.diamond -= cost;
         diamondService.SaveData(data);
         diamondUI.UpdateDiamondUI(data.diamond);
@@ -49,7 +50,6 @@ public class DiamondManager : MonoBehaviour, IDiamondManager
 
     public void GetDiamond(int amount)
     {
-        PlayerSaveData data = diamondService.LoadData();
         data.diamond += amount;
         diamondService.SaveData(data);
         diamondUI.UpdateDiamondUI(data.diamond);
@@ -57,7 +57,6 @@ public class DiamondManager : MonoBehaviour, IDiamondManager
 
     public bool HasEnoughDiamond(int cost)
     {
-        PlayerSaveData data = diamondService.LoadData();
         if (data.diamond < cost)
         {
             diamondUI.ShowNotEnoughDiamond();
