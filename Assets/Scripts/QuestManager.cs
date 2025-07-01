@@ -8,7 +8,7 @@ public class QuestManager : MonoBehaviour
 
     private void Awake()
     {
-        savePath = Application.persistentDataPath + "/quest.json";
+        savePath = Path.Combine(Application.persistentDataPath, "quest.json");
         LoadQuestData();
     }
 
@@ -30,44 +30,56 @@ public class QuestManager : MonoBehaviour
         else
         {
             Debug.Log("저장된 퀘스트 없음. 새 퀘스트 생성");
-            currentQuest = GenerateNextQuest(); // 없는 경우 새 퀘스트 생성
+            currentQuest = GenerateNextQuest();
         }
     }
 
     public QuestData GenerateNextQuest()
     {
         int nextId = currentQuest != null ? currentQuest.questId + 1 : 1;
+        QuestType newQuestType = GetRandomQuestType();
 
-        // 퀘스트 타입 무작위 선택
-        QuestType newQuestType = (QuestType)Random.Range(0, System.Enum.GetValues(typeof(QuestType)).Length);
-
-        int goal = 0;
-
-        switch (newQuestType)
-        {
-            case QuestType.Kill:
-                goal = Random.Range(10, 51); // 10~50 마리 처치
-                break;
-
-            case QuestType.Upgrade:
-                goal = Random.Range(1, 11); // 장비 레벨업 1~10회
-                break;
-
-            case QuestType.Gacha:
-                goal = 1; // 뽑기 버튼 1회 클릭
-                break;
-        }
+        int goal = GetGoalValueForType(newQuestType);
+        (int exp, int gold, int diamond) = CalculateReward(nextId);
 
         return new QuestData
         {
             questId = nextId,
-            questType = newQuestType.ToString(),
+            questType = newQuestType,
             goalValue = goal,
             currentValue = 0,
-            rewardExp = 50 + nextId * 10,
-            rewardGold = 100 + nextId * 15,
+            rewardExp = exp,
+            rewardGold = gold,
+            rewardJewel = diamond,
             isCompleted = false
         };
     }
 
+    private QuestType GetRandomQuestType()
+    {
+        return (QuestType)Random.Range(0, System.Enum.GetValues(typeof(QuestType)).Length);
+    }
+
+    private int GetGoalValueForType(QuestType type)
+    {
+        switch (type)
+        {
+            case QuestType.Kill:
+                return Random.Range(10, 51); // 10~50
+            case QuestType.Upgrade:
+                return Random.Range(1, 11);  // 1~10
+            case QuestType.Gacha:
+                return 1;
+            default:
+                return 1;
+        }
+    }
+
+    private (int exp, int gold, int diamond) CalculateReward(int questId)
+    {
+        int exp = 50 + questId * 10;
+        int gold = 100 + questId * 15;
+        int diamond = 50 + questId * 10;
+        return (exp, gold, diamond);
+    }
 }
