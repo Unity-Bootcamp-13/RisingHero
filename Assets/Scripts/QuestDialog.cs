@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,8 @@ public class QuestDialog : MonoBehaviour
 
     private QuestManager questManager;
     private QuestData questData;
+
+    private IDiamondManager diamondManager;
 
     private void Start()
     {
@@ -74,6 +77,7 @@ public class QuestDialog : MonoBehaviour
 
     private void OnCompleteButtonClicked()
     {
+
         if (!IsQuestCompletable()) return;
 
         questData.isCompleted = true;
@@ -82,7 +86,9 @@ public class QuestDialog : MonoBehaviour
         // 보상 지급
         Debug.Log("보상 지급: Gold + " + questManager.currentQuest.rewardGold +
                   ", EXP + " + questManager.currentQuest.rewardExp + ", Diamond + " + questManager.currentQuest.rewardJewel);
-        // 여기에 플레이어에 골드/경험치 추가하는 코드 연결
+        // 여기에 플레이어에 골드/경험치/보석 추가하는 코드 연결
+        DiamondManager.Instance.GetDiamond(500);
+
 
         // 다음 퀘스트로 갱신
         questManager.currentQuest = questManager.GenerateNextQuest();

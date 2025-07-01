@@ -40,7 +40,7 @@ public class QuestManager : MonoBehaviour
         QuestType newQuestType = GetRandomQuestType();
 
         int goal = GetGoalValueForType(newQuestType);
-        (int exp, int gold, int diamond) = CalculateReward(nextId);
+        (int exp, int gold, int diamond) = CalculateReward(currentQuest);
 
         return new QuestData
         {
@@ -75,11 +75,11 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    private (int exp, int gold, int diamond) CalculateReward(int questId)
+    public (int exp, int gold, int diamond) CalculateReward(QuestData currentQuest)
     {
-        int exp = 50 + questId * 10;
-        int gold = 100 + questId * 15;
-        int diamond = 50 + questId * 10;
+        int exp = 50 * 10;
+        int gold = 100 * 15;
+        int diamond = 50 * 10;
         return (exp, gold, diamond);
     }
 }
