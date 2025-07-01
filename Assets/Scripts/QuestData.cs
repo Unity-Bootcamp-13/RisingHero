@@ -2,7 +2,7 @@
 public class QuestData
 {
     public int questId;
-    public string questType; 
+    public QuestType questType; 
     public int goalValue;
     public int currentValue;
     public int rewardExp;
