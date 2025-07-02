@@ -10,6 +10,7 @@ public class AOE : MonoBehaviour
     private float radius;               // 지정된 범위
     private float duration;             // 범위의 지속 시간
     private float tickInterval;         // 피해 주기
+    private float cooltime;             // 스킬의 쿨타임
     private LayerMask targetLayer;      // Enemy Layer만 감지하기 위함
 
     private float elapsedTime = 0f;     // 시간 경과 계산용
@@ -17,6 +18,13 @@ public class AOE : MonoBehaviour
 
     private void Update()
     {
+        if (tickInterval <= 0f)
+        {
+            ApplyDamage();
+            Destroy(gameObject);
+            return;
+        }
+
         elapsedTime += Time.deltaTime;
         tickTimer += Time.deltaTime;
 
@@ -37,12 +45,13 @@ public class AOE : MonoBehaviour
     }
 
     // 초기화
-    public void Initialize(float damage, float radius, float duration, float tickInterval, LayerMask targetLayer)
+    public void Initialize(float damage, float radius, float duration, float tickInterval, float cooldown, LayerMask targetLayer)
     {
         this.damage = damage;
         this.radius = radius;
         this.duration = duration;
         this.tickInterval = tickInterval;
+        this.cooltime = cooldown;
         this.targetLayer = targetLayer;
     }
 
@@ -59,12 +68,5 @@ public class AOE : MonoBehaviour
                 target.TakeDamage((int)damage);
             }
         }
-    }
-
-    // 에디터 상에서 범위를 시각화 하는 용도 (없어도 됨)
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }

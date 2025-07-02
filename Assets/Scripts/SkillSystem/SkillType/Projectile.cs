@@ -10,8 +10,9 @@ public class Projectile : MonoBehaviour
 {
     private Vector2 direction;      // 투사체의 방향
     private float speed;            // 투사체의 속도
-    private float lifetime;         // 투사체의 최대 유지 시간 (빗나갔을 경우 제거되어야 하기 때문)
     private float damage;           // 투사체의 피해량
+    private float lifetime;         // 투사체의 최대 유지 시간 (빗나갔을 경우 제거되어야 하기 때문)
+    private float cooltime;         // 스킬의 쿨타임
     private LayerMask targetLayer;  // Enemy Layer만 감지하기 위함
 
     private void Update()
@@ -21,13 +22,15 @@ public class Projectile : MonoBehaviour
     }
 
     // 초기화
-    public void Initialize(Vector2 direction, float speed, float damage, float lifetime, LayerMask targetLayer)
+    public void Initialize(Vector2 direction, float speed, float damage, float lifetime, float cooldown, LayerMask targetLayer)
     {
         this.direction = direction.normalized;
         this.speed = speed;
         this.damage = damage;
         this.lifetime = lifetime;
+        this.cooltime = cooldown;
         this.targetLayer = targetLayer;
+        
 
         // 빗나간 경우, 연산 과부하를 막기 위해 lifetime 이후 자동으로 제거되는 로직
         Destroy(gameObject, lifetime);

@@ -6,4 +6,6 @@ public class SkillSlot
 {
     public SkillData Skill;
     public int Level;
+    public float CurrentCooldown;   // 현재 쿨타임 (남은 쿨타임)
+    public bool IsOnCooldown => CurrentCooldown > 0f;
 }

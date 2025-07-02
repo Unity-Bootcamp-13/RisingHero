@@ -45,8 +45,9 @@ public class AOESkillBehaviour : ISkillBehaviour
             aoe.Initialize(
                 data.Power,
                 radius: data.Range,
-                duration: 3f,
-                tickInterval: 1f,
+                duration: data.Duration,
+                tickInterval: data.TickInterval,
+                cooldown: data.CooldownTime,
                 targetLayer: targetLayer
             );
         }

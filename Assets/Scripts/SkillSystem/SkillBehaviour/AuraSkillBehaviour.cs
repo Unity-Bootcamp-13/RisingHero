@@ -14,11 +14,15 @@ public class AuraSkillBehaviour : ISkillBehaviour
         {
             LayerMask targetLayer = LayerMask.GetMask("Enemy");
 
+            // SkillData의 필드를 받아와야 SkillTester에서 설정한 duration 적용가능
+            float duration = data.Duration;
+
             aura.Initialize(
                 damage: data.Power,
                 radius: data.Range,
-                tickInterval: 1f,
-                duration: 4f,   // 0 이하로 설정 시 영구 지속
+                duration: duration,   // 0 이하로 설정 시 영구 지속
+                tickInterval: data.TickInterval,
+                cooldown: data.CooldownTime,
                 caster: casterTransform,
                 targetLayer: targetLayer
             );

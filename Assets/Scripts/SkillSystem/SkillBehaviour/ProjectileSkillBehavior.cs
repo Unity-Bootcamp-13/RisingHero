@@ -50,7 +50,8 @@ public class ProjectileSkillBehavior : ISkillBehaviour
                 speed: 5f,
                 damage: data.Power,
                 lifetime: 2f,
-                targetLayer: targetLayer
+                targetLayer: targetLayer,
+                cooldown: data.CooldownTime
             );
         }
     }
