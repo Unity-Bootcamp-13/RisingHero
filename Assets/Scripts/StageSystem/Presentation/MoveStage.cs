@@ -6,45 +6,35 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 
+/// <summary>
+/// 서비스로 옮기면서 의미가 퇴색됨
+/// </summary>
 class MoveStage : MonoBehaviour
 {
-    private IStageSystem stageSystem;
-    private PlayerSaveData data;
+    private IStageService stageService;
     private List<StageData> stageList;
-
-    private IStageDataRepository stageRepository;
 
     public void Initialize(IStageSystem stageSystem)
     {
-        this.stageSystem = stageSystem;
-
-        var parser = new Parser<StageDataList>("StageTable.json");
-        stageRepository = new StageDataRepository(parser);
-
+        this.stageService = new StageService(stageSystem);
     }
 
     private void OnEnable()
     {
-        StageEventBus.OnStage += MoveToStage;
+        StageEventBus.OnStageMoved += stageService.MoveToStage;
     }
-
     private void OnDisable()
     {
-        StageEventBus.OnStage -= MoveToStage;
+        StageEventBus.OnStageMoved -= stageService.MoveToStage;
     }
+
 
     private void Start()
     {
-        data = stageSystem.LoadData();
-        stageList = stageRepository.FindAll().ToList();
-
+        stageList = stageService.GetStageList().ToList();
 
         Debug.Log($"Stage {stageList[0].stage_name}");
     }
 
-    public void MoveToStage(int stageId)
-    {
-        stageSystem.SaveStage(stageList[stageId].stage_name);
-    }
 }
 
