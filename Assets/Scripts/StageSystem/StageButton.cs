@@ -7,14 +7,17 @@ public class StageButton : MonoBehaviour
     [SerializeField] GameObject BlockStagePannel;
 
     private IStageService stageService;
+    private IUserCurrentStageService userCurrentStageService;
+    private IUserStageService userStageService;
 
 
 
     private void Start()
     {
-        stageService = new StageService();
+        userStageService = new UserStageService();
+        userCurrentStageService = new UserCurrentStageService();
 
-        if (stageService.BlockMoveToStage(stageId))
+        if (userStageService.BlockMoveToStage(stageId))
         {
             BlockStagePannel.SetActive(true);
         }
@@ -26,12 +29,12 @@ public class StageButton : MonoBehaviour
 
     public void OnClick()
     {
-        if (stageService.BlockMoveToStage(stageId))
+        if (userStageService.BlockMoveToStage(stageId))
         {
             //StageEventBus.ShowBlockedStageMove(stageId);
             Debug.Log($"Stage {stageId} is blocked. Cannot move to this stage.");
             return;
         }
-        StageEventBus.StageMoved(stageId);
+        userCurrentStageService.SaveCurrentStage(stageId);
     }
 }

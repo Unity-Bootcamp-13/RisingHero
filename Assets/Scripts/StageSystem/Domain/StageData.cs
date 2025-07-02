@@ -2,14 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum StageType
+{
+    None = 0,
+    Normal,
+    Gate,
+    Boss
+}
+
 [Serializable]
 public class StageData
 {
     public int stage_id;
     public string stage_name;
-    public bool can_unlock;
-    public bool is_clear;
-    public bool is_boss;
+    public StageType stage_type;
+    public float stage_time;
+    public int stage_enemy_kill;
+    public string stage_map;
+    public int unlock_stage_id;
 }
 
 [Serializable]

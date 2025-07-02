@@ -22,14 +22,14 @@ public class StageSystem : MonoBehaviour, IStageSystem
 
     private void Start()
     {
-        if (saveService == null)
+        /*if (saveService == null)
         {
             Debug.LogError("[StageSystem] SaveService가 초기화되지 않았습니다.");
             return;
         }
 
         saveData = saveService.Load();
-        LoadStage();
+        LoadStage();*/
     }
 
     public void LoadStage()
