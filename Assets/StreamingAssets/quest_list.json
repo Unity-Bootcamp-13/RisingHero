@@ -1,0 +1,31 @@
+﻿{
+    "quests": [
+        {
+            "questId": 1,
+            "questType": "Kill",
+            "goalValue": [10, 30],
+            "currentValue": 0,
+            "rewardGold": [1000, 3000],
+            "rewardJewel": [100, 300],
+            "isCompleted": false
+        },
+        {
+            "questId": 2,
+            "questType": "Upgrade",
+            "goalValue": 5,
+            "currentValue": 0,
+            "rewardGold": 250,
+            "rewardJewel": 10,
+            "isCompleted": false
+        },
+        {
+            "questId": 3,
+            "questType": "Gacha",
+            "goalValue": 1,
+            "currentValue": 0,
+            "rewardGold": 300,
+            "rewardJewel": 100,
+            "isCompleted": false
+        }
+    ]
+}

@@ -1,12 +1,13 @@
 using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class QuestDialog : MonoBehaviour
 {
     [Header("UI")]
-    public Text questDescriptionText;
-    public Text progressText;
+    public TextMeshProUGUI questTitle;
+    public TextMeshProUGUI progressText;
     public Button completeButton;
 
     private QuestManager questManager;
@@ -49,7 +50,7 @@ public class QuestDialog : MonoBehaviour
             return;
         }
 
-        questDescriptionText.text = GetQuestDescription(questData);
+        questTitle.text = GetQuestDescription(questData);
         progressText.text = $"{questData.currentValue} / {questData.goalValue}";
         completeButton.interactable = IsQuestCompletable(); // 퀘스트 완료 버튼 누를 수 있는지 확인
     }
@@ -77,7 +78,6 @@ public class QuestDialog : MonoBehaviour
 
     private void OnCompleteButtonClicked()
     {
-
         if (!IsQuestCompletable()) return;
 
         questData.isCompleted = true;
@@ -85,10 +85,13 @@ public class QuestDialog : MonoBehaviour
 
         // 보상 지급
         Debug.Log("보상 지급: Gold + " + questManager.currentQuest.rewardGold +
-                  ", EXP + " + questManager.currentQuest.rewardExp + ", Diamond + " + questManager.currentQuest.rewardJewel);
-        // 여기에 플레이어에 골드/경험치/보석 추가하는 코드 연결
-        DiamondManager.Instance.GetDiamond(500);
+                   ", Diamond + " + questManager.currentQuest.rewardJewel);
 
+        // 골드와 보석 보상 처리
+        int gold = Random.Range(questData.rewardGold, questData.rewardGold + 1);
+        int jewel = Random.Range(questData.rewardJewel, questData.rewardJewel + 1);
+
+        DiamondManager.Instance.GetDiamond(jewel);
 
         // 다음 퀘스트로 갱신
         questManager.currentQuest = questManager.GenerateNextQuest();

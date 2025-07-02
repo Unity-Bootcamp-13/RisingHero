@@ -5,7 +5,6 @@ public class QuestData
     public QuestType questType; 
     public int goalValue;
     public int currentValue;
-    public int rewardExp;
     public int rewardGold;
     public int rewardJewel;
     public bool isCompleted;
