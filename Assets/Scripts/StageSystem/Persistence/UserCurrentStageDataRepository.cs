@@ -5,6 +5,7 @@ public interface IUserCurrentStageDataRepository
     UserCurrentStageData GetData();
     void CurrentStageSave(int stageId);
     void CheckpointStageSave(int stageId);
+    void MovePrevStage();
 }
 
 public class UserCurrentStageDataRepository : IUserCurrentStageDataRepository
@@ -38,6 +39,13 @@ public class UserCurrentStageDataRepository : IUserCurrentStageDataRepository
     {
         _userCurrentStage.checkpoint_stage_id = stageId;
         
+        _parser.Save(_userCurrentStage);
+    }
+
+    public void MovePrevStage()
+    {
+        _userCurrentStage = _parser.Load(Path);
+        _userCurrentStage.current_stage_id = _userCurrentStage.prev_stage_id;
         _parser.Save(_userCurrentStage);
     }
 

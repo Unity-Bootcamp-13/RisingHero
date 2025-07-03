@@ -2,56 +2,67 @@
     "userStageList": [
         {
             "user_stage_id": 0,
+            "stage_type": 0,
             "is_clear": "FALSE",
             "is_unlocked": "FALSE"
         },
         {
             "user_stage_id": 1,
+            "stage_type": 1,
             "is_clear": "TRUE",
             "is_unlocked": "TRUE"
         },
         {
             "user_stage_id": 2,
+            "stage_type": 2,
             "is_clear": "FALSE",
             "is_unlocked": "TRUE"
         },
         {
             "user_stage_id": 3,
+            "stage_type": 2,
             "is_clear": "FALSE",
             "is_unlocked": "FALSE"
         },
         {
             "user_stage_id": 4,
+            "stage_type": 2,
             "is_clear": "FALSE",
             "is_unlocked": "FALSE"
         },
         {
             "user_stage_id": 5,
+            "stage_type": 2,
             "is_clear": "FALSE",
             "is_unlocked": "FALSE"
         },
         {
             "user_stage_id": 6,
+            "stage_type": 2,
             "is_clear": "FALSE",
             "is_unlocked": "FALSE"
         },
         {
             "user_stage_id": 7,
+            "stage_type": 2,
             "is_clear": "FALSE",
             "is_unlocked": "FALSE"
         },
         {
             "user_stage_id": 8,
+            "stage_type": 2,
             "is_clear": "FALSE",
             "is_unlocked": "FALSE"
         },
         {
             "user_stage_id": 9,
+            "stage_type": 2,
             "is_clear": "FALSE",
             "is_unlocked": "FALSE"
         },
         {
             "user_stage_id": 10,
+            "stage_type": 3,
             "is_clear": "FALSE",
             "is_unlocked": "FALSE"
         }

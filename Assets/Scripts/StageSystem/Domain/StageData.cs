@@ -2,20 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum StageType
-{
-    None = 0,
-    Normal,
-    Gate,
-    Boss
-}
 
 [Serializable]
 public class StageData
 {
     public int stage_id;
     public string stage_name;
-    public StageType stage_type;
     public float stage_time;
     public int stage_enemy_kill;
     public string stage_map;

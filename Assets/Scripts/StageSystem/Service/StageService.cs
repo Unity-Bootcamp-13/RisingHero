@@ -11,7 +11,6 @@ public interface IStageService
 
 public class StageService : IStageService
 {
-    private IStageSystem stageSystem;
     private List<StageData> stageList;
 
     private IStageDataRepository stageRepository;
@@ -31,13 +30,6 @@ public class StageService : IStageService
 
     public void MoveToStage(int stageId)
     {
-        if (stageId == 1 || stageId == 3 || stageId == 5 || stageId == 7 || stageId == 9)
-        {
-            stageSystem.SaveStage("Stage_01");
-        }
-        else if (stageId == 2 || stageId == 4 || stageId == 6 || stageId == 8 || stageId == 10)
-        {
-            stageSystem.SaveStage("Stage_02");
-        }
+        // 데이터테이블에 저장되어있는 아이디별 스테이지 경로 불러와서 저장하면 됨
     }
 }

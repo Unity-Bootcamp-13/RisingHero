@@ -3,6 +3,11 @@
 public interface IUserCurrentStageService
 {
     void SaveCurrentStage(int stageId);
+    void SaveCheckpointStage(int stageId);
+    int GetUserCurrentStageID();
+    int GetUserPrevStageID();
+    int GetUserCheckpointStageID();
+    void MovePrevStage();
 }
 
 public class UserCurrentStageService : IUserCurrentStageService
@@ -28,6 +33,7 @@ public class UserCurrentStageService : IUserCurrentStageService
         return userCurrentStage.prev_stage_id;
     }
 
+    // 플러스 알파로 이거 데이터 삭제 가능성 높음 궭(추후 리팩토리 시 검색)
     public int GetUserCheckpointStageID()
     {
         return userCurrentStage.checkpoint_stage_id;
@@ -44,6 +50,11 @@ public class UserCurrentStageService : IUserCurrentStageService
     public void SaveCheckpointStage(int stageId)
     {
         checkpointStageId = stageId;
+    }
+
+    public void MovePrevStage()
+    {
+        userCurrentStageDataRepository.MovePrevStage();
     }
 
 

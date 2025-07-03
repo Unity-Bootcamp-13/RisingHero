@@ -2,12 +2,17 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
-    private IStageService stageService;
-    private IUserCurrentStageService currentStageService;
+    public static IStageService StageService { get; private set; }
+    public static IUserStageService UserStageService { get; private set; }
+    public static IUserCurrentStageService UserCurrentStageService { get; private set; }
+    public static IStageButtonRegistry StageButtonRegistry { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
-        stageService = new StageService();
-        currentStageService = new UserCurrentStageService();
+        StageService = new StageService();
+        UserStageService = new UserStageService();
+        UserCurrentStageService = new UserCurrentStageService();
+        StageButtonRegistry = new StageButtonRegistry();
+        StageManager.StageButtonRegistry.Clear();
     }
 }

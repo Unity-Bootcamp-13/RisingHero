@@ -5,6 +5,7 @@ public interface IUserStageService
 {
     IReadOnlyList<UserStageData> GetUserStageList();
 
+    void SaveUserStageList();
     bool BlockMoveToStage(int stageId);
 }
 
@@ -24,7 +25,12 @@ public class UserStageService : IUserStageService
         return userStageList;
     }
 
-    
+    public void SaveUserStageList()
+    {
+        userStageDataRepository.UserStageSave(userStageList);
+    }
+
+
     public bool BlockMoveToStage(int stageId)
     {
         if (!userStageList[stageId].is_unlocked)
@@ -35,6 +41,11 @@ public class UserStageService : IUserStageService
         {
             return false;
         }
+    }
+
+    public StageType GetStageType(int stageId)
+    {
+        return userStageList[stageId].stage_type;
     }
 }
 

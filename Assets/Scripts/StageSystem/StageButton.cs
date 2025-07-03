@@ -1,30 +1,48 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StageButton : MonoBehaviour
 {
     [SerializeField] private int stageId;
+    public int StageId => stageId;
     [SerializeField] GameObject BlockStagePannel;
+
+    private Button button;
+    private IStageState state;
 
     private IStageService stageService;
     private IUserCurrentStageService userCurrentStageService;
     private IUserStageService userStageService;
 
-
-
-    private void Start()
+    private void Awake()
     {
-        userStageService = new UserStageService();
-        userCurrentStageService = new UserCurrentStageService();
+        button = GetComponent<Button>();
+        StageManager.StageButtonRegistry.Register(this);
+    }
 
-        if (userStageService.BlockMoveToStage(stageId))
+
+
+    public void Initialize(UserStageData data, bool islocked,
+        IStageService stageService,
+        IUserStageService userStageService,
+        IUserCurrentStageService userCurrentStageService)
+    {
+        this.stageService = stageService;
+        this.userStageService = userStageService;
+        this.userCurrentStageService = userCurrentStageService;
+
+        if (islocked)
         {
-            BlockStagePannel.SetActive(true);
+            state = new ActiveStageState(button, data, stageService);
+            BlockStagePannel.SetActive(false);
         }
         else
         {
-            BlockStagePannel.SetActive(false);
+            state = new InActiveStageState(button);
+            BlockStagePannel.SetActive(true);
         }
+        state.SetButtonState();
     }
 
     public void OnClick()
