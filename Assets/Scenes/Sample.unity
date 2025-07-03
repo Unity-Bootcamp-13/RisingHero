@@ -127,6 +127,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+
   - component: {fileID: 72792257}
   - component: {fileID: 72792259}
   - component: {fileID: 72792258}

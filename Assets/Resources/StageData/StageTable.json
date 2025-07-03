@@ -1,0 +1,103 @@
+{
+    "stageList": [
+        {
+            "stage_id": 0,
+            "stage_name": "Stage_00",
+            "stage_type": 0,
+            "stage_time": 0,
+            "stage_enemy_kill": 0,
+            "stage_map": "",
+            "unlock_stage_id": 0
+        },
+        {
+            "stage_id": 1,
+            "stage_name": "Stage_01",
+            "stage_type": 1,
+            "stage_time": 0,
+            "stage_enemy_kill": 0,
+            "stage_map": "Tilemaps/Stage_01",
+            "unlock_stage_id": 2
+        },
+        {
+            "stage_id": 2,
+            "stage_name": "Stage_02",
+            "stage_type": 2,
+            "stage_time": 60,
+            "stage_enemy_kill": 80,
+            "stage_map": "Tilemaps/Stage_02",
+            "unlock_stage_id": 3
+        },
+        {
+            "stage_id": 3,
+            "stage_name": "Stage_03",
+            "stage_type": 2,
+            "stage_time": 60,
+            "stage_enemy_kill": 80,
+            "stage_map": "Tilemaps/Stage_01",
+            "unlock_stage_id": 4
+        },
+        {
+            "stage_id": 4,
+            "stage_name": "Stage_04",
+            "stage_type": 2,
+            "stage_time": 60,
+            "stage_enemy_kill": 80,
+            "stage_map": "Tilemaps/Stage_02",
+            "unlock_stage_id": 5
+        },
+        {
+            "stage_id": 5,
+            "stage_name": "Stage_05",
+            "stage_type": 2,
+            "stage_time": 60,
+            "stage_enemy_kill": 80,
+            "stage_map": "Tilemaps/Stage_01",
+            "unlock_stage_id": 6
+        },
+        {
+            "stage_id": 6,
+            "stage_name": "Stage_06",
+            "stage_type": 2,
+            "stage_time": 60,
+            "stage_enemy_kill": 80,
+            "stage_map": "Tilemaps/Stage_02",
+            "unlock_stage_id": 7
+        },
+        {
+            "stage_id": 7,
+            "stage_name": "Stage_07",
+            "stage_type": 2,
+            "stage_time": 60,
+            "stage_enemy_kill": 80,
+            "stage_map": "Tilemaps/Stage_01",
+            "unlock_stage_id": 8
+        },
+        {
+            "stage_id": 8,
+            "stage_name": "Stage_08",
+            "stage_type": 2,
+            "stage_time": 60,
+            "stage_enemy_kill": 80,
+            "stage_map": "Tilemaps/Stage_02",
+            "unlock_stage_id": 9
+        },
+        {
+            "stage_id": 9,
+            "stage_name": "Stage_09",
+            "stage_type": 2,
+            "stage_time": 60,
+            "stage_enemy_kill": 80,
+            "stage_map": "Tilemaps/Stage_01",
+            "unlock_stage_id": 10
+        },
+        {
+            "stage_id": 10,
+            "stage_name": "BossStage_01",
+            "stage_type": 3,
+            "stage_time": 60,
+            "stage_enemy_kill": -1,
+            "stage_map": "Tilemaps/Stage_02",
+            "unlock_stage_id": 0
+        }
+    ]
+}

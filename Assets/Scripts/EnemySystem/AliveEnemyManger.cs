@@ -1,36 +1,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AliveEnemyManager : MonoBehaviour
+public static class AliveEnemyManager
 {
-    public static AliveEnemyManager Instance { get; private set; }
+    private static readonly HashSet<Enemy> aliveEnemies = new();
 
-    private readonly List<Transform> aliveEnemies = new();
+    public static IReadOnlyCollection<Enemy> Enemies => aliveEnemies;
 
-    public IReadOnlyList<Transform> Enemies => aliveEnemies;
-
-    // Initializes the singleton instance
-    private void Awake()
+    public static void Register(Enemy enemy)
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-    }
-
-    // Registers a newly activated enemy
-    public void Register(Transform enemy)
-    {
-        if (!aliveEnemies.Contains(enemy))
+        if (enemy != null)
             aliveEnemies.Add(enemy);
     }
 
-    // Unregisters a deactivated enemy
-    public void Unregister(Transform enemy)
+    public static void Unregister(Enemy enemy)
     {
-        aliveEnemies.Remove(enemy);
+        if (enemy != null)
+            aliveEnemies.Remove(enemy);
+    }
+
+    public static int GetAliveEnemyCount()
+    {
+        aliveEnemies.RemoveWhere(e => e == null || !e.gameObject.activeInHierarchy);
+        return aliveEnemies.Count;
     }
 }

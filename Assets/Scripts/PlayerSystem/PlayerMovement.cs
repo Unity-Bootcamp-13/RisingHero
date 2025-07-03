@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 3f;
-    public VirtualJoystick joystick; // 에디터에서 연결
+    public VirtualJoystick joystick;
 
     private Animator animator;
     private Vector2 moveDirection;
     private Direction direction;
+    private PlayerAttack attack;
+    private PlayerStatus status;
 
     private enum Direction { None = 0, Up = 1, Left = 2, Down = 3, Right = 4 }
 
@@ -16,16 +17,33 @@ public class PlayerMovement : MonoBehaviour
         public const string Direction = "Direction";
     }
 
+    public bool IsMoving => moveDirection != Vector2.zero;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        attack = GetComponent<PlayerAttack>();
+        status = GetComponent<PlayerStatus>();
+
         animator.SetInteger(AnimatorParams.Direction, (int)Direction.None);
     }
 
     private void Update()
     {
-        HandleMovementInput();
-        Move();
+        Vector2 input = joystick.Direction();
+
+        if (!attack.IsAttacking)
+        {
+            animator.SetLayerWeight(0, 1f);
+            animator.SetLayerWeight(1, 0f);
+            HandleMovementInput();
+            Move();
+        }
+        else if (input != Vector2.zero)
+        {
+            animator.SetInteger("Attack", 0);
+            attack.ForceCancel();
+        }
     }
 
     private void HandleMovementInput()
@@ -50,6 +68,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        transform.position += (Vector3)(moveDirection * moveSpeed * Time.deltaTime);
+        transform.position += (Vector3)(moveDirection * status.moveSpeed * Time.deltaTime);
+    }
+
+    public void MoveTo(Vector3 targetPos)
+    {
+        moveDirection = (targetPos - transform.position).normalized;
+    }
+
+    public int GetDirectionCode()
+    {
+        return (int)direction;
     }
 }
