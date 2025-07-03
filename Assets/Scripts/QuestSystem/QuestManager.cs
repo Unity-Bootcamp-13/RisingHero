@@ -12,10 +12,12 @@ public class QuestManager : MonoBehaviour
     private QuestRepository _repository;
     private QuestRewardService _rewardService;
 
+    private PlayerSaveData _playerData;
+
     private void Awake()
     {
         _repository = new QuestRepository();
-        _rewardService = new QuestRewardService();
+        _rewardService = new QuestRewardService(_playerData);
 
         _questList = _repository.LoadQuestList();
 
