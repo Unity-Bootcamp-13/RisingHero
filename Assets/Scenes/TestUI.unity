@@ -12393,7 +12393,6 @@ GameObject:
   - component: {fileID: 2073915178}
   - component: {fileID: 2073915179}
   - component: {fileID: 2073915180}
-  - component: {fileID: 2073915182}
   - component: {fileID: 2073915184}
   - component: {fileID: 2073915183}
   m_Layer: 0
@@ -12469,18 +12468,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diamondUI: {fileID: 2073915179}
---- !u!114 &2073915182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2073915175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f26595f59c656b4388cc39b62e45b8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2073915183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12493,8 +12480,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2879bc9a3a61fd14780cbb520a9c9946, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveStage: {fileID: 2073915184}
-  stageSystem: {fileID: 2073915182}
 --- !u!114 &2073915184
 MonoBehaviour:
   m_ObjectHideFlags: 0

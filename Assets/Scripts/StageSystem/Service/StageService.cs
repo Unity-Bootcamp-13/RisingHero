@@ -7,8 +7,6 @@ public interface IStageService
     IReadOnlyList<StageData> GetStageList();
 
     void MoveToStage(int stageId);
-
-    bool BlockMoveToStage(int stageId);
 }
 
 public class StageService : IStageService
@@ -18,14 +16,6 @@ public class StageService : IStageService
 
     private IStageDataRepository stageRepository;
 
-    public StageService(IStageSystem stageSystem)
-    {
-        this.stageSystem = stageSystem;
-
-        var parser = new Parser<StageDataList>("StageTable.json");
-        stageRepository = new StageDataRepository(parser);
-        stageList = stageRepository.FindAll().ToList();
-    }
 
     public StageService()
     {
@@ -48,18 +38,6 @@ public class StageService : IStageService
         else if (stageId == 2 || stageId == 4 || stageId == 6 || stageId == 8 || stageId == 10)
         {
             stageSystem.SaveStage("Stage_02");
-        }
-    }
-
-    public bool BlockMoveToStage(int stageId)
-    {
-        if (!stageList[stageId].is_clear)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
         }
     }
 }
