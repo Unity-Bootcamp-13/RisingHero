@@ -42,8 +42,11 @@ public class AOESkillBehaviour : ISkillBehaviour
 
         if (aoe != null)
         {
+            SkillCaster caster = casterTransform.GetComponent<SkillCaster>();
+            float finalDamage = caster != null ? caster.GetSlotDamage(data) : data.Power;
+
             aoe.Initialize(
-                data.Power,
+                damage: finalDamage,
                 radius: data.Range,
                 duration: data.Duration,
                 tickInterval: data.TickInterval,

@@ -8,6 +8,7 @@ public class SkillData
     public float Range;
     public string PrefabName;
     public float Duration;
-    public float TickInterval;  // 피해 주기 (오라, 범위형 스킬에서 사용 예정)
+    public float TickInterval;      // 피해 주기 (오라, 범위형 스킬에서 사용 예정)
     public float CooldownTime;
+    public float DamagePerLevel;    // 레벨 당 피해 상승량
 }

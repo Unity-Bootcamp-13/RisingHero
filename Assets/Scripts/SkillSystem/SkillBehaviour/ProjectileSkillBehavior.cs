@@ -45,10 +45,13 @@ public class ProjectileSkillBehavior : ISkillBehaviour
             Vector3 targetPos = GetEnemyPosition(casterTransform.position, searchRadius, targetLayer, casterTransform);
             Vector2 direction = (targetPos - casterTransform.position).normalized;
 
+            SkillCaster caster = casterTransform.GetComponent<SkillCaster>();
+            float finalDamage = caster != null ? caster.GetSlotDamage(data) : data.Power;
+
             proj.Initialize(
                 direction: direction,
                 speed: 5f,
-                damage: data.Power,
+                damage: finalDamage,
                 lifetime: 2f,
                 targetLayer: targetLayer,
                 cooldown: data.CooldownTime

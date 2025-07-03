@@ -30,7 +30,10 @@ public class Projectile : MonoBehaviour
         this.lifetime = lifetime;
         this.cooltime = cooldown;
         this.targetLayer = targetLayer;
-        
+
+        // 투사체 기울기 조절
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, angle + 90);
 
         // 빗나간 경우, 연산 과부하를 막기 위해 lifetime 이후 자동으로 제거되는 로직
         Destroy(gameObject, lifetime);

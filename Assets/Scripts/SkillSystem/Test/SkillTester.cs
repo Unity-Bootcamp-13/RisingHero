@@ -16,10 +16,11 @@ public class SkillTester : MonoBehaviour
         // 스킬 생성
         SkillData fireball = new SkillData
         {
-            ID = 1,
+            ID = 10001,
             Name = "Fireball",
             Type = SkillType.Projectile,
             Power = 20,
+            DamagePerLevel = 4f,
             Range = 5f,
             CooldownTime = 3f,
             PrefabName = projectilePrefabName
@@ -27,10 +28,11 @@ public class SkillTester : MonoBehaviour
 
         SkillData area = new SkillData
         {
-            ID = 2,
+            ID = 20001,
             Name = "Area",
             Type = SkillType.AOE,
             Power = 50,
+            DamagePerLevel = 15f,
             Range = 3f,
             CooldownTime = 5f,
             PrefabName = areaPrefabName,
@@ -40,14 +42,15 @@ public class SkillTester : MonoBehaviour
 
         SkillData aura = new SkillData
         {
-            ID = 3,
+            ID = 30001,
             Name = "Aura",
             Type = SkillType.Aura,
             Power = 10,
+            DamagePerLevel = 5f,
             Range = 2f,
             CooldownTime = 10f,
             PrefabName = auraPrefabName,
-            Duration = -1f,
+            Duration = 5f,
             TickInterval = 1f
         };
 
@@ -60,6 +63,43 @@ public class SkillTester : MonoBehaviour
         };
     }
 
+    public void ToggleAutoMode()
+    {
+        bool shouldEnable = true;
+
+        // 스킬 하나가 자동인지 체크. 자동일 시 자동 모드 꺼버림
+        for (int i = 0; i < player.equippedSkills.Count; i++)
+        {
+            if (player.equippedSkills[i].IsAuto)
+            {
+                shouldEnable = false;
+                break;
+            }
+        }
+
+        for (int i = 0; i < player.equippedSkills.Count; i++)
+        {
+            var slot = player.equippedSkills[i];
+            slot.IsAuto = shouldEnable;
+
+            if (shouldEnable && !slot.IsOnCooldown)
+                player.CastSkill(slot.Skill);
+        }
+    }
+
+    public void LevelUpSkill(int skillID)
+    {
+        SkillSlot slot = player.equippedSkills.Find(s => s.Skill.ID == skillID);
+
+        if (slot != null)
+        {
+            slot.Level++;
+            Debug.Log($"{slot.Skill.Name}의 레벨이 {slot.Level}로 증가했습니다. " +
+                $"현재 피해량 : {slot.FinalDamage}");
+        }
+    }
+
+    // 이 구조 그대로 스킬 늘릴 수 있음 id만 바꾸면 가능
     public void CastProjSkill()
     {
         SkillData skill = player.equippedSkills.Find(slot => slot.Skill.ID == 1)?.Skill;

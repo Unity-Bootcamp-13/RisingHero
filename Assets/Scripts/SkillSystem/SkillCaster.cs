@@ -37,11 +37,21 @@ public class SkillCaster : MonoBehaviour
     {
         for (int i = 0; i < equippedSkills.Count; i++)
         {
-            if (equippedSkills[i].Skill == data)
+            if (equippedSkills[i].Skill.ID == data.ID)
                 return equippedSkills[i];
         }
 
         return null;
+    }
+
+    public float GetSlotDamage(SkillData data)
+    {
+        SkillSlot slot = equippedSkills.Find(s => s.Skill.ID == data.ID);
+
+        if (slot != null)
+            return slot.FinalDamage;
+
+        return data.Power;
     }
 
     private IEnumerator Cor_Cooldown(SkillSlot slot)
@@ -57,5 +67,11 @@ public class SkillCaster : MonoBehaviour
         slot.CurrentCooldown = 0f;
         // 쿨타임 종료
         Debug.Log($"[{slot.Skill.Name}] 쿨타임 종료");
+
+        if (slot.IsAuto)
+        {
+            Debug.Log("자동 전투 상태입니다. 스킬이 자동으로 재사용 됩니다.");
+            CastSkill(slot.Skill);
+        }
     }
 }

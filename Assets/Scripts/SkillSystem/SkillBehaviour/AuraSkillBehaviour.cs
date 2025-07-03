@@ -17,8 +17,11 @@ public class AuraSkillBehaviour : ISkillBehaviour
             // SkillData의 필드를 받아와야 SkillTester에서 설정한 duration 적용가능
             float duration = data.Duration;
 
+            SkillCaster caster = casterTransform.GetComponent<SkillCaster>();
+            float finalDamage = caster != null ? caster.GetSlotDamage(data) : data.Power;
+
             aura.Initialize(
-                damage: data.Power,
+                damage: finalDamage,
                 radius: data.Range,
                 duration: duration,   // 0 이하로 설정 시 영구 지속
                 tickInterval: data.TickInterval,
