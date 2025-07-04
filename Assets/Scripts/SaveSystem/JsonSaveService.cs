@@ -22,7 +22,6 @@ public class JsonSaveService : ISaveService
             cachedData.coin = data.coin;
             cachedData.equippedWeaponId = data.equippedWeaponId;
             cachedData.ownedWeapons = new List<OwnedWeapon>(data.ownedWeapons);
-            cachedData.clearedStages = new List<StageClearData>(data.clearedStages);
         }
         else
         {

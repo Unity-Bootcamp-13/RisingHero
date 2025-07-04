@@ -43,6 +43,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         currentHp = maxHp;
     }
 
+    // 하단 코드는 보스 몬스터 구현시 코드 재사용 할 수도 있으니 남겨주세요.
     public void SetInvincible(bool value)
     {
         isInvincible = value;

@@ -41,7 +41,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        if (movement.IsMoving)
+        if (movement.IsMoving) // 움직일때 공격 불가
         {
             lastMoveTime = Time.time;
             if (isAttacking)
@@ -59,7 +59,7 @@ public class PlayerAttack : MonoBehaviour
     private void TryAttack()
     {
         currentTarget = detection.FindNearestEnemy(transform.position, AliveEnemyManager.Enemies);
-        if (currentTarget == null || !detection.IsInRange(transform.position, currentTarget)) return;
+        if (currentTarget == null || !detection.IsInRange(transform.position, currentTarget)) return; // 범위 안에 있을 경우에만 공격해야함.
 
         Vector2 dir = (currentTarget.position - transform.position).normalized;
         StartAttack(dir);
@@ -67,7 +67,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void StartAttack(Vector2 direction)
     {
-        var equippedWeapon = weaponEquip?.EquippedWeapon;
+        var equippedWeapon = weaponEquip?.EquippedWeapon; // 쏘는 발사체가 무기 SO에 저장된 Prefab을 발사함
         if (equippedWeapon == null || equippedWeapon.projectilePrefab == null)
         {
             Debug.LogWarning("장착 무기나 투사체가 없습니다.");
@@ -79,15 +79,15 @@ public class PlayerAttack : MonoBehaviour
 
         int dirCode = detection.GetDirectionCode(direction);
 
-        animator.SetLayerWeight(0, 0f);
+        animator.SetLayerWeight(0, 0f); // Animation 가중치
         animator.SetLayerWeight(1, 1f);
         animator.SetInteger(AnimatorParams.Attack, dirCode);
         animator.SetInteger(AnimatorParams.Direction, dirCode);
 
-        Vector3 offset = (Vector3)(-direction * 0.3f);
+        Vector3 offset = (Vector3)(-direction * 0.3f); // 화살 위치 조정
         GameObject arrow = Instantiate(equippedWeapon.projectilePrefab, transform.position + offset, Quaternion.identity);
 
-        if (arrow.TryGetComponent(out Arrow arrowScript))
+        if (arrow.TryGetComponent(out Arrow arrowScript)) // SO로부터 발사체 Prefab 가져오기
         {
             arrowScript.Shoot(direction, status.arrowDamage, status.critChance, status.critDamage);
             Debug.Log($"[공격 시작] arrowDamage={status.arrowDamage}, EquippedWeapon={equippedWeapon.weaponName}");
@@ -96,7 +96,7 @@ public class PlayerAttack : MonoBehaviour
         StartCoroutine(ResetAttack(0.4f));
     }
 
-    private IEnumerator ResetAttack(float delay)
+    private IEnumerator ResetAttack(float delay) // 움직인 후 몇 초 뒤에 공격할지 정하는 코드
     {
         yield return new WaitForSeconds(delay);
 
@@ -106,7 +106,7 @@ public class PlayerAttack : MonoBehaviour
         isAttacking = false;
     }
 
-    public void ForceCancel()
+    public void ForceCancel() // 움직일 때 공격하지 않기 위해 생긴 코드
     {
         StopAllCoroutines();
         animator.SetInteger(AnimatorParams.Attack, 0);

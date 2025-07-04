@@ -35,7 +35,7 @@ public class Arrow : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other) // 원래 이거 이렇게 안길어도 되는데, RB없이 구현하다보니까 생긴 코드임.
     {
         if (other.CompareTag("Enemy") && other.TryGetComponent<IDamageable>(out var target))
         {

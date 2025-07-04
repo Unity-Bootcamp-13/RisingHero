@@ -1,15 +1,30 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 [Serializable]
 public class PlayerSaveData
 {
     public int coin = 0;
+<<<<<<< Updated upstream
     public List<StageClearData> clearedStages = new();
+=======
+    public int diamond = 0;
+>>>>>>> Stashed changes
     public List<OwnedWeapon> ownedWeapons = new();
     public int equippedWeaponId = -1;
-    public string currentStage = "Stage_01";  // ← main 브랜치의 필드 수동 병합
+    public int currentStage = 11;
+    public int topStage = 11;
+
+    public int currentQuestId = -1;
+
+    public PlayerSaveData()
+    {
+        coin = 0;
+        diamond = 0;
+        equippedWeaponId = -1;
+        currentStage = 11;
+        topStage = 11;
+    }
 }
 
 [Serializable]
@@ -25,17 +40,9 @@ public class OwnedWeapon
         this.level = level;
         this.amount = amount;
     }
-}
 
-[Serializable]
-public class StageClearData
-{
-    public string stageId;
-    public bool isCleared;
-
-    public StageClearData(string stageId, bool isCleared)
+    public override string ToString()
     {
-        this.stageId = stageId;
-        this.isCleared = isCleared;
+        return $"WeaponID: {weaponId}, Level: {level}, Amount: {amount}";
     }
 }

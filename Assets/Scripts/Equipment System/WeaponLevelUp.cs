@@ -8,12 +8,12 @@ public class WeaponLevelUp : MonoBehaviour
 
     private ISaveService saveService;
 
-    public void Initialize(ISaveService saveService)
+    public void Initialize(ISaveService saveService) // DI
     {
         this.saveService = saveService;
     }
 
-    public bool TryUpgradeWeapon(int weaponId)
+    public bool TryUpgradeWeapon(int weaponId) // 업그레이드 시도
     {
         if (saveService == null)
         {

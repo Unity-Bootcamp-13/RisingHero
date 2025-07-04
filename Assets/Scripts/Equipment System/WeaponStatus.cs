@@ -5,7 +5,7 @@ public class WeaponStatus : MonoBehaviour
     public static WeaponStatus Instance { get; private set; }
 
     [Header("무기 목록")]
-    [SerializeField] private WeaponData[] allWeapons;
+    [SerializeField] private WeaponData[] allWeapons; // 모든 무기 목록, 왜 있어야 하냐면 보유효과를 적용해야해서 있어야만 하는 코드
 
     [Header("스탯 적용 대상")]
     [SerializeField] private PlayerStatus playerStatus;
@@ -29,7 +29,7 @@ public class WeaponStatus : MonoBehaviour
         Instance = this;
     }
 
-    public void ApplyAllWeaponStats()
+    public void ApplyAllWeaponStats() // 이게 실제 보유한 효과를 적용하는 코드
     {
         if (saveService == null || allWeapons == null || playerStatus == null)
         {
