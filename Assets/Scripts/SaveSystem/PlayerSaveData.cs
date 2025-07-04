@@ -1,20 +1,13 @@
-using System;
-using System.Collections.Generic;
-
 [Serializable]
 public class PlayerSaveData
 {
     public int coin = 0;
-<<<<<<< Updated upstream
-    public List<StageClearData> clearedStages = new();
-=======
     public int diamond = 0;
->>>>>>> Stashed changes
+    public List<StageClearData> clearedStages = new();
     public List<OwnedWeapon> ownedWeapons = new();
     public int equippedWeaponId = -1;
     public int currentStage = 11;
     public int topStage = 11;
-
     public int currentQuestId = -1;
 
     public PlayerSaveData()

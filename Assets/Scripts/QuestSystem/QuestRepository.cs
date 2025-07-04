@@ -2,9 +2,6 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-/// <summary>
-/// Äù½ºÆ® ¸ñ·Ï ¹× ÀúÀåµÈ ÁøÇà »óÅÂ ·Îµù
-/// </summary>
 public class QuestRepository
 {
     [System.Serializable]
@@ -19,7 +16,7 @@ public class QuestRepository
     {
         if (!File.Exists(questListPath))
         {
-            Debug.LogError("quest_list.json ÆÄÀÏÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+            Debug.LogError("quest_list.json íŒŒì¼ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
             return new List<Quest>();
         }
 

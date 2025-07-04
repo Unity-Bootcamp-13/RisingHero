@@ -1,10 +1,6 @@
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-
 public class StageButton : MonoBehaviour
 {
-    [Header("½ºÅ×ÀÌÁö ¹øÈ£")]
+    [Header("ìŠ¤í…Œì´ì§€ ë²ˆí˜¸")]
     [SerializeField] private int stageNumber;
 
     private Button button;
@@ -26,7 +22,7 @@ public class StageButton : MonoBehaviour
 
         if (button == null || background == null || stageText == null)
         {
-            Debug.LogError("[StageButton] ¹öÆ° ¶Ç´Â UI ÄÄÆ÷³ÍÆ® ÀÚµ¿ ¿¬°á ½ÇÆĞ");
+            Debug.LogError("[StageButton] ë²„íŠ¼ ë˜ëŠ” UI ì»´í¬ë„ŒíŠ¸ ì—°ê²° ì‹¤íŒ¨");
         }
     }
 
@@ -34,7 +30,7 @@ public class StageButton : MonoBehaviour
     {
         if (saveService == null)
         {
-            Debug.LogError("[StageButton] SaveService°¡ ¼³Á¤µÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+            Debug.LogError("[StageButton] SaveServiceê°€ ì´ˆê¸°í™”ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
             return;
         }
 
@@ -44,15 +40,15 @@ public class StageButton : MonoBehaviour
 
         if (stageNumber <= topStage)
         {
-            SetState(Color.cyan, true); // Å¬¸®¾îµÈ ½ºÅ×ÀÌÁö
+            SetState(Color.cyan, true);
         }
         else if (stageNumber == topStage + 1)
         {
-            SetState(new Color(0.7f, 0.5f, 1f), true); // ´ÙÀ½ ½ºÅ×ÀÌÁö (º¸¶ó»ö)
+            SetState(new Color(0.7f, 0.5f, 1f), true);
         }
         else
         {
-            SetState(Color.gray, false); // Àá±ä ½ºÅ×ÀÌÁö
+            SetState(Color.gray, false);
         }
     }
 
@@ -67,8 +63,7 @@ public class StageButton : MonoBehaviour
 
     public void OnClick()
     {
-        Debug.Log($"[StageButton] Stage {stageNumber} ¼±ÅÃµÊ");
-
-        // ÃßÈÄ ½ºÅ×ÀÌÁö ÁøÀÔ Ã³¸® ¿¹Á¤
+        Debug.Log($"[StageButton] Stage {stageNumber} ì„ íƒë¨");
+        // ìŠ¤í…Œì´ì§€ ì´ë™ ì²˜ë¦¬ êµ¬í˜„ ì˜ˆì •
     }
 }

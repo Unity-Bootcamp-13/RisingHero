@@ -1,9 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// ÇöÀç Äù½ºÆ®¸¦ ÃßÀûÇÏ°í ÁøÇàµµ¸¦ ¾÷µ¥ÀÌÆ®
-/// </summary>
 public class QuestManager : MonoBehaviour
 {
     public Quest CurrentQuest => _currentQuest;
@@ -30,7 +27,7 @@ public class QuestManager : MonoBehaviour
     {
         if (_questList.Count == 0)
         {
-            Debug.LogWarning("Äù½ºÆ® ¸ñ·ÏÀÌ ºñ¾îÀÖ½À´Ï´Ù.");
+            Debug.LogWarning("í€˜ìŠ¤íŠ¸ ëª©ë¡ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
             return;
         }
 

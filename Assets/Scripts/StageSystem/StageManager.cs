@@ -1,16 +1,13 @@
-using UnityEngine;
-using System.Collections.Generic;
-
 public class StageManager : MonoBehaviour
 {
-    [Header("ÀÇÁ¸ ½Ã½ºÅÛ")]
+    [Header("ìŠ¤í…Œì´ì§€ ì‹œìŠ¤í…œ")]
     [SerializeField] private TileSpawner tileSpawner;
     [SerializeField] private EnemySpawner enemySpawner;
 
-    [Header("½ºÅ×ÀÌÁö ¹öÆ° ¸ñ·Ï")]
+    [Header("ìŠ¤í…Œì´ì§€ ë²„íŠ¼ ëª©ë¡")]
     [SerializeField] private List<StageButton> stageButtons;
 
-    [Header("Å¬¸®¾î ½Ã½ºÅÛ")]
+    [Header("í´ë¦¬ì–´ ì‹œìŠ¤í…œ")]
     [SerializeField] private StageClear stageClear;
 
     private ISaveService saveService;

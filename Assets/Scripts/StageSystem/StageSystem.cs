@@ -1,21 +1,42 @@
 using UnityEngine;
 
-public class StageSystem : MonoBehaviour
+public interface IStageSystem
+{
+    void LoadStage();
+    void SaveStage(string stage);
+    PlayerSaveData LoadData();
+}
+
+public class StageSystem : MonoBehaviour, IStageSystem
 {
     private GameObject currentStageInstance;
+    private ISaveService saveService;
+
+    PlayerSaveData saveData;
+
+    public void Initialize(ISaveService saveService)
+    {
+        this.saveService = saveService;
+    }
+
 
     private void Start()
     {
-        LoadStage();
+        /*if (saveService == null)
+        {
+            Debug.LogError("[StageSystem] SaveService가 초기화되지 않았습니다.");
+            return;
+        }
+
+        saveData = saveService.Load();
+        LoadStage();*/
     }
 
-    void LoadStage()
+    public void LoadStage()
     {
-        PlayerSaveData saveData = SaveManager.Load();
         string stageName = saveData.currentStage;
 
-        // Resources/Tilemaps/{stageName}.prefab 로 프리팹 로드
-        GameObject stagePrefab = Resources.Load<GameObject>($"Tilemaps/{stageName}");
+        /*GameObject stagePrefab = Resources.Load<GameObject>($"Tilemaps/{stageName}");
 
         if (stagePrefab == null)
         {
@@ -23,13 +44,22 @@ public class StageSystem : MonoBehaviour
             return;
         }
 
-        // 기존 인스턴스 제거
         if (currentStageInstance != null)
         {
             Destroy(currentStageInstance);
         }
 
-        // 새 스테이지 프리팹 인스턴스 생성
-        currentStageInstance = Instantiate(stagePrefab, Vector3.zero, Quaternion.identity);
+        currentStageInstance = Instantiate(stagePrefab, Vector3.zero, Quaternion.identity);*/
+    }
+
+    public void SaveStage(string stage)
+    {
+        saveData.currentStage = stage;
+        saveService.Save(saveData);
+    }
+
+    public PlayerSaveData LoadData()
+    {
+        return saveService.Load();
     }
 }

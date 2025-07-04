@@ -1,4 +1,3 @@
-using UnityEngine;
 public class QuestRewardService
 {
     private readonly ISaveService _saveService;
@@ -10,11 +9,11 @@ public class QuestRewardService
 
     public void Apply(QuestReward reward)
     {
-        var playerData = _saveService.Load(); // Ç×»ó ÃÖ½Å µ¥ÀÌÅÍ »ç¿ë
+        var playerData = _saveService.Load();
         playerData.coin += reward.Gold;
         playerData.diamond += reward.Jewel;
 
-        Debug.Log($"[º¸»ó Áö±Ş ¿Ï·á] Gold: {reward.Gold}, Jewel: {reward.Jewel}");
+        Debug.Log($"[ë³´ìƒ ì§€ê¸‰ ì™„ë£Œ] Gold: {reward.Gold}, Jewel: {reward.Jewel}");
 
         _saveService.Save(playerData);
     }
