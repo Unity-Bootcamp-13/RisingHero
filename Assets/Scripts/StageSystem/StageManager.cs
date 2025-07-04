@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using UnityEngine;
+
 public class StageManager : MonoBehaviour
 {
     [Header("스테이지 시스템")]

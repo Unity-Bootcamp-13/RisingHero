@@ -1,9 +1,12 @@
+using System;
+using System.Collections.Generic;
+
+
 [Serializable]
 public class PlayerSaveData
 {
     public int coin = 0;
     public int diamond = 0;
-    public List<StageClearData> clearedStages = new();
     public List<OwnedWeapon> ownedWeapons = new();
     public int equippedWeaponId = -1;
     public int currentStage = 11;
