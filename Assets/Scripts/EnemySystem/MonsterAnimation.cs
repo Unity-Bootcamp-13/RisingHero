@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EliteAnimeController : MonoBehaviour
+public class EliteAnimeController : MonoBehaviour // 아직 안 쓰는 코드
 {
     private Animator animator;
 

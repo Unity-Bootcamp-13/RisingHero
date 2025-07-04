@@ -1,4 +1,3 @@
-// 리팩토링된 PlayerStatus.cs
 using UnityEngine;
 using System.Collections.Generic;
 

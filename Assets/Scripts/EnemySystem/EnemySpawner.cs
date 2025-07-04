@@ -7,6 +7,8 @@ public class EnemySpawner : MonoBehaviour
     [Header("참조")]
     [SerializeField] private Transform player;
 
+    private ISaveService saveService;
+
     [Header("스폰 설정")]
     public Vector2 spawnAreaSize = new Vector2(8f, 5f);
 
@@ -16,8 +18,21 @@ public class EnemySpawner : MonoBehaviour
 
     private int currentWave = 0;
 
+    private KillCounter killCounter;
+
+    public void Initialize(ISaveService saveService)
+    {
+        this.saveService = saveService;
+    }
+
     private void Start()
     {
+        if (saveService == null)
+        {
+            Debug.LogError("[EnemySpawner] SaveService가 초기화되지 않았습니다.");
+            return;
+        }
+
         StartCoroutine(SpawnWaves());
     }
 
@@ -28,7 +43,9 @@ public class EnemySpawner : MonoBehaviour
             currentWave++;
             int monsterCount = startWaveMonsterCount + currentWave - 1;
 
-            SpawnEnemy(EnemyType.Normal0, monsterCount);
+            int stage = saveService.Load().currentStage;
+            EnemyType type = GetEnemyTypeForStage(stage);
+            SpawnEnemy(type, monsterCount);
 
             yield return new WaitUntil(() => AliveEnemyManager.GetAliveEnemyCount() == 0);
 
@@ -50,10 +67,9 @@ public class EnemySpawner : MonoBehaviour
                 enemy.transform.position = GetRandomPositionNearPlayer();
                 enemy.SetActive(true);
 
-                // Enemy 컴포넌트를 얻어와서 등록
-                Enemy enemyComponent = enemy.GetComponent<Enemy>();
-                if (enemyComponent != null)
+                if (enemy.TryGetComponent(out Enemy enemyComponent))
                 {
+                    enemyComponent.Initialize(killCounter);
                     AliveEnemyManager.Register(enemyComponent);
                 }
             }
@@ -79,5 +95,22 @@ public class EnemySpawner : MonoBehaviour
         {
             coin.PullTowardPlayer(player);
         }
+    }
+
+    private EnemyType GetEnemyTypeForStage(int stageId)
+    {
+        int stage = stageId;
+
+        if (stage >= 11 && stage <= 19)
+            return EnemyType.Normal1;
+        else if (stage >= 21 && stage <= 29)
+            return EnemyType.Normal2;
+        else
+            return EnemyType.Normal1;
+    }
+
+    public void SetKillCounter(KillCounter killCounter)
+    {
+        this.killCounter = killCounter;
     }
 }

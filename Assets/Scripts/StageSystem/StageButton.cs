@@ -1,40 +1,69 @@
-using Unity.VisualScripting;
-using UnityEngine;
-
 public class StageButton : MonoBehaviour
 {
-    [SerializeField] private int stageId;
-    [SerializeField] GameObject BlockStagePannel;
+    [Header("스테이지 번호")]
+    [SerializeField] private int stageNumber;
 
-    private IStageService stageService;
-    private IUserCurrentStageService userCurrentStageService;
-    private IUserStageService userStageService;
+    private Button button;
+    private Image background;
+    private TMP_Text stageText;
+    private ISaveService saveService;
 
-
-
-    private void Start()
+    public void Initialize(ISaveService saveService)
     {
-        userStageService = new UserStageService();
-        userCurrentStageService = new UserCurrentStageService();
+        this.saveService = saveService;
+        UpdateState();
+    }
 
-        if (userStageService.BlockMoveToStage(stageId))
+    private void Awake()
+    {
+        button = GetComponent<Button>();
+        background = GetComponent<Image>();
+        stageText = GetComponentInChildren<TMP_Text>();
+
+        if (button == null || background == null || stageText == null)
         {
-            BlockStagePannel.SetActive(true);
+            Debug.LogError("[StageButton] 버튼 또는 UI 컴포넌트 연결 실패");
+        }
+    }
+
+    private void UpdateState()
+    {
+        if (saveService == null)
+        {
+            Debug.LogError("[StageButton] SaveService가 초기화되지 않았습니다.");
+            return;
+        }
+
+        int topStage = saveService.Load().topStage;
+
+        stageText.text = $"Stage{stageNumber}";
+
+        if (stageNumber <= topStage)
+        {
+            SetState(Color.cyan, true);
+        }
+        else if (stageNumber == topStage + 1)
+        {
+            SetState(new Color(0.7f, 0.5f, 1f), true);
         }
         else
         {
-            BlockStagePannel.SetActive(false);
+            SetState(Color.gray, false);
         }
+    }
+
+    private void SetState(Color color, bool interactable)
+    {
+        if (background != null)
+            background.color = color;
+
+        if (button != null)
+            button.interactable = interactable;
     }
 
     public void OnClick()
     {
-        if (userStageService.BlockMoveToStage(stageId))
-        {
-            //StageEventBus.ShowBlockedStageMove(stageId);
-            Debug.Log($"Stage {stageId} is blocked. Cannot move to this stage.");
-            return;
-        }
-        userCurrentStageService.SaveCurrentStage(stageId);
+        Debug.Log($"[StageButton] Stage {stageNumber} 선택됨");
+        // 스테이지 이동 처리 구현 예정
     }
 }

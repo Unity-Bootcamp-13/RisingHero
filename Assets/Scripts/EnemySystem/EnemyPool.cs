@@ -3,13 +3,12 @@ using UnityEngine;
 
 public class EnemyPool : MonoBehaviour
 {
-    public enum EnemyType
+    public enum EnemyType // Pool type도 프로젝트에 맞게 수정해야 함.
     {
-        Normal0,
-        Elite0,
         Normal1,
         Elite1,
-        Worm
+        Normal2,
+        Elite2
     }
 
     public static EnemyPool Instance { get; private set; }

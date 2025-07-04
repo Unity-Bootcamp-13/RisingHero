@@ -23,7 +23,6 @@ public class JsonSaveService : ISaveService
             cachedData.diamond = data.diamond;
             cachedData.equippedWeaponId = data.equippedWeaponId;
             cachedData.ownedWeapons = new List<OwnedWeapon>(data.ownedWeapons);
-            cachedData.clearedStages = new List<StageClearData>(data.clearedStages);
         }
         else
         {
