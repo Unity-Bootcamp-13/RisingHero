@@ -47,7 +47,7 @@ public class Timer : MonoBehaviour
         {
             currentTime = 0f;
             isRunning = false;
-            OnTimeout?.Invoke();
+            OnTimeout.Invoke();
         }
 
         UpdateUI();

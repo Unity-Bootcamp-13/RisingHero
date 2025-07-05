@@ -6,6 +6,7 @@ public class EnemySpawner : MonoBehaviour
 {
     [Header("참조")]
     [SerializeField] private Transform player;
+    [SerializeField] private KillCounter killCounter; // 각 몬스터 주입
 
     private ISaveService saveService;
 
@@ -18,7 +19,6 @@ public class EnemySpawner : MonoBehaviour
 
     private int currentWave = 0;
 
-    private KillCounter killCounter;
 
     public void Initialize(ISaveService saveService)
     {
