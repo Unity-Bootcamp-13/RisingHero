@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int coinValue = 1;
     [SerializeField] private PoolType coinPoolType = PoolType.Coin;
 
-    [SerializeField] private KillCounter killCounter;
+    [SerializeField] private KillCounter killCounter; // 주입 확인
 
     private EnemyHealth health;
     private SpriteRenderer myRenderer;
