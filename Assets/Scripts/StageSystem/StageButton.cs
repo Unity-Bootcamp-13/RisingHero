@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,11 +13,14 @@ public class StageButton : MonoBehaviour
     private Image background;
     private TMP_Text stageText;
     private ISaveService saveService;
+    private IStageSceneLoader stageSceneLoader;
 
-    public void Initialize(ISaveService saveService)
+    private PlayerSaveData StageData;
+
+    public void Initialize(ISaveService saveService, IStageSceneLoader stageSceneLoader)
     {
         this.saveService = saveService;
-        UpdateState();
+        this.stageSceneLoader = stageSceneLoader;
     }
 
     private void Awake()
@@ -31,6 +35,11 @@ public class StageButton : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        UpdateState(); // 순서로 인해 스타트가 호출될 때 초기 상태 업데이트
+    }
+
     private void UpdateState()
     {
         if (saveService == null)
@@ -39,15 +48,16 @@ public class StageButton : MonoBehaviour
             return;
         }
 
-        int topStage = saveService.Load().topStage;
+        StageData = saveService.Load();
+
 
         stageText.text = $"Stage{stageNumber}";
 
-        if (stageNumber <= topStage)
+        if (stageNumber <= StageData.topStage)
         {
             SetState(Color.cyan, true);
         }
-        else if (stageNumber == topStage + 1)
+        else if (stageNumber == StageData.topStage + 1)
         {
             SetState(new Color(0.7f, 0.5f, 1f), true);
         }
@@ -70,5 +80,10 @@ public class StageButton : MonoBehaviour
     {
         Debug.Log($"[StageButton] Stage {stageNumber} 선택됨");
         // 스테이지 이동 처리 구현 예정
+        StageData = saveService.Load();
+        StageData.currentStage = stageNumber;
+        saveService.Save(StageData);
+
+        stageSceneLoader.LoadStage(stageNumber, StageData.topStage);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class KillCounter : MonoBehaviour
 {
     [Header("UI")]
-    [SerializeField] private Image fillImage;
+    [SerializeField] private Slider killSlider;
 
     [Header("설정")]
     [SerializeField] private int killGoal = 80;
@@ -35,7 +35,7 @@ public class KillCounter : MonoBehaviour
         {
             isActive = false;
             Debug.Log("[KillCounter] 목표 달성");
-            OnClear?.Invoke();
+            OnClear.Invoke();
         }
     }
 
@@ -45,14 +45,14 @@ public class KillCounter : MonoBehaviour
 
         isActive = false;
         Debug.Log("[KillCounter] 실패");
-        OnFail?.Invoke();
+        OnFail.Invoke();
     }
 
     private void UpdateUI()
     {
-        if (fillImage != null)
+        if (killSlider != null)
         {
-            fillImage.fillAmount = Mathf.Clamp01((float)currentKills / killGoal);
+            killSlider.value = Mathf.Clamp01((float)currentKills / killGoal);
         }
     }
 }
