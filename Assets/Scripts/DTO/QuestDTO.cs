@@ -20,7 +20,7 @@ public class QuestDTO
             currentValue = quest.CurrentValue,
             isCompleted = quest.IsCompleted,
             rewardGold = quest.RewardGold,
-            rewardJewel = quest.RewardJewel
+            rewardJewel = quest.RewardDiamond
         };
     }
 }

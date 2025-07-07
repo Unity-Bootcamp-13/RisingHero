@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public enum QuestType
 {
     Kill,
@@ -15,17 +17,17 @@ public class Quest
     public int CurrentValue { get; private set; }
     public bool IsCompleted { get; private set; }
 
-    public int RewardExp { get; private set; }
     public RewardRange RewardGold { get; private set; }
-    public RewardRange RewardJewel { get; private set; }
+    public RewardRange RewardDiamond { get; private set; }
 
-    public Quest(int id, QuestType type, int goalValue, RewardRange rewardGold, RewardRange rewardJewel)
+
+    public Quest(int id, QuestType type, int goalValue, RewardRange rewardGold, RewardRange rewardDiamond)
     {
         Id = id;
         Type = type;
         GoalValue = goalValue;
         RewardGold = rewardGold;
-        RewardJewel = rewardJewel;
+        RewardDiamond = rewardDiamond;
         CurrentValue = 0;
         IsCompleted = false;
     }
@@ -37,6 +39,9 @@ public class Quest
         CurrentValue += amount;
         if (CurrentValue > GoalValue)
             CurrentValue = GoalValue;
+
+        Debug.Log("퀘스트 진척도가 증가함.");
+
     }
 
     public bool CanComplete()
@@ -53,7 +58,7 @@ public class Quest
 
         return new QuestReward(
             RewardGold.GetRandom(),
-            RewardJewel.GetRandom()
+            RewardDiamond.GetRandom()
         );
     }
 }

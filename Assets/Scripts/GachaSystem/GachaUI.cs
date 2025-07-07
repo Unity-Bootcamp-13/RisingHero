@@ -43,6 +43,8 @@ public class GachaUI : MonoBehaviour
 
         save.diamond -= cost;
         saveService.Save(save);
+        //  CoinBuffer에 최신 SaveData를 반영하도록 명시적으로 갱신
+        CoinBuffer.Instance.Initialize(saveService);  // 안전하게 서비스 재주입
 
         List<int> results = new();
         for (int i = 0; i < count; i++)

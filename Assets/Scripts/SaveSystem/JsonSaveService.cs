@@ -26,9 +26,7 @@ public class JsonSaveService : ISaveService
             cachedData.ownedWeapons = new List<OwnedWeapon>(data.ownedWeapons);
             cachedData.currentStage = data.currentStage;
             cachedData.topStage = data.topStage;
-
-            /*//  항상 최신값 유지
-            cachedData.topStage = Mathf.Max(data.topStage, cachedData.topStage);*/
+            cachedData.currentQuestId = data.currentQuestId;
         }
         else
         {

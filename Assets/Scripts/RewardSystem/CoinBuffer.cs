@@ -42,6 +42,7 @@ public class CoinBuffer : MonoBehaviour
             return;
         }
 
+        saveService = new JsonSaveService();
         var saveData = saveService.Load();
         saveData.coin += bufferedCoin;
         saveService.Save(saveData);

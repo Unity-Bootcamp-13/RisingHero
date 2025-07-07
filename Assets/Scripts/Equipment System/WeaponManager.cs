@@ -29,10 +29,4 @@ public class WeaponManager : MonoBehaviour
             slot?.Initialize(saveService, weaponEquip, weaponInfoUI);
         }
     }
-
-    private void OnApplicationQuit()
-    {
-        var save = saveService.Load();
-        saveService.Save(save);
-    }
 }
