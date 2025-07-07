@@ -1,11 +1,11 @@
 public class QuestReward
 {
     public int Gold { get; }
-    public int Jewel { get; }
+    public int Diamond { get; }
 
-    public QuestReward(int gold, int jewel)
+    public QuestReward(int gold, int diamond)
     {
         Gold = gold;
-        Jewel = jewel;
+        Diamond = diamond;
     }
 }

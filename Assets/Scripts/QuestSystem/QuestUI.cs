@@ -24,16 +24,25 @@ public class QuestUI : MonoBehaviour
 
     public void UpdateQuestUI()
     {
-        if (questManager.CurrentQuest == null)
+        Quest current = questManager.CurrentQuest;
+
+        if (current == null)
         {
             questPanel.SetActive(false);
             return;
         }
-        questPanel.SetActive(true);
-        questTitleText.text = questType.ToString();
 
-        questProgressText.text = $"{quest.CurrentValue} / {quest.GoalValue}";
+        questPanel.SetActive(true);
+
+        Debug.Log($"[UpdateQuestUI] TitleText before: {questTitleText.text}");
+        Debug.Log($"[UpdateQuestUI] CurrentQuest Type: {current.Type}");
+
+        questTitleText.text = current.Type.ToString();
+        questProgressText.text = $"{current.CurrentValue} / {current.GoalValue}";
+
+        Debug.Log($"[UpdateQuestUI] TitleText after: {questTitleText.text}");
     }
+
     public void SetQuest(Quest quest)
     {
         this.quest = quest;

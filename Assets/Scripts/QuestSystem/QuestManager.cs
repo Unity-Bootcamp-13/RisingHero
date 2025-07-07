@@ -5,10 +5,12 @@ public class QuestManager : MonoBehaviour
 {
     public Quest CurrentQuest => _currentQuest;
 
-    [SerializeField] public Quest _currentQuest;
-    [SerializeField] public List<Quest> _questList;
-    [SerializeField] public QuestRepository _repository;
-    [SerializeField] public QuestRewardService _rewardService;
+    [SerializeField] private Quest _currentQuest;
+    [SerializeField] private List<Quest> _questList;
+    [SerializeField] private QuestRepository _repository;
+    [SerializeField] private QuestRewardService _rewardService;
+    [SerializeField] private QuestUI questUI;
+
     private ISaveService _saveService;
 
     private void Awake()
@@ -17,7 +19,6 @@ public class QuestManager : MonoBehaviour
         var playerData = _saveService.Load();
 
         _repository = new QuestRepository();
-        _rewardService = new QuestRewardService(_saveService);
 
         _questList = _repository.LoadQuestList();
         LoadCurrentQuest(playerData);
@@ -51,16 +52,17 @@ public class QuestManager : MonoBehaviour
         _currentQuest.AddProgress(amount);
     }
 
-    public bool TryCompleteQuest()
+    public void TryCompleteQuest()
     {
-        if (!_currentQuest.CanComplete()) return false;
+        if (!_currentQuest.CanComplete()) return;
 
         QuestReward reward = _currentQuest.Complete();
+        _rewardService = new QuestRewardService(_saveService);
         _rewardService.Apply(reward);
 
         GoToNextQuest();
 
-        return true;
+        return;
     }
 
     private void GoToNextQuest()
@@ -73,5 +75,6 @@ public class QuestManager : MonoBehaviour
         var playerData = _saveService.Load();
         playerData.currentQuestId = _currentQuest.Id;
         _saveService.Save(playerData);
+        questUI.UpdateQuestUI();
     }
 }

@@ -7,6 +7,9 @@ public class KillCounter : MonoBehaviour
     [SerializeField] public Quest quest;
     [SerializeField] private QuestManager questManager;
     public QuestType Type;
+    public PlayerSaveData psd;
+
+    private ISaveService saveService;
 
     [Header("UI")]
     [SerializeField] private Slider killSlider;
@@ -20,6 +23,12 @@ public class KillCounter : MonoBehaviour
     public System.Action OnFail;
 
     private bool isActive = false;
+
+    private void Awake()
+    {
+        saveService = new JsonSaveService();
+        psd = saveService.Load();
+    }
 
     public void StartCount(int goal)
     {
@@ -36,23 +45,25 @@ public class KillCounter : MonoBehaviour
 
     public void AddKill()
     {
-        if (Type == QuestType.Kill)
+        saveService = new JsonSaveService();
+        if (psd.currentQuestId == 1)
         {
             SetQuest(questManager.CurrentQuest);
-            quest.AddProgress(1);
+            quest.AddProgress(1);  // 이 시점에만 퀘스트 진행도 증가
         }
+            
 
-        if (!isActive) return;
+        if (!isActive)
+            return;
 
         currentKills++;
         UpdateUI();
-        
 
         if (currentKills >= killGoal)
         {
             isActive = false;
             Debug.Log("[KillCounter] 목표 달성");
-            OnClear.Invoke();
+            OnClear?.Invoke();
         }
     }
 

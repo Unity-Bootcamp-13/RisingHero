@@ -26,6 +26,7 @@ public class JsonSaveService : ISaveService
             cachedData.ownedWeapons = new List<OwnedWeapon>(data.ownedWeapons);
             cachedData.currentStage = data.currentStage;
             cachedData.topStage = data.topStage;
+            cachedData.currentQuestId = data.currentQuestId;
         }
         else
         {

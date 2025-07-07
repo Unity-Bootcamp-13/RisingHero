@@ -18,16 +18,16 @@ public class Quest
     public bool IsCompleted { get; private set; }
 
     public RewardRange RewardGold { get; private set; }
-    public RewardRange RewardJewel { get; private set; }
+    public RewardRange RewardDiamond { get; private set; }
 
 
-    public Quest(int id, QuestType type, int goalValue, RewardRange rewardGold, RewardRange rewardJewel)
+    public Quest(int id, QuestType type, int goalValue, RewardRange rewardGold, RewardRange rewardDiamond)
     {
         Id = id;
         Type = type;
         GoalValue = goalValue;
         RewardGold = rewardGold;
-        RewardJewel = rewardJewel;
+        RewardDiamond = rewardDiamond;
         CurrentValue = 0;
         IsCompleted = false;
     }
@@ -58,7 +58,7 @@ public class Quest
 
         return new QuestReward(
             RewardGold.GetRandom(),
-            RewardJewel.GetRandom()
+            RewardDiamond.GetRandom()
         );
     }
 }

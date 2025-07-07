@@ -2,7 +2,7 @@
     "quests": [
         {
             "questId": 1,
-            "questType": "Kill",
+            "questType": 0,
             "goalValue": 30,
             "currentValue": 0,
             "rewardGold": {
@@ -17,7 +17,7 @@
         },
         {
             "questId": 2,
-            "questType": "Upgrade",
+            "questType": 1,
             "goalValue": 10,
             "currentValue": 0,
             "rewardGold": {
@@ -32,7 +32,7 @@
         },
         {
             "questId": 3,
-            "questType": "Gacha",
+            "questType": 2,
             "goalValue": 1,
             "currentValue": 0,
             "rewardGold": {
