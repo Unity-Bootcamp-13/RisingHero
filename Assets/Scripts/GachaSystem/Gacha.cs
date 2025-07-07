@@ -7,9 +7,15 @@ public class Gacha
     private Dictionary<int, List<GachaWeightEntry>> weightTable = new();
     private ISaveService saveService;
 
-    public void Initialize(ISaveService saveService)
+    [SerializeField] public Quest quest;
+    [SerializeField] private QuestManager questManager;
+    public QuestType Type;
+    public PlayerSaveData psd;
+
+    public void Initialize(ISaveService saveService, QuestManager questManager)
     {
         this.saveService = saveService;
+        this.questManager = questManager;
         LoadWeightTable();
     }
 
@@ -19,6 +25,11 @@ public class Gacha
         weightTable = entries
             .GroupBy(e => e.groupId)
             .ToDictionary(g => g.Key, g => g.ToList());
+    }
+
+    public void SetQuest(Quest quest)
+    {
+        this.quest = quest;
     }
 
     public int RollGacha(int groupId)
@@ -32,6 +43,13 @@ public class Gacha
         var entries = weightTable[groupId];
         int totalWeight = entries.Sum(e => e.weight);
         int roll = Random.Range(0, totalWeight);
+
+        psd = saveService.Load();
+        if (psd.currentQuestId == 3)
+        {
+            SetQuest(questManager.CurrentQuest);
+            quest.AddProgress(1);
+        }
 
         int cumulative = 0;
         foreach (var entry in entries)

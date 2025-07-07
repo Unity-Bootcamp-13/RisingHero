@@ -13,9 +13,9 @@ public class QuestRewardService
     {
         var playerData = _saveService.Load();
         playerData.coin += reward.Gold;
-        playerData.diamond += reward.Jewel;
+        playerData.diamond += reward.Diamond;
 
-        Debug.Log($"[보상 지급 완료] Gold: {reward.Gold}, Jewel: {reward.Jewel}");
+        Debug.Log($"[보상 지급 완료] Gold: {reward.Gold}, Jewel: {reward.Diamond}");
 
         _saveService.Save(playerData);
     }

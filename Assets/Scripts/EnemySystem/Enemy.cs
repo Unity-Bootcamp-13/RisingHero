@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private KillCounter killCounter; // 주입 확인
 
-    private EnemyHealth health;
+    internal EnemyHealth health;
     private SpriteRenderer myRenderer;
     private Color originalColor;
 
@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
         this.killCounter = killCounter;
     }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         GameObject stageManagerObj = GameObject.Find("StageManager"); // 이 방식 고정.
         if (stageManagerObj != null)
@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
             originalColor = myRenderer.color;
     }
 
-    private void Die()
+    protected virtual void Die()
     {
         gameObject.SetActive(false);
 
@@ -76,7 +76,7 @@ public class Enemy : MonoBehaviour
             StartCoroutine(HitFlashEffect());
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         if (myRenderer != null)
         {
@@ -89,7 +89,7 @@ public class Enemy : MonoBehaviour
         AliveEnemyManager.Register(this);
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         AliveEnemyManager.Unregister(this);
     }

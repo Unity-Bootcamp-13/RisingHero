@@ -9925,7 +9925,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   killGoal: 80
-  timeLimit: 10
+  timeLimit: 120
   killCounter: {fileID: 1055842166}
   timer: {fileID: 1055842165}
 --- !u!114 &1055842168

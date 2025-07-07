@@ -22,6 +22,7 @@ public class PlayerSaveData
         equippedWeaponId = -1;
         currentStage = 11;
         topStage = 11;
+        currentQuestId = -1;
     }
 }
 

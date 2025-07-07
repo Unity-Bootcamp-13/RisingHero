@@ -1,10 +1,15 @@
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class WeaponLevelUp : MonoBehaviour
 {
     [Header("업그레이드 비용 설정")]
     [SerializeField] private int baseUpgradeCost = 10;
     [SerializeField] private float costMultiplier = 1.5f;
+
+    [SerializeField] private QuestManager questManager;
+    [SerializeField] private Quest quest;
+    [SerializeField] private PlayerSaveData psd;
 
     private ISaveService saveService;
 
@@ -51,6 +56,14 @@ public class WeaponLevelUp : MonoBehaviour
 
         save.coin -= upgradeCost;
         owned.level++;
+
+        psd = saveService.Load();
+        if (psd.currentQuestId == 2)
+        {
+            SetQuest(questManager.CurrentQuest);
+            quest.AddProgress(1);  // 이 시점에만 퀘스트 진행도 증가
+        }
+
         saveService.Save(save);
 
         Debug.Log($"[WeaponLevelUp] 무기 ID {weaponId} → Lv.{owned.level} (Cost: {upgradeCost})");
@@ -60,5 +73,10 @@ public class WeaponLevelUp : MonoBehaviour
     public int CalculateUpgradeCost(int currentLevel)
     {
         return Mathf.RoundToInt(baseUpgradeCost * Mathf.Pow(costMultiplier, currentLevel - 1));
+    }
+
+    public void SetQuest(Quest quest)
+    {
+        this.quest = quest;
     }
 }
