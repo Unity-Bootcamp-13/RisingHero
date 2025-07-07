@@ -79,11 +79,24 @@ public class StageButton : MonoBehaviour
     public void OnClick()
     {
         Debug.Log($"[StageButton] Stage {stageNumber} 선택됨");
-        // 스테이지 이동 처리 구현 예정
-        StageData = saveService.Load();
-        StageData.currentStage = stageNumber;
-        saveService.Save(StageData);
+        saveService = new JsonSaveService();
 
-        stageSceneLoader.LoadStage(stageNumber, StageData.topStage);
+        // 1. 먼저 현재 데이터 로드
+        var latestData = saveService.Load();
+
+        // 2. 코인 버퍼 적용
+        latestData.coin += CoinBuffer.Instance.GetBufferedCoin();
+
+        // 3. 스테이지 정보 적용
+        latestData.currentStage = stageNumber;
+
+        // 4. 저장
+        saveService.Save(latestData);
+
+        // 5. 버퍼 초기화
+        CoinBuffer.Instance.ResetBuffer();
+
+        // 6. 씬 전환
+        stageSceneLoader.LoadStage(stageNumber, latestData.topStage);
     }
 }

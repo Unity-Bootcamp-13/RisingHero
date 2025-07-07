@@ -1,8 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class KillCounter : MonoBehaviour
 {
+    [SerializeField] public Quest quest;
+    [SerializeField] private QuestManager questManager;
+    public QuestType Type;
+
     [Header("UI")]
     [SerializeField] private Slider killSlider;
 
@@ -24,12 +29,24 @@ public class KillCounter : MonoBehaviour
         UpdateUI();
     }
 
+    public void SetQuest(Quest quest)
+    {
+        this.quest = quest;
+    }
+
     public void AddKill()
     {
+        if (Type == QuestType.Kill)
+        {
+            SetQuest(questManager.CurrentQuest);
+            quest.AddProgress(1);
+        }
+
         if (!isActive) return;
 
         currentKills++;
         UpdateUI();
+        
 
         if (currentKills >= killGoal)
         {

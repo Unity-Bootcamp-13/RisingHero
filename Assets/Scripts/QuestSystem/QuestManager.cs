@@ -5,10 +5,10 @@ public class QuestManager : MonoBehaviour
 {
     public Quest CurrentQuest => _currentQuest;
 
-    private Quest _currentQuest;
-    private List<Quest> _questList;
-    private QuestRepository _repository;
-    private QuestRewardService _rewardService;
+    [SerializeField] public Quest _currentQuest;
+    [SerializeField] public List<Quest> _questList;
+    [SerializeField] public QuestRepository _repository;
+    [SerializeField] public QuestRewardService _rewardService;
     private ISaveService _saveService;
 
     private void Awake()
