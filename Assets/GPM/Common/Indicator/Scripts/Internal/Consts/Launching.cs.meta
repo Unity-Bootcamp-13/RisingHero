@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: ed2f7b90610f40c4ebb12ef6fb72cdd1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147711
+  packageName: Game Package Manager
+  packageVersion: 2.2.6
+  assetPath: Assets/GPM/Common/Indicator/Scripts/Internal/Consts/Launching.cs
+  uploadId: 664418

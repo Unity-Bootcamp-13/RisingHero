@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: effdc97e40e5f504cba61818cbd549bf
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147711
+  packageName: Game Package Manager
+  packageVersion: 2.2.6
+  assetPath: Assets/GPM/Common/ThirdParty/SharpCompress/Archives/Rar/StreamRarArchiveVolume.cs
+  uploadId: 664418

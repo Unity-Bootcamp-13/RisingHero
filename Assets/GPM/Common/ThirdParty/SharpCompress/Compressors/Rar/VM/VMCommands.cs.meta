@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 41d822afae373c148a6f54eb50b94b9c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147711
+  packageName: Game Package Manager
+  packageVersion: 2.2.6
+  assetPath: Assets/GPM/Common/ThirdParty/SharpCompress/Compressors/Rar/VM/VMCommands.cs
+  uploadId: 664418

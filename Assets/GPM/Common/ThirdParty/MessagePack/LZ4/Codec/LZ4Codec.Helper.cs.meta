@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 2ba6905b60fe20144b9ecbbca9d07140
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147711
+  packageName: Game Package Manager
+  packageVersion: 2.2.6
+  assetPath: Assets/GPM/Common/ThirdParty/MessagePack/LZ4/Codec/LZ4Codec.Helper.cs
+  uploadId: 664418

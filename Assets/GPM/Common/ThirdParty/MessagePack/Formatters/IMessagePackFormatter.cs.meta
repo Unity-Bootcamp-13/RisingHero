@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 2c3841ed03c499a41bdaf4f9a6f07e49
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147711
+  packageName: Game Package Manager
+  packageVersion: 2.2.6
+  assetPath: Assets/GPM/Common/ThirdParty/MessagePack/Formatters/IMessagePackFormatter.cs
+  uploadId: 664418

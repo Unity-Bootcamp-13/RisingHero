@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 7ff259cda521e774c94a65531dc4afa0
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147711
+  packageName: Game Package Manager
+  packageVersion: 2.2.6
+  assetPath: Assets/GPM/Manager/Editor/Internal/GpmDependentServiceFinder.cs
+  uploadId: 664418

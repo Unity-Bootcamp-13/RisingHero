@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: d32e7b565d933c748a76516d1024dd74
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147711
+  packageName: Game Package Manager
+  packageVersion: 2.2.6
+  assetPath: Assets/GPM/Common/ThirdParty/SharpCompress/Compressors/PPMd/H/FreqData.cs
+  uploadId: 664418

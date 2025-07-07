@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: c59e0a160e8eb4947b5464b7d55ea078
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147711
+  packageName: Game Package Manager
+  packageVersion: 2.2.6
+  assetPath: Assets/GPM/Common/ThirdParty/SharpCompress/Common/SevenZip/SevenZipFilePart.cs
+  uploadId: 664418

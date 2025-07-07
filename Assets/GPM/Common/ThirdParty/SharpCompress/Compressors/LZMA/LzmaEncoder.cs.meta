@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: f6912a9d0e1ae9e4796c47bc67a24405
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147711
+  packageName: Game Package Manager
+  packageVersion: 2.2.6
+  assetPath: Assets/GPM/Common/ThirdParty/SharpCompress/Compressors/LZMA/LzmaEncoder.cs
+  uploadId: 664418

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 6422a6298fe273e4d8c943cdfab96ba7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147711
+  packageName: Game Package Manager
+  packageVersion: 2.2.6
+  assetPath: Assets/GPM/Common/ThirdParty/SharpCompress/Compressors/Rar/UnpackV1/Decode/AudioVariables.cs
+  uploadId: 664418

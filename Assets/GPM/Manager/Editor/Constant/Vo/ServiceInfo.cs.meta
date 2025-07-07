@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 4c892a1e3a8b14b4fb1eefb95a3ee42b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147711
+  packageName: Game Package Manager
+  packageVersion: 2.2.6
+  assetPath: Assets/GPM/Manager/Editor/Constant/Vo/ServiceInfo.cs
+  uploadId: 664418

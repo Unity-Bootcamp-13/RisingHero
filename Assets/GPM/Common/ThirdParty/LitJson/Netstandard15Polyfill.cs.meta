@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 07b9214e6a679784e9ac7269ae49ac94
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147711
+  packageName: Game Package Manager
+  packageVersion: 2.2.6
+  assetPath: Assets/GPM/Common/ThirdParty/LitJson/Netstandard15Polyfill.cs
+  uploadId: 664418

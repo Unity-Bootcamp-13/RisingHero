@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 80f2d0c16845a9844982c470f4543884
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147711
+  packageName: Game Package Manager
+  packageVersion: 2.2.6
+  assetPath: Assets/GPM/Common/Multilanguage/Internal/MultilanguageImplementation.cs
+  uploadId: 664418

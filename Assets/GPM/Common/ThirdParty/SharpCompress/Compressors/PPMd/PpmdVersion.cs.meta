@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: b2a279c6bf9880a47bca11e031765808
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147711
+  packageName: Game Package Manager
+  packageVersion: 2.2.6
+  assetPath: Assets/GPM/Common/ThirdParty/SharpCompress/Compressors/PPMd/PpmdVersion.cs
+  uploadId: 664418

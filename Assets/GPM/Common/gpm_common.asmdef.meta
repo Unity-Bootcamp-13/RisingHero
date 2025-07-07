@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f35024e18ccf59c4681527787a971c57
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147711
+  packageName: Game Package Manager
+  packageVersion: 2.2.6
+  assetPath: Assets/GPM/Common/gpm_common.asmdef
+  uploadId: 664418

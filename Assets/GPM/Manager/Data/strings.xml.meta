@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d97bced999c393141a654915c4f856ee
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147711
+  packageName: Game Package Manager
+  packageVersion: 2.2.6
+  assetPath: Assets/GPM/Manager/Data/strings.xml
+  uploadId: 664418

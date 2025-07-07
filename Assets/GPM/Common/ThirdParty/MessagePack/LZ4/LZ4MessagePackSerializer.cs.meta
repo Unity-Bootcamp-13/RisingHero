@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 314710a60cc488944b8f43064a934d00
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147711
+  packageName: Game Package Manager
+  packageVersion: 2.2.6
+  assetPath: Assets/GPM/Common/ThirdParty/MessagePack/LZ4/LZ4MessagePackSerializer.cs
+  uploadId: 664418

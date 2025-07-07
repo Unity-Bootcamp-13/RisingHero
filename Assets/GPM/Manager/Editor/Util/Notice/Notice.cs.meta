@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: d3674d17e6ee3574b96cba04fe91c17e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147711
+  packageName: Game Package Manager
+  packageVersion: 2.2.6
+  assetPath: Assets/GPM/Manager/Editor/Util/Notice/Notice.cs
+  uploadId: 664418

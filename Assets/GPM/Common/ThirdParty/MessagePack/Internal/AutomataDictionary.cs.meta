@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: dd8debb8679f0f24c9582f51e8f8addf
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147711
+  packageName: Game Package Manager
+  packageVersion: 2.2.6
+  assetPath: Assets/GPM/Common/ThirdParty/MessagePack/Internal/AutomataDictionary.cs
+  uploadId: 664418

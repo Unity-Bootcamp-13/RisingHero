@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 283a63bcfb8ad0b4ba9051beff008d09
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147711
+  packageName: Game Package Manager
+  packageVersion: 2.2.6
+  assetPath: Assets/GPM/Common/Indicator/Scripts/GpmIndicator.cs
+  uploadId: 664418

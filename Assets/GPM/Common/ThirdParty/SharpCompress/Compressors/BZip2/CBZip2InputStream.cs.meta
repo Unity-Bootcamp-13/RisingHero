@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 05c4e374407a54b4db3ee4fd68c91d76
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147711
+  packageName: Game Package Manager
+  packageVersion: 2.2.6
+  assetPath: Assets/GPM/Common/ThirdParty/SharpCompress/Compressors/BZip2/CBZip2InputStream.cs
+  uploadId: 664418

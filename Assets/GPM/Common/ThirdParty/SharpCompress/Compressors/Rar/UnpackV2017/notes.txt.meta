@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ed3b9eebb034e0c46bf60a7528ce4328
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147711
+  packageName: Game Package Manager
+  packageVersion: 2.2.6
+  assetPath: Assets/GPM/Common/ThirdParty/SharpCompress/Compressors/Rar/UnpackV2017/notes.txt
+  uploadId: 664418

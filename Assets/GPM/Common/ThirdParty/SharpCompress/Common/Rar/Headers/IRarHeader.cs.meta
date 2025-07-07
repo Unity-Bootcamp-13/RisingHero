@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: f2ae57240cc27334dbb811bf0cf72860
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147711
+  packageName: Game Package Manager
+  packageVersion: 2.2.6
+  assetPath: Assets/GPM/Common/ThirdParty/SharpCompress/Common/Rar/Headers/IRarHeader.cs
+  uploadId: 664418

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 4206fd032ab72d34fb9eeb9beae14ffa
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 147711
+  packageName: Game Package Manager
+  packageVersion: 2.2.6
+  assetPath: Assets/GPM/Common/ThirdParty/LitJson/ParserToken.cs
+  uploadId: 664418
