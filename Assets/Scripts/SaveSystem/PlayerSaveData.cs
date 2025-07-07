@@ -12,6 +12,8 @@ public class PlayerSaveData
     public int currentStage = 11;
     public int topStage = 11;
     public int currentQuestId = -1;
+    public List<int> equippedSkillIds = new();
+    public List<SkillLevelData> skillLevels = new();
 
     public PlayerSaveData()
     {
@@ -40,5 +42,18 @@ public class OwnedWeapon
     public override string ToString()
     {
         return $"WeaponID: {weaponId}, Level: {level}, Amount: {amount}";
+    }
+}
+
+[Serializable]
+public class SkillLevelData
+{
+    public int skillId;
+    public int level;
+
+    public SkillLevelData(int skillId, int level)
+    {
+        this.skillId = skillId;
+        this.level = level;
     }
 }
