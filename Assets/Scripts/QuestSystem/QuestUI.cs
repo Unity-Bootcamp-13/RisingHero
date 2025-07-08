@@ -8,9 +8,8 @@ public class QuestUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI questTitleText;
     [SerializeField] private TextMeshProUGUI questProgressText;
 
-    public Quest quest;
+    private Quest quest;
 
-    public QuestType questType;
 
     private void Start()
     {
@@ -32,7 +31,6 @@ public class QuestUI : MonoBehaviour
             return;
         }
 
-        questPanel.SetActive(true);
 
         Debug.Log($"[UpdateQuestUI] TitleText before: {questTitleText.text}");
         Debug.Log($"[UpdateQuestUI] CurrentQuest Type: {current.Type}");

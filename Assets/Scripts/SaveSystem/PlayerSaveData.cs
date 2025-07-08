@@ -51,10 +51,12 @@ public class SkillLevelData
 {
     public int skillId;
     public int level;
+    public int amount;
 
-    public SkillLevelData(int skillId, int level)
+    public SkillLevelData(int skillId, int level, int amount = 1)
     {
         this.skillId = skillId;
         this.level = level;
+        this.amount = amount;
     }
 }

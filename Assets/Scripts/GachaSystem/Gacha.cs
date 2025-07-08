@@ -10,7 +10,7 @@ public class Gacha
     [SerializeField] public Quest quest;
     [SerializeField] private QuestManager questManager;
     public QuestType Type;
-    public PlayerSaveData psd;
+    private PlayerSaveData psd;
 
     public void Initialize(ISaveService saveService, QuestManager questManager)
     {
@@ -52,13 +52,29 @@ public class Gacha
         }
 
         int cumulative = 0;
-        foreach (var entry in entries)
+
+        if (groupId == 101)
         {
-            cumulative += entry.weight;
-            if (roll < cumulative)
+            foreach (var entry in entries)
             {
-                GrantWeapon(entry.itemId);
-                return entry.itemId;
+                cumulative += entry.weight;
+                if (roll < cumulative)
+                {
+                    GrantWeapon(entry.itemId);
+                    return entry.itemId;
+                }
+            }
+        }
+        else if (groupId == 201)
+        {
+            foreach (var entry in entries)
+            {
+                cumulative += entry.weight;
+                if (roll < cumulative)
+                {
+                    GrantSkill(entry.itemId);
+                    return entry.itemId;
+                }
             }
         }
 
@@ -79,5 +95,21 @@ public class Gacha
         }
         saveService.Save(save);
         Debug.Log($"[GachaManager] ¹«±â È¹µæ: {weaponId}");
+    }
+
+    private void GrantSkill(int skillId)
+    {
+        var save = saveService.Load();
+        var owned = save.skillLevels.Find(w => w.skillId == skillId);
+        if (owned != null)
+        {
+            owned.amount++;
+        }
+        else
+        {
+            save.skillLevels.Add(new SkillLevelData(skillId, 1, 1));
+        }
+        saveService.Save(save);
+        Debug.Log($"[GachaManager] ½ºÅ³ È¹µæ: {skillId}");
     }
 }
