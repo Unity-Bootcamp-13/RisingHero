@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+/// <summary>
+/// CSV를 Dictionary의 형태로 보관해서 ID로 접근 가능하도록 한다.
+/// </summary>
 public class SkillLoader : MonoBehaviour
 {
     public static SkillLoader Instance { get; private set; }
@@ -25,4 +27,3 @@ public class SkillLoader : MonoBehaviour
         return skillDict.Values.ToList();
     }
 }
-

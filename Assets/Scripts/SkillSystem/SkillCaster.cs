@@ -1,14 +1,15 @@
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class SkillCaster : MonoBehaviour
 {
     private SkillEquip skillEquip;
     private SkillLevelManager skillLevelManager;
 
-    // 쿨타임 관리용
     private Dictionary<int, float> cooldownTimers = new();
+
+    [SerializeField] private PlayerMana playerMana; // 직렬화로 연결
 
     public void Initialize(SkillEquip skillEquip, SkillLevelManager skillLevelManager)
     {
@@ -18,30 +19,41 @@ public class SkillCaster : MonoBehaviour
 
     public bool CanCast(SkillData skillData)
     {
-        return !cooldownTimers.TryGetValue(skillData.ID, out float remaining) || remaining <= 0f;
+        return (!cooldownTimers.TryGetValue(skillData.ID, out float remaining) || remaining <= 0f)
+            && playerMana != null
+            && playerMana.HasEnoughMana(skillData.ManaCost);
     }
 
     public void CastSkill(SkillData skillData, System.Action<float> onCooldownTriggered = null)
     {
-        if (skillData == null || skillEquip == null) return;
+        if (skillData == null || skillEquip == null || playerMana == null) return;
 
         int level = skillLevelManager.GetLevel(skillData.ID);
 
-        // 쿨타임 체크
         if (cooldownTimers.TryGetValue(skillData.ID, out float remainingTime) && remainingTime > 0f)
         {
             Debug.Log($"[SkillCaster] {skillData.Name} 스킬은 쿨타임 {remainingTime:F1}초 남음");
             return;
         }
 
+        if (!playerMana.HasEnoughMana(skillData.ManaCost))
+        {
+            Debug.Log($"[SkillCaster] 마나 부족: {skillData.ManaCost} 필요");
+            return;
+        }
+
+        // 마나 소모
+        playerMana.ConsumeMana(skillData.ManaCost);
+
+        // 스킬 실행
         var behavior = SkillBehaviorFactory.GetSkillBehavior(skillData.Type);
         behavior.Execute(skillData, transform, level);
 
-        // 쿨타임 시작
+        // 쿨타임 설정
         cooldownTimers[skillData.ID] = skillData.Cooldown;
         StartCoroutine(CooldownRoutine(skillData.ID));
 
-        // UI 쿨다운 트리거
+        // UI 트리거
         onCooldownTriggered?.Invoke(skillData.Cooldown);
     }
 
