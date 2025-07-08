@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Runtime.CompilerServices;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public interface IStageSceneLoader
@@ -6,8 +7,11 @@ public interface IStageSceneLoader
     void LoadStage(int stageNumber, int topStage);
 }
 
+
 public class StageSceneLoader : IStageSceneLoader
 {
+    private ISlideScene slideScene;
+
     public void LoadStage(int stageNumber, int topStage)
     {
         string sceneName = ResolveSceneName(stageNumber, topStage);
@@ -15,7 +19,9 @@ public class StageSceneLoader : IStageSceneLoader
         if (Application.CanStreamedLevelBeLoaded(sceneName))
         {
             Debug.Log($"[StageSceneLoader] 씬 이동: {sceneName}");
-            SceneManager.LoadScene(sceneName);
+            ISlideScene slideScene = GameObject.FindObjectOfType<SlideScene>();
+            //SceneManager.LoadScene(sceneName);
+            slideScene.LodeSceneWithSlide(sceneName);
         }
         else
         {
