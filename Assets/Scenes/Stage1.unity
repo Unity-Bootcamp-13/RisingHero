@@ -3108,9 +3108,9 @@ GameObject:
   - component: {fileID: 287533675}
   - component: {fileID: 287533674}
   - component: {fileID: 287533673}
-  - component: {fileID: 287533676}
   - component: {fileID: 287533677}
   - component: {fileID: 287533678}
+  - component: {fileID: 287533679}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3175,20 +3175,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &287533676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 287533672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 362b399b66f94cb4f8e92cc9a4050e81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerAttack: {fileID: 1308021226}
-  weaponEquip: {fileID: 1308021228}
 --- !u!114 &287533677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3226,6 +3212,23 @@ MonoBehaviour:
   - {fileID: 1922774960}
   stageClear: {fileID: 0}
   stageUI: {fileID: 0}
+--- !u!114 &287533679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287533672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362b399b66f94cb4f8e92cc9a4050e81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAttack: {fileID: 1308021226}
+  weaponEquip: {fileID: 1308021228}
+  characterHealth: {fileID: 1308021231}
+  playerMana: {fileID: 1308021230}
+  playerUI: {fileID: 754794677}
 --- !u!1 &304702763
 GameObject:
   m_ObjectHideFlags: 0
@@ -7838,6 +7841,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 754794676}
+  - component: {fileID: 754794677}
   m_Layer: 5
   m_Name: State
   m_TagString: Untagged
@@ -7869,6 +7873,22 @@ RectTransform:
   m_AnchoredPosition: {x: 9, y: 16}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &754794677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754794675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 591317f5af9733e4a98c1729d8a0245c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpFillImage: {fileID: 260910209}
+  currentHpText: {fileID: 1304472155}
+  mpFillImage: {fileID: 1289351034}
+  currentMpText: {fileID: 1032064580}
 --- !u!114 &755318320 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4276826184614589351, guid: 551a83c196fc97f49ab8e958d16460ea, type: 3}
@@ -11184,6 +11204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8378ac8fb50dc144da794107862eedcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMana: {fileID: 0}
 --- !u!114 &1055842168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11228,6 +11249,7 @@ MonoBehaviour:
   - {fileID: 387418701}
   - {fileID: 332744522}
   skillDetailUI: {fileID: 1537745100}
+  playerMana: {fileID: 0}
   skillUIs:
   - {fileID: 784581228}
   - {fileID: 1231771796}
@@ -14781,6 +14803,8 @@ GameObject:
   - component: {fileID: 1308021226}
   - component: {fileID: 1308021228}
   - component: {fileID: 1308021229}
+  - component: {fileID: 1308021231}
+  - component: {fileID: 1308021230}
   m_Layer: 6
   m_Name: Hero
   m_TagString: Player
@@ -15001,6 +15025,35 @@ MonoBehaviour:
   arrowDamage: 1
   critChance: 0.1
   critDamage: 1.5
+--- !u!114 &1308021230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308021219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d29403e3c23da347b5ede856f804c37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxMana: 100
+  recoverInterval: 1
+  recoverAmount: 2
+--- !u!114 &1308021231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308021219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5aaf3c06513a443ba7d3906fe7b409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 100
+  invincibleTime: 1
 --- !u!1 &1311153533
 GameObject:
   m_ObjectHideFlags: 0

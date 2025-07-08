@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Reflection;
 
 public class SkillManager : MonoBehaviour
 {
@@ -14,30 +15,31 @@ public class SkillManager : MonoBehaviour
     private ISaveService saveService;
     private SkillLevelManager skillLevelManager;
 
+    [SerializeField] private PlayerMana playerMana;
+
     [SerializeField] private List<SkillUI> skillUIs;
 
     private void Awake()
     {
-        // 저장소 초기화
         saveService = new JsonSaveService();
 
-        // 스킬 시스템 초기화
         skillEquip?.Initialize(saveService);
 
         skillLevelManager = new SkillLevelManager();
         skillLevelManager.Initialize(saveService);
 
-        // 스킬 캐스터 연결
         skillCaster?.Initialize(skillEquip, skillLevelManager);
 
-        // 슬롯 UI 초기화 (스킬 발동용)
         for (int i = 0; i < skillEquipUIs.Count; i++)
         {
             skillEquipUIs[i].Initialize(skillCaster);
         }
 
-        // 상세 UI 연결
         skillDetailUI?.Initialize(skillEquip, skillLevelManager, skillEquipUIs);
+
+        skillCaster?.Initialize(skillEquip, skillLevelManager);
+        skillCaster.GetType().GetField("playerMana", BindingFlags.NonPublic | BindingFlags.Instance)
+                   ?.SetValue(skillCaster, playerMana);
     }
 
     private void Start()
