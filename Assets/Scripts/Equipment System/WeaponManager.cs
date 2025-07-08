@@ -21,12 +21,18 @@ public class WeaponManager : MonoBehaviour
 
         weaponStatus?.Initialize(saveService, playerStatus);
         weaponEquip?.Initialize(saveService, weaponStatus);
-        weaponLevelUp?.Initialize(saveService);
-        weaponInfoUI?.Initialize(saveService, weaponEquip, weaponLevelUp, coinUI);
+        weaponLevelUp?.Initialize(saveService, weaponStatus);
+        weaponInfoUI?.Initialize(saveService, weaponEquip, weaponLevelUp, coinUI, weaponStatus);
 
         foreach (var slot in weaponSlotUIs)
         {
-            slot?.Initialize(saveService, weaponEquip, weaponInfoUI);
+            if (slot == null || slot.WeaponData == null) continue;
+
+            var data = slot.WeaponData;
+            bool isUnlocked = weaponStatus.IsUnlocked(data.weaponId);
+            int level = weaponStatus.GetWeaponLevel(data.weaponId);
+
+            slot.Initialize(data, isUnlocked, level, weaponEquip, weaponInfoUI);
         }
     }
 }

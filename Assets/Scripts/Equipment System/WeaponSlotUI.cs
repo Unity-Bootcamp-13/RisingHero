@@ -1,6 +1,10 @@
+
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 불가피하게 책임이 높아졌는데 호출만하기 때문에 괜찮다고 판단.
+/// </summary>
 public class WeaponSlotUI : MonoBehaviour
 {
     [Header("UI 연결")]
@@ -10,74 +14,57 @@ public class WeaponSlotUI : MonoBehaviour
 
     [Header("데이터 Asset")]
     [SerializeField] private WeaponData weaponData;
+    public WeaponData WeaponData => weaponData; // 읽기 전용 프로퍼티
 
     private bool isUnlocked;
-
-    private ISaveService saveService;
     private WeaponEquip weaponEquip;
     private WeaponInfoUI weaponInfoUI;
+    private int weaponLevel;
 
-    public void Initialize(ISaveService saveService, WeaponEquip weaponEquip, WeaponInfoUI weaponInfoUI)
+    public void Initialize(
+        WeaponData data,
+        bool isUnlocked,
+        int weaponLevel,
+        WeaponEquip equip,
+        WeaponInfoUI infoUI)
     {
-        this.saveService = saveService;
-        this.weaponEquip = weaponEquip;
-        this.weaponInfoUI = weaponInfoUI;
+        this.weaponData = data;
+        this.isUnlocked = isUnlocked;
+        this.weaponLevel = weaponLevel;
+        this.weaponEquip = equip;
+        this.weaponInfoUI = infoUI;
+
+        UpdateUI();
     }
 
-    private void Start()
+    private void UpdateUI()
     {
         if (weaponData == null)
         {
-            Debug.LogWarning($"{gameObject.name} 슬롯에 weaponData가 설정되지 않았습니다.");
-            return;
-        }
-
-        if (saveService == null)
-        {
-            Debug.LogError("[WeaponSlotUI] SaveService가 초기화되지 않았습니다.");
-            return;
-        }
-
-        var saveData = saveService.Load();
-        isUnlocked = saveData.ownedWeapons.Exists(w => w.weaponId == weaponData.weaponId);
-
-        SetData(weaponData, !isUnlocked);
-    }
-
-    public void SetData(WeaponData data, bool locked)
-    {
-        weaponData = data;
-
-        if (weaponData != null)
-        {
-            icon.sprite = weaponData.icon;
-            background.color = WeaponData.GetColorByRarity(weaponData.rarity);
-            icon.enabled = true;
-        }
-        else
-        {
             icon.enabled = false;
             background.color = Color.black;
+            return;
         }
 
-        lockIcon.SetActive(locked);
+        icon.sprite = weaponData.icon;
+        background.color = WeaponData.GetColorByRarity(weaponData.rarity);
+        icon.enabled = true;
+
+        lockIcon.SetActive(!isUnlocked);
     }
 
     public void OnClickEquip()
     {
-        if (!isUnlocked || weaponData == null || saveService == null || weaponEquip == null)
+        if (!isUnlocked || weaponData == null || weaponEquip == null)
             return;
 
-        var saveData = saveService.Load();
-        var owned = saveData.ownedWeapons.Find(w => w.weaponId == weaponData.weaponId);
-        if (owned == null) return;
-
-        weaponEquip.Equip(weaponData, owned.level);
+        weaponEquip.Equip(weaponData, weaponLevel);
     }
 
     public void OnClickSelect()
     {
-        if (weaponData == null || weaponInfoUI == null) return;
+        if (weaponData == null || weaponInfoUI == null)
+            return;
 
         weaponInfoUI.Display(weaponData);
     }
