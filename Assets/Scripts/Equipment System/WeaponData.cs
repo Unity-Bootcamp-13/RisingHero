@@ -21,7 +21,7 @@ public class WeaponData : ScriptableObject
     [Header("투사체 설정")]
     public GameObject projectilePrefab;
 
-    public static Color GetColorByRarity(WeaponRarity rarity) // 따로 빼도 됩니다.
+    public static Color GetColorByRarity(WeaponRarity rarity)
     {
         return rarity switch
         {
@@ -33,11 +33,24 @@ public class WeaponData : ScriptableObject
         };
     }
 
-    public float GetStatValue(WeaponStatType type, int level)
+    /// <summary>
+    /// 코드가 중복되긴 하지만 무기는 보유, 장착의 상태만 있어서 유지
+    /// </summary>
+    private float GetStatValue(List<WeaponStatEntry> stats, WeaponStatType type, int level) //범용 스탯 계산 메서드
     {
-        var entry = ownedStats.Find(s => s.statType == type);
+        var entry = stats.Find(s => s.statType == type);
         if (entry == null) return 0f;
         return entry.baseValue + entry.growthPerLevel * (level - 1);
+    }
+
+    public float GetOwnedStatValue(WeaponStatType type, int level) // 보유 효과 스탯 계산
+    {
+        return GetStatValue(ownedStats, type, level);
+    }
+
+    public float GetEquippedStatValue(WeaponStatType type, int level) // 장착 효과 스탯 계산
+    {
+        return GetStatValue(equippedStats, type, level);
     }
 }
 

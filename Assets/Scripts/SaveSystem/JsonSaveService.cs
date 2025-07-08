@@ -14,27 +14,10 @@ public class JsonSaveService : ISaveService
 
     public void Save(PlayerSaveData data)
     {
-        Debug.Log("[JsonSaveService] Save 호출됨");
-        Debug.Log($"[SaveService] 저장됨 - topStage: {data.topStage}, currentStage: {data.currentStage}");
-
-        // 저장되야하는 목록이 캐시로 남아서 사라지는 ISSUE
-        if (cachedData != null)
-        {
-            cachedData.coin = data.coin;
-            cachedData.diamond = data.diamond;
-            cachedData.equippedWeaponId = data.equippedWeaponId;
-            cachedData.ownedWeapons = new List<OwnedWeapon>(data.ownedWeapons);
-            cachedData.currentStage = data.currentStage;
-            cachedData.topStage = data.topStage;
-            cachedData.currentQuestId = data.currentQuestId;
-        }
-        else
-        {
-            cachedData = data;
-        }
-
-        string json = JsonUtility.ToJson(cachedData, true);
+        cachedData = data; // 캐싱
+        string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(savePath, json);
+        Debug.Log("[SaveService] 저장 완료: " + savePath);
     }
 
     public PlayerSaveData Load()

@@ -3,14 +3,14 @@ using UnityEngine;
 public class WeaponEquip : MonoBehaviour
 {
     [Header("기본 무기")]
-    [SerializeField] private WeaponData defaultWeapon; // 참조해서 찾을 수도 있는데, 이렇게 하면 성능과 의존성 모두 잡을 수 있습니다.
+    [SerializeField] private WeaponData defaultWeapon; // 런타임 탐색보다 낫다.
 
-    public WeaponData EquippedWeapon { get; private set; } 
+    public WeaponData EquippedWeapon { get; private set; }
 
     private ISaveService saveService;
     private WeaponStatus weaponStatus;
 
-    public void Initialize(ISaveService saveService, WeaponStatus weaponStatus) // 이게 의존성을 낮추기 위한 의존성 주입 방식임. 즉 DI
+    public void Initialize(ISaveService saveService, WeaponStatus weaponStatus)
     {
         this.saveService = saveService;
         this.weaponStatus = weaponStatus;
@@ -18,7 +18,7 @@ public class WeaponEquip : MonoBehaviour
 
     private void Start()
     {
-        if (saveService == null || weaponStatus == null) // 이 로그 뜨면 Manager에 연결하세요
+        if (saveService == null || weaponStatus == null)
         {
             Debug.LogError("[WeaponEquip] 의존성이 초기화되지 않았습니다.");
             return;
@@ -37,7 +37,7 @@ public class WeaponEquip : MonoBehaviour
             saveData.equippedWeaponId = defaultWeapon.weaponId;
             saveService.Save(saveData);
         }
-        
+
         // 장착중인 무기를 찾고, 보유한 무기를 찾음
         var equippedWeaponData = weaponStatus.FindWeaponDataById(saveData.equippedWeaponId);
         var ownedWeapon = saveData.ownedWeapons.Find(w => w.weaponId == saveData.equippedWeaponId);

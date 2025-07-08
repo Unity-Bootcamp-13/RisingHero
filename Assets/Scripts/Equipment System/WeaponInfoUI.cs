@@ -3,6 +3,14 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 
+[System.Serializable]
+public class WeaponStatDisplay
+{
+    public TMP_Text label;
+    public TMP_Text before;
+    public TMP_Text after;
+}
+
 public class WeaponInfoUI : MonoBehaviour
 {
     public WeaponData SelectedWeapon { get; private set; }
@@ -12,33 +20,25 @@ public class WeaponInfoUI : MonoBehaviour
     [SerializeField] private TMP_Text weaponLevel;
     [SerializeField] private Image weaponIcon;
 
-    [SerializeField] private TMP_Text ownedEffect1Label;
-    [SerializeField] private TMP_Text ownedEffect1Before;
-    [SerializeField] private TMP_Text ownedEffect1After;
+    [Header("보유 효과 UI")]
+    [SerializeField] private WeaponStatDisplay[] ownedEffectDisplays;
 
-    [SerializeField] private TMP_Text ownedEffect2Label;
-    [SerializeField] private TMP_Text ownedEffect2Before;
-    [SerializeField] private TMP_Text ownedEffect2After;
-
-    [SerializeField] private TMP_Text equippedEffect1Label;
-    [SerializeField] private TMP_Text equippedEffect1Before;
-    [SerializeField] private TMP_Text equippedEffect1After;
-
-    [SerializeField] private TMP_Text equippedEffect2Label;
-    [SerializeField] private TMP_Text equippedEffect2Before;
-    [SerializeField] private TMP_Text equippedEffect2After;
+    [Header("장착 효과 UI")]
+    [SerializeField] private WeaponStatDisplay[] equippedEffectDisplays;
 
     private ISaveService saveService;
     private WeaponEquip weaponEquip;
     private WeaponLevelUp weaponLevelUp;
     private CoinUI coinUI;
+    private WeaponStatus weaponStatus;
 
-    public void Initialize(ISaveService saveService, WeaponEquip weaponEquip, WeaponLevelUp weaponLevelUp, CoinUI coinUI)
+    public void Initialize(ISaveService saveService, WeaponEquip weaponEquip, WeaponLevelUp weaponLevelUp, CoinUI coinUI, WeaponStatus weaponStatus)
     {
         this.saveService = saveService;
         this.weaponEquip = weaponEquip;
         this.weaponLevelUp = weaponLevelUp;
         this.coinUI = coinUI;
+        this.weaponStatus = weaponStatus;
     }
 
     public void Display(WeaponData data)
@@ -62,31 +62,38 @@ public class WeaponInfoUI : MonoBehaviour
 
         weaponLevel.text = $"Lv.{currentLevel} / {data.maxLevel}";
 
-        UpdateEffectChange(data.ownedStats, currentLevel, nextLevel, ownedEffect1Label, ownedEffect1Before, ownedEffect1After, 0);
-        UpdateEffectChange(data.ownedStats, currentLevel, nextLevel, ownedEffect2Label, ownedEffect2Before, ownedEffect2After, 1);
-
-        UpdateEffectChange(data.equippedStats, currentLevel, nextLevel, equippedEffect1Label, equippedEffect1Before, equippedEffect1After, 0);
-        UpdateEffectChange(data.equippedStats, currentLevel, nextLevel, equippedEffect2Label, equippedEffect2Before, equippedEffect2After, 1);
+        UpdateStatDisplays(data.ownedStats, ownedEffectDisplays, currentLevel, nextLevel, true);
+        UpdateStatDisplays(data.equippedStats, equippedEffectDisplays, currentLevel, nextLevel, false);
     }
 
-    private void UpdateEffectChange(List<WeaponStatEntry> stats, int curLevel, int nextLevel,
-        TMP_Text label, TMP_Text before, TMP_Text after, int index)
+    private void UpdateStatDisplays(List<WeaponStatEntry> stats, WeaponStatDisplay[] displays, int curLevel, int nextLevel, bool isOwned)
     {
-        if (index < stats.Count)
+        for (int i = 0; i < displays.Length; i++)
         {
-            var stat = stats[index];
-            float valueBefore = stat.baseValue + stat.growthPerLevel * (curLevel - 1);
-            float valueAfter = stat.baseValue + stat.growthPerLevel * (nextLevel - 1);
+            if (i < stats.Count)
+            {
+                var stat = stats[i];
+                displays[i].label.text = stat.statType.ToString();
 
-            label.text = stat.statType.ToString();
-            before.text = valueBefore.ToString("0.##");
-            after.text = valueAfter.ToString("0.##");
+                float valueBefore = isOwned
+                    ? SelectedWeapon.GetOwnedStatValue(stat.statType, curLevel)
+                    : SelectedWeapon.GetEquippedStatValue(stat.statType, curLevel);
 
-            SetAlpha(label, 1); SetAlpha(before, 1); SetAlpha(after, 1);
-        }
-        else
-        {
-            HideText(label, before, after);
+                float valueAfter = isOwned
+                    ? SelectedWeapon.GetOwnedStatValue(stat.statType, nextLevel)
+                    : SelectedWeapon.GetEquippedStatValue(stat.statType, nextLevel);
+
+                displays[i].before.text = valueBefore.ToString("0.##");
+                displays[i].after.text = valueAfter.ToString("0.##");
+
+                SetAlpha(displays[i].label, 1);
+                SetAlpha(displays[i].before, 1);
+                SetAlpha(displays[i].after, 1);
+            }
+            else
+            {
+                HideText(displays[i].label, displays[i].before, displays[i].after);
+            }
         }
     }
 
@@ -100,7 +107,9 @@ public class WeaponInfoUI : MonoBehaviour
     private void HideText(TMP_Text label, TMP_Text before, TMP_Text after)
     {
         label.text = before.text = after.text = "";
-        SetAlpha(label, 0); SetAlpha(before, 0); SetAlpha(after, 0);
+        SetAlpha(label, 0);
+        SetAlpha(before, 0);
+        SetAlpha(after, 0);
     }
 
     public void OnClickLevelUp()
@@ -109,12 +118,12 @@ public class WeaponInfoUI : MonoBehaviour
 
         if (weaponLevelUp.TryUpgradeWeapon(SelectedWeapon.weaponId))
         {
-            WeaponStatus.Instance.ApplyAllWeaponStats();
+            weaponStatus.ApplyAllWeaponStats();
 
             var save = saveService.Load();
             if (save.equippedWeaponId == SelectedWeapon.weaponId)
             {
-                var equippedData = WeaponStatus.Instance.FindWeaponDataById(SelectedWeapon.weaponId);
+                var equippedData = weaponStatus.FindWeaponDataById(SelectedWeapon.weaponId);
                 var owned = save.ownedWeapons.Find(w => w.weaponId == SelectedWeapon.weaponId);
                 weaponEquip.Equip(equippedData, owned.level);
             }

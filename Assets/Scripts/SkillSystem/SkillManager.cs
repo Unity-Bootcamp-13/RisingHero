@@ -49,10 +49,4 @@ public class SkillManager : MonoBehaviour
             skillUI.SetCallback(skillDetailUI.SetSkill);
         }
     }
-
-    private void OnApplicationQuit()
-    {
-        var save = saveService.Load();
-        saveService.Save(save);
-    }
 }

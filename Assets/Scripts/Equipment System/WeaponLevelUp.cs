@@ -9,16 +9,17 @@ public class WeaponLevelUp : MonoBehaviour
 
     [SerializeField] private QuestManager questManager;
     [SerializeField] private Quest quest;
-    [SerializeField] private PlayerSaveData psd;
 
     private ISaveService saveService;
+    private WeaponStatus weaponStatus;
 
-    public void Initialize(ISaveService saveService) // DI
+    public void Initialize(ISaveService saveService, WeaponStatus weaponStatus)
     {
         this.saveService = saveService;
+        this.weaponStatus = weaponStatus;
     }
 
-    public bool TryUpgradeWeapon(int weaponId) // 업그레이드 시도
+    public bool TryUpgradeWeapon(int weaponId)
     {
         if (saveService == null)
         {
@@ -34,7 +35,7 @@ public class WeaponLevelUp : MonoBehaviour
             return false;
         }
 
-        var weaponData = WeaponStatus.Instance.FindWeaponDataById(weaponId);
+        var weaponData = weaponStatus.FindWeaponDataById(weaponId);
         if (weaponData == null)
         {
             Debug.LogWarning("무기 데이터를 찾을 수 없습니다.");
@@ -47,28 +48,29 @@ public class WeaponLevelUp : MonoBehaviour
             return false;
         }
 
-        int upgradeCost = CalculateUpgradeCost(owned.level);
-        if (save.coin < upgradeCost)
+        int cost = CalculateUpgradeCost(owned.level);
+        if (save.coin < cost)
         {
             Debug.Log("코인이 부족합니다.");
             return false;
         }
 
-        save.coin -= upgradeCost;
+        // 실제 처리
+        save.coin -= cost;
         owned.level++;
 
-        psd = saveService.Load();
-        if (psd.currentQuestId == 2)
+        if (save.currentQuestId == 2)
         {
             SetQuest(questManager.CurrentQuest);
-            quest.AddProgress(1);  // 이 시점에만 퀘스트 진행도 증가
+            quest.AddProgress(1);
         }
 
         saveService.Save(save);
+        Debug.Log($"[WeaponLevelUp] 무기 ID {weaponId} → Lv.{owned.level} (Cost: {cost})");
 
-        Debug.Log($"[WeaponLevelUp] 무기 ID {weaponId} → Lv.{owned.level} (Cost: {upgradeCost})");
         return true;
     }
+
 
     public int CalculateUpgradeCost(int currentLevel)
     {
