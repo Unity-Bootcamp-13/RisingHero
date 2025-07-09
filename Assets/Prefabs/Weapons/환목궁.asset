@@ -26,16 +26,10 @@ MonoBehaviour:
     baseValue: 140
     growthPerLevel: 20
   equippedStats:
-  - statType: 0
-    baseValue: 70
-    growthPerLevel: 10
-  - statType: 1
-    baseValue: 10
-    growthPerLevel: 0
   - statType: 2
     baseValue: 20
     growthPerLevel: 1
-  - statType: 3
-    baseValue: 10
-    growthPerLevel: 2
+  - statType: 0
+    baseValue: 70
+    growthPerLevel: 10
   projectilePrefab: {fileID: 4026167767364239913, guid: a70fb4b34f8fda04f937198852376d3a, type: 3}
