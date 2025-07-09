@@ -1,7 +1,7 @@
 ID,Name,Type,ManaCost,Range,Power,Duration,TickDamage,PowerPerLevel,PrefabName,Cooldown
-1,FireAura,Aura,30,5,10,6,2,3,FireAuraPrefab,10
-2,PoisonField,AOE,20,4,8,5,1,2,PoisonFieldPrefab,8
-3,LightningZone,Aura,40,6,15,4,3,4,LightningZonePrefab,12
-4,HealingRain,AOE,25,5,0,6,-5,0,HealingRainPrefab,9
-5,FrostNova,AOE,35,4,12,3,2,2,FrostNovaPrefab,11
-6,HolyShield,Aura,15,0,0,10,0,0,HolyShieldPrefab,15
+1,FireAura,Aura,15,3,10,3,3,5,FireAuraPrefab,6
+2,PoisonField,AOE,20,4,15,5,3,3,PoisonFieldPrefab,7
+3,LightningZone,AOE,30,6,7,4,2,2,LightningZonePrefab,15
+4,HealingRain,Aura,25,3,0,8,-5,0,HealingRainPrefab,10
+5,FrostNova,AOE,50,7,10,3,5,4,FrostNovaPrefab,10
+6,HolyShield,Aura,20,2,5,10,0,0,HolyShieldPrefab,6
