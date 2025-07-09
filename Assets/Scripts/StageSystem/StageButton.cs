@@ -63,6 +63,16 @@ public class StageButton : MonoBehaviour
         {
             SetState(Color.gray, false);
         }
+
+
+        if (stageNumber == 19 && StageData.topStage > 20)
+        {
+            SetState(Color.red, false); // 클리어한 보스 스테이지는 비활성화
+        }
+        else if (stageNumber == 29 && StageData.topStage > 30)
+        {
+            SetState(Color.red, false); // 클리어한 보스 스테이지는 비활성화
+        }
     }
 
     private void SetState(Color color, bool interactable)
