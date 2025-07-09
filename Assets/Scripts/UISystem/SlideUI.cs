@@ -9,6 +9,7 @@ using UnityEngine.UI;
 /// </summary>
 public class SlideUI : MonoBehaviour
 {
+
     [SerializeField] private RectTransform RightWeaponPanel;
     [SerializeField] private RectTransform LeftWeaponPanel;
     [SerializeField] private Button closeWeaponButton;
@@ -37,25 +38,29 @@ public class SlideUI : MonoBehaviour
 
     private void Start()
     {
+
         // 화면 오른쪽 밖에 배치 (예: +250은 화면 밖)
         RightWeaponShownPosition = RightWeaponPanel.anchoredPosition;
         RightWeaponHiddenPosition = RightWeaponShownPosition + new Vector2(250f, 0f); // 오른쪽으로 벗어나게 설정
-        // 화면 왼쪽 밖에 배치 (예: -250은 화면 밖)
+                                                                                      // 화면 왼쪽 밖에 배치 (예: -250은 화면 밖)
         LeftWeaponShownPosition = LeftWeaponPanel.anchoredPosition;
         LeftWeaponHiddenPosition = LeftWeaponShownPosition + new Vector2(-250f, 0f); // 왼쪽으로 벗어나게 설정
-        // 처음엔 숨겨진 위치에 배치
+                                                                                     // 처음엔 숨겨진 위치에 배치
         RightWeaponPanel.anchoredPosition = RightWeaponHiddenPosition;
         LeftWeaponPanel.anchoredPosition = LeftWeaponHiddenPosition;
+
 
         // 화면 오른쪽 밖에 배치 (예: +250은 화면 밖)
         RightSkillShownPosition = RightSkillPanel.anchoredPosition;
         RightSkillHiddenPosition = RightSkillShownPosition + new Vector2(700f, 0f); // 오른쪽으로 벗어나게 설정
-        // 화면 왼쪽 밖에 배치 (예: -250은 화면 밖)
+                                                                                    // 화면 왼쪽 밖에 배치 (예: -250은 화면 밖)
         LeftSkillShownPosition = LeftSkillPanel.anchoredPosition;
         LeftSkillHiddenPosition = LeftSkillShownPosition + new Vector2(-700f, 0f); // 왼쪽으로 벗어나게 설정
-        // 처음엔 숨겨진 위치에 배치
+                                                                                   // 처음엔 숨겨진 위치에 배치
         RightSkillPanel.anchoredPosition = RightSkillHiddenPosition;
         LeftSkillPanel.anchoredPosition = LeftSkillHiddenPosition;
+
+
 
         if (WarpPanel != null)
         {

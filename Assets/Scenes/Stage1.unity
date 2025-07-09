@@ -13225,6 +13225,21 @@ MonoBehaviour:
     - {fileID: 1854406293237070777, guid: d7b9af0a1457a79449e92b55655cabba, type: 3}
     - {fileID: 9148756691056890481, guid: 4af441cc977296c4980bcd28ea6c80d6, type: 3}
     initialSize: 20
+  - type: 1
+    prefabs:
+    - {fileID: 5466099067126992744, guid: 3c53842fe84622d49b39d8eff7338490, type: 3}
+    - {fileID: 2641022180803410107, guid: 14d441569a86e2f48b7778ec4d0901af, type: 3}
+    initialSize: 20
+  - type: 2
+    prefabs:
+    - {fileID: 2594480167633554865, guid: 35a731a2fe5972b49955798ba50d984c, type: 3}
+    - {fileID: 8150589325036913205, guid: 0a44df968f5356c4197e70e482551c7b, type: 3}
+    initialSize: 20
+  - type: 3
+    prefabs:
+    - {fileID: 3085369213878604646, guid: cb8dc9e0b9ba45b40bdba425d2a7ee16, type: 3}
+    - {fileID: 5141161436976041234, guid: 541db2b19222b424d8eb8d0f09474c0b, type: 3}
+    initialSize: 20
 --- !u!4 &1055842152
 Transform:
   m_ObjectHideFlags: 0
@@ -13325,6 +13340,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b4a1a573673fa7d4ea9c003c78e45009, type: 2}
   - {fileID: 11400000, guid: 0e2eada4500731c4aabaa23fec0a02e1, type: 2}
   - {fileID: 11400000, guid: d359287fc10e2884ba0838678667dc47, type: 2}
+  - {fileID: 11400000, guid: f2d8eaab9c444e34993affce89c8373b, type: 2}
+  - {fileID: 11400000, guid: 0e3554c7598b60d4db876e0cfe55323e, type: 2}
+  - {fileID: 11400000, guid: 86621dd609d48214ca53757011721ec9, type: 2}
+  - {fileID: 11400000, guid: d7df8f1fc0ad7b244b2e7a2a7baaa502, type: 2}
+  - {fileID: 11400000, guid: f638e154231cfe64e88ac42de66ac3b6, type: 2}
+  - {fileID: 11400000, guid: 50e4b7fbf076fa646ad4b77bb019c2e8, type: 2}
   playerStatus: {fileID: 1308021229}
 --- !u!114 &1055842161
 MonoBehaviour:
@@ -27881,7 +27902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c990986727602a4b91bd90e7b5981f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponSlotPrefab: {fileID: 1753403845189002429, guid: 579e6b65a3893a849ab625e489891515, type: 3}
+  weaponSlotPrefab: {fileID: 7934376065747106744, guid: 579e6b65a3893a849ab625e489891515, type: 3}
   slotParent: {fileID: 7712351274917682767}
   weaponStatus: {fileID: 1055842160}
   weaponEquip: {fileID: 1308021228}
