@@ -56,4 +56,8 @@ public class WeaponStatus : MonoBehaviour
             }
         }
     }
+    public WeaponData[] GetAllWeapons()
+    {
+        return allWeapons;
+    }
 }

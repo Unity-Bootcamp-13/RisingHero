@@ -1,15 +1,22 @@
 using UnityEngine;
 
-public class EliteAnimeController : MonoBehaviour // 아직 안 쓰는 코드
+public class EliteAnimeController : MonoBehaviour
 {
     private Animator animator;
-
-    [Header("참조")]
-    [SerializeField] private Transform playerTransform;
+    private Transform playerTransform;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+
+        if (playerTransform == null)
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                playerTransform = player.transform;
+            }
+        }
     }
 
     private void Update()

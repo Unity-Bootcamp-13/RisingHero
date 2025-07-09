@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public interface IStageSceneLoader
@@ -7,10 +6,15 @@ public interface IStageSceneLoader
     void LoadStage(int stageNumber, int topStage);
 }
 
-
 public class StageSceneLoader : IStageSceneLoader
 {
     private ISlideScene slideScene;
+    private ISaveService saveService;
+
+    public StageSceneLoader()
+    {
+        saveService = new JsonSaveService();
+    }
 
     public void LoadStage(int stageNumber, int topStage)
     {
@@ -19,27 +23,25 @@ public class StageSceneLoader : IStageSceneLoader
         if (Application.CanStreamedLevelBeLoaded(sceneName))
         {
             Debug.Log($"[StageSceneLoader] 씬 이동: {sceneName}");
-            ISlideScene slideScene = GameObject.FindObjectOfType<SlideScene>();
-            //SceneManager.LoadScene(sceneName);
-            slideScene.LodeSceneWithSlide(sceneName);
-        }
-        else
-        {
-            Debug.LogError($"[StageSceneLoader] 씬 '{sceneName}' 을(를) 찾을 수 없습니다. 빌드 세팅을 확인하세요.");
+
+            // 슬라이드 연출 객체 획득
+            slideScene = Object.FindFirstObjectByType<SlideScene>();
+
+            if (slideScene != null)
+            {
+                slideScene.LodeSceneWithSlide(sceneName);
+            }
         }
     }
 
     private string ResolveSceneName(int stageNumber, int topStage)
     {
-        if(IsBoss(stageNumber))
-            return "BossStage";
-        if (IsElite(stageNumber, topStage))
-            return "EliteStage";
+        if (IsBoss(stageNumber)) return "BossStage";
+        if (IsElite(stageNumber, topStage)) return "EliteStage";
 
-        // 일반 스테이지는 홀수 → Stage1, 짝수 → Stage2
-        return stageNumber % 2 == 1 ? "Stage1" : "Stage2";
+        return "Stage1";
     }
 
-    private bool IsBoss(int stage) => stage % 10 == 0; // 보스 스테이지는 10의 배수
-    private bool IsElite(int stage,int topStage) => stage == topStage + 1; // 엘리트 스테이지는 최상위 스테이지 다음 단계
+    private bool IsBoss(int stage) => stage % 10 == 0;
+    private bool IsElite(int stage, int topStage) => stage == topStage + 1;
 }

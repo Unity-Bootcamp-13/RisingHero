@@ -9,8 +9,8 @@ public class PlayerSaveData
     public int diamond = 0;
     public List<OwnedWeapon> ownedWeapons = new();
     public int equippedWeaponId = -1;
-    public int currentStage = 11;
-    public int topStage = 11;
+        public int currentStage = 11;
+        public int topStage = 11;
     public int currentQuestId = -1;
     public List<int> equippedSkillIds = new();
     public List<SkillLevelData> skillLevels = new();
