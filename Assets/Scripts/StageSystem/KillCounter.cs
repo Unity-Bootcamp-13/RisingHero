@@ -24,6 +24,11 @@ public class KillCounter : MonoBehaviour
 
     private bool isActive = false;
 
+    public void SetQuest(Quest quest)
+    {
+        this.quest = quest;
+    }
+
     private void Awake()
     {
         saveService = new JsonSaveService();
@@ -38,11 +43,6 @@ public class KillCounter : MonoBehaviour
         UpdateUI();
     }
 
-    public void SetQuest(Quest quest)
-    {
-        this.quest = quest;
-    }
-
     public void AddKill()
     {
         saveService = new JsonSaveService();
@@ -51,7 +51,6 @@ public class KillCounter : MonoBehaviour
             SetQuest(questManager.CurrentQuest);
             quest.AddProgress(1);  // 이 시점에만 퀘스트 진행도 증가
         }
-            
 
         if (!isActive)
             return;

@@ -1,71 +1,33 @@
-
 using UnityEngine;
-using UnityEngine.UI;
 
-/// <summary>
-/// 불가피하게 책임이 높아졌는데 호출만하기 때문에 괜찮다고 판단.
-/// </summary>
 public class WeaponSlotUI : MonoBehaviour
 {
-    [Header("UI 연결")]
-    [SerializeField] private Image background;
-    [SerializeField] private Image icon;
-    [SerializeField] private GameObject lockIcon;
+    [Header("슬롯 프리팹")]
+    [SerializeField] private GameObject weaponSlotPrefab;
+    [SerializeField] private Transform slotParent;
 
-    [Header("데이터 Asset")]
-    [SerializeField] private WeaponData weaponData;
-    public WeaponData WeaponData => weaponData; // 읽기 전용 프로퍼티
+    [Header("필요한 의존성")]
+    [SerializeField] private WeaponStatus weaponStatus;
+    [SerializeField] private WeaponEquip weaponEquip;
+    [SerializeField] private WeaponInfoUI weaponInfoUI;
 
-    private bool isUnlocked;
-    private WeaponEquip weaponEquip;
-    private WeaponInfoUI weaponInfoUI;
-    private int weaponLevel;
+    private ISaveService saveService;
 
-    public void Initialize(
-        WeaponData data,
-        bool isUnlocked,
-        int weaponLevel,
-        WeaponEquip equip,
-        WeaponInfoUI infoUI)
+    public void Initialize(ISaveService saveService)
     {
-        this.weaponData = data;
-        this.isUnlocked = isUnlocked;
-        this.weaponLevel = weaponLevel;
-        this.weaponEquip = equip;
-        this.weaponInfoUI = infoUI;
+        this.saveService = saveService;
 
-        UpdateUI();
-    }
+        var weapons = weaponStatus.GetAllWeapons();
 
-    private void UpdateUI()
-    {
-        if (weaponData == null)
+        foreach (var weapon in weapons)
         {
-            icon.enabled = false;
-            background.color = Color.black;
-            return;
+            GameObject instance = Instantiate(weaponSlotPrefab, slotParent);
+            var slot = instance.GetComponent<WeaponSlotItem>();
+
+            bool isUnlocked = weaponStatus.IsUnlocked(weapon.weaponId);
+            int level = weaponStatus.GetWeaponLevel(weapon.weaponId);
+
+            slot.Initialize(weapon, isUnlocked, level, weaponEquip, weaponInfoUI);
         }
-
-        icon.sprite = weaponData.icon;
-        background.color = WeaponData.GetColorByRarity(weaponData.rarity);
-        icon.enabled = true;
-
-        lockIcon.SetActive(!isUnlocked);
-    }
-
-    public void OnClickEquip()
-    {
-        if (!isUnlocked || weaponData == null || weaponEquip == null)
-            return;
-
-        weaponEquip.Equip(weaponData, weaponLevel);
-    }
-
-    public void OnClickSelect()
-    {
-        if (weaponData == null || weaponInfoUI == null)
-            return;
-
-        weaponInfoUI.Display(weaponData);
     }
 }

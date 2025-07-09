@@ -6,7 +6,6 @@ using UnityEngine.U2D;
 /// </summary>
 public class PPCamera : MonoBehaviour
 {
-    public GameObject player;
     public int[] zoomLevels = { 12, 18, 24 };
     private int currentZoomIndex = 1;
 
@@ -19,16 +18,7 @@ public class PPCamera : MonoBehaviour
 
     private void Update()
     {
-        FollowPlayer();
         HandleZoom();
-    }
-
-    private void FollowPlayer()
-    {
-        if (player == null) return;
-
-        Vector3 playerPos = player.transform.position;
-        transform.position = new Vector3(playerPos.x, playerPos.y, transform.position.z);
     }
 
     private void HandleZoom()
