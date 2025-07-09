@@ -110,7 +110,7 @@ public class EnemySpawner : MonoBehaviour
     {
         var saveData = saveService.Load();
 
-        if (stageId % 10 == 0)
+        if (stageId % 10 == 9)
         {
             // BossStage: Àû ¾øÀ½
             return null;
@@ -118,17 +118,17 @@ public class EnemySpawner : MonoBehaviour
         else if (stageId == saveData.topStage + 1)
         {
             // EliteStage
-            if (stageId >= 11 && stageId <= 19)
+            if (stageId >= 10 && stageId <= 18)
                 return EnemyType.Elite1;
-            else if (stageId >= 21 && stageId <= 29)
+            else if (stageId >= 20 && stageId <= 28)
                 return EnemyType.Elite2;
         }
         else
         {
             // CommonStage
-            if (stageId >= 11 && stageId <= 19)
+            if (stageId >= 10 && stageId <= 19)
                 return EnemyType.Normal1;
-            else if (stageId >= 21 && stageId <= 29)
+            else if (stageId >= 20 && stageId <= 29)
                 return EnemyType.Normal2;
         }
 

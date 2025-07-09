@@ -87,6 +87,7 @@ public class Enemy : MonoBehaviour
         health?.ResetHealth();
 
         AliveEnemyManager.Register(this);
+        Debug.Log($"[Enemy] µî·ÏµÊ: {gameObject.name}");
     }
 
     protected virtual void OnDisable()

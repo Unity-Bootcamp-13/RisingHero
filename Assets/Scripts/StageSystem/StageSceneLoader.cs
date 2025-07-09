@@ -42,6 +42,6 @@ public class StageSceneLoader : IStageSceneLoader
         return "Stage1";
     }
 
-    private bool IsBoss(int stage) => stage % 10 == 0;
+    private bool IsBoss(int stage) => stage % 10 == 9;
     private bool IsElite(int stage, int topStage) => stage == topStage + 1;
 }

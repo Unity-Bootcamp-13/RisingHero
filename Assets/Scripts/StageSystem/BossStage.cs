@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 public class BossStage : MonoBehaviour
 {
@@ -8,7 +9,9 @@ public class BossStage : MonoBehaviour
 
     [Header("컴포넌트")]
     [SerializeField] private Timer timer;
+    [SerializeField] private List<EnemyHealth> bossList = new(); // 다수의 보스 리스트
 
+    private EnemyHealth activeBoss;
     private bool isBossDefeated = false;
 
     public event Action OnClear;
@@ -22,13 +25,65 @@ public class BossStage : MonoBehaviour
             return;
         }
 
+        if (bossList == null || bossList.Count == 0)
+        {
+            Debug.LogError("[BossStage] 보스 리스트가 비어 있습니다.");
+            return;
+        }
+
+        // 세이브 데이터 로드
+        ISaveService saveService = new JsonSaveService(); // 실제 게임에서는 DI 방식으로 전달하는 것이 좋습니다
+        int currentStage = saveService.Load().currentStage;
+
+        // 보스 선택
+        int bossIndex = GetBossIndexFromStage(currentStage);
+        if (bossIndex < 0 || bossIndex >= bossList.Count)
+        {
+            Debug.LogError($"[BossStage] 현재 스테이지({currentStage})에 해당하는 보스 인덱스({bossIndex})가 유효하지 않습니다.");
+            return;
+        }
+
+        // 보스 설정
+        for (int i = 0; i < bossList.Count; i++)
+        {
+            if (i == bossIndex)
+            {
+                bossList[i].gameObject.SetActive(true);
+                activeBoss = bossList[i];
+                activeBoss.OnDie += HandleBossDeath;
+            }
+            else
+            {
+                bossList[i].gameObject.SetActive(false);
+            }
+        }
+
         timer.OnTimeout += HandleTimeout;
         timer.StartTimer(timeLimit);
     }
 
     private void OnDestroy()
     {
-        timer.OnTimeout -= HandleTimeout;
+        if (timer != null)
+            timer.OnTimeout -= HandleTimeout;
+
+        if (activeBoss != null)
+            activeBoss.OnDie -= HandleBossDeath;
+    }
+
+    private int GetBossIndexFromStage(int stage)
+    {
+        if (stage >= 10 && stage <= 19)
+            return 0;
+        else if (stage >= 20 && stage <= 29)
+            return 1;
+
+        return -1; // 비정상 입력
+    }
+
+    private void HandleBossDeath()
+    {
+        BossDefeated();
     }
 
     public void BossDefeated()
@@ -37,7 +92,7 @@ public class BossStage : MonoBehaviour
         isBossDefeated = true;
 
         timer.StopTimer();
-        OnClear.Invoke();
+        OnClear?.Invoke();
     }
 
     private void HandleTimeout()
@@ -45,7 +100,7 @@ public class BossStage : MonoBehaviour
         if (!isBossDefeated)
         {
             timer.StopTimer();
-            OnFail.Invoke();
+            OnFail?.Invoke();
         }
     }
 }

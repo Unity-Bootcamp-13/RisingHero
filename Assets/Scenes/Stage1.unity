@@ -1280,7 +1280,7 @@ GameObject:
   - component: {fileID: 81578737}
   - component: {fileID: 81578736}
   m_Layer: 5
-  m_Name: Stage11
+  m_Name: Stage10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1318,7 +1318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49fa06ad1c681a743aabb242bb3fc9aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageNumber: 11
+  stageNumber: 10
 --- !u!114 &81578737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3084,7 +3084,7 @@ GameObject:
   - component: {fileID: 182069238}
   - component: {fileID: 182069237}
   m_Layer: 5
-  m_Name: Stage18
+  m_Name: Stage17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3122,7 +3122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49fa06ad1c681a743aabb242bb3fc9aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageNumber: 18
+  stageNumber: 17
 --- !u!114 &182069238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7947,7 +7947,7 @@ GameObject:
   - component: {fileID: 522912137}
   - component: {fileID: 522912136}
   m_Layer: 5
-  m_Name: Stage12
+  m_Name: Stage11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7985,7 +7985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49fa06ad1c681a743aabb242bb3fc9aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageNumber: 12
+  stageNumber: 11
 --- !u!114 &522912137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8614,7 +8614,7 @@ GameObject:
   - component: {fileID: 564988835}
   - component: {fileID: 564988834}
   m_Layer: 5
-  m_Name: Stage17
+  m_Name: Stage16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8652,7 +8652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49fa06ad1c681a743aabb242bb3fc9aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageNumber: 17
+  stageNumber: 16
 --- !u!114 &564988835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11887,7 +11887,7 @@ GameObject:
   - component: {fileID: 974282956}
   - component: {fileID: 974282955}
   m_Layer: 5
-  m_Name: Stage19
+  m_Name: Stage18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11925,7 +11925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49fa06ad1c681a743aabb242bb3fc9aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageNumber: 19
+  stageNumber: 18
 --- !u!114 &974282956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14413,7 +14413,7 @@ GameObject:
   - component: {fileID: 1118633159}
   - component: {fileID: 1118633158}
   m_Layer: 5
-  m_Name: Stage14
+  m_Name: Stage13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14451,7 +14451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49fa06ad1c681a743aabb242bb3fc9aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageNumber: 14
+  stageNumber: 13
 --- !u!114 &1118633159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16648,7 +16648,7 @@ GameObject:
   - component: {fileID: 1227943507}
   - component: {fileID: 1227943506}
   m_Layer: 5
-  m_Name: Stage20
+  m_Name: Stage19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16686,7 +16686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49fa06ad1c681a743aabb242bb3fc9aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageNumber: 20
+  stageNumber: 19
 --- !u!114 &1227943507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21913,7 +21913,7 @@ GameObject:
   - component: {fileID: 1602249450}
   - component: {fileID: 1602249449}
   m_Layer: 5
-  m_Name: Stage13
+  m_Name: Stage12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21951,7 +21951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49fa06ad1c681a743aabb242bb3fc9aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageNumber: 13
+  stageNumber: 12
 --- !u!114 &1602249450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23442,7 +23442,7 @@ GameObject:
   - component: {fileID: 1726909866}
   - component: {fileID: 1726909865}
   m_Layer: 5
-  m_Name: Stage15
+  m_Name: Stage14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23480,7 +23480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49fa06ad1c681a743aabb242bb3fc9aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageNumber: 15
+  stageNumber: 14
 --- !u!114 &1726909866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25633,7 +25633,7 @@ GameObject:
   - component: {fileID: 1922774961}
   - component: {fileID: 1922774960}
   m_Layer: 5
-  m_Name: Stage16
+  m_Name: Stage15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25671,7 +25671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49fa06ad1c681a743aabb242bb3fc9aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageNumber: 16
+  stageNumber: 15
 --- !u!114 &1922774961
 MonoBehaviour:
   m_ObjectHideFlags: 0

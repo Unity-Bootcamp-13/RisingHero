@@ -25,9 +25,9 @@ public class TileSpawner : MonoBehaviour
 
         GameObject tilePrefab = null;
 
-        if (stage >= 11 && stage <= 19 && tileList.Count > 0)
+        if (stage >= 10 && stage <= 19 && tileList.Count > 0)
             tilePrefab = tileList[0];
-        else if (stage >= 21 && stage <= 29 && tileList.Count > 1)
+        else if (stage >= 20 && stage <= 29 && tileList.Count > 1)
             tilePrefab = tileList[1];
 
         if (tilePrefab != null)
