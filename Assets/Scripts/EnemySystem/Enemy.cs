@@ -53,14 +53,6 @@ public class Enemy : MonoBehaviour
             originalColor = myRenderer.color;
     }
 
-    private void Start()
-    {
-        if (this.gameObject.activeSelf == true)
-        {
-            this.gameObject.SetActive(false); // 초기에는 비활성화 상태로 시작
-        }
-    }
-
     protected virtual void Die()
     {
         gameObject.SetActive(false);

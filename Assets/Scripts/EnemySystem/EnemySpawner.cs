@@ -44,8 +44,16 @@ public class EnemySpawner : MonoBehaviour
             int monsterCount = startWaveMonsterCount + currentWave - 1;
 
             int stage = saveService.Load().currentStage;
-            EnemyType type = GetEnemyTypeForStage(stage);
-            SpawnEnemy(type, monsterCount);
+            EnemyType? type = GetEnemyTypeForStage(stage);
+
+            if (type.HasValue)
+            {
+                SpawnEnemy(type.Value, monsterCount);
+            }
+            else
+            {
+                Debug.Log($"[EnemySpawner] Stage {stage}는 몬스터 생성이 없습니다 (예: 보스 스테이지).");
+            }
 
             yield return new WaitUntil(() => AliveEnemyManager.GetAliveEnemyCount() == 0);
 
@@ -56,6 +64,7 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(delayBetweenWaves);
         }
     }
+
 
     private void SpawnEnemy(EnemyType type, int count)
     {
@@ -97,16 +106,33 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private EnemyType GetEnemyTypeForStage(int stageId)
+    private EnemyType? GetEnemyTypeForStage(int stageId)
     {
-        int stage = stageId;
+        var saveData = saveService.Load();
 
-        if (stage >= 11 && stage <= 19)
-            return EnemyType.Normal1;
-        else if (stage >= 21 && stage <= 29)
-            return EnemyType.Normal2;
+        if (stageId % 10 == 0)
+        {
+            // BossStage: 적 없음
+            return null;
+        }
+        else if (stageId == saveData.topStage + 1)
+        {
+            // EliteStage
+            if (stageId >= 11 && stageId <= 19)
+                return EnemyType.Elite1;
+            else if (stageId >= 21 && stageId <= 29)
+                return EnemyType.Elite2;
+        }
         else
-            return EnemyType.Normal1;
+        {
+            // CommonStage
+            if (stageId >= 11 && stageId <= 19)
+                return EnemyType.Normal1;
+            else if (stageId >= 21 && stageId <= 29)
+                return EnemyType.Normal2;
+        }
+
+        return null;
     }
 
     public void SetKillCounter(KillCounter killCounter)
