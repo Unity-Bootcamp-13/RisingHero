@@ -10,19 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad26066f8dfee614d8d84f5faa27017e, type: 3}
-  m_Name: DanBow
+  m_Name: "\uB098\uBB34\uD65C"
   m_EditorClassIdentifier: 
-  weaponId: 2
-  weaponName: "\uB2E8\uAD81"
+  weaponId: 1
+  weaponName: "\uB098\uBB34 \uD65C"
   rarity: 0
-  icon: {fileID: 21300000, guid: bbf8638a8a75d9c42b93639213c92c9b, type: 3}
-  displayName: "\uB2E8\uAD81"
+  icon: {fileID: 2113741086, guid: ad2768e06ee566340a910e8538f9fe09, type: 3}
+  maxLevel: 10
+  displayName: "\uB098\uBB34 \uD65C"
   ownedStats:
   - statType: 0
-    baseValue: 20
+    baseValue: 10
     growthPerLevel: 10
+  - statType: 4
+    baseValue: 20
+    growthPerLevel: 20
   equippedStats:
   - statType: 0
-    baseValue: 20
+    baseValue: 10
     growthPerLevel: 10
   projectilePrefab: {fileID: 4026167767364239913, guid: a70fb4b34f8fda04f937198852376d3a, type: 3}

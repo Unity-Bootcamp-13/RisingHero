@@ -10,20 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad26066f8dfee614d8d84f5faa27017e, type: 3}
-  m_Name: WoodenBow
+  m_Name: "\uB2E8\uAD81"
   m_EditorClassIdentifier: 
-  weaponName: "\uB098\uBB34 \uD65C"
+  weaponId: 2
+  weaponName: "\uB2E8\uAD81"
   rarity: 0
-  icon: {fileID: 21300000, guid: bbf8638a8a75d9c42b93639213c92c9b, type: 3}
-  weaponId: 1
-  displayName: "\uB098\uBB34 \uD65C"
-  description: "\uC798 \uB9CC\uB4E0 \uD65C\uC785\uB2C8\uB2E4."
+  icon: {fileID: 861325811, guid: ad2768e06ee566340a910e8538f9fe09, type: 3}
+  maxLevel: 10
+  displayName: "\uB2E8\uAD81"
   ownedStats:
   - statType: 0
-    baseValue: 10
+    baseValue: 20
     growthPerLevel: 10
+  - statType: 4
+    baseValue: 40
+    growthPerLevel: 20
   equippedStats:
   - statType: 0
-    baseValue: 10
+    baseValue: 20
     growthPerLevel: 10
   projectilePrefab: {fileID: 4026167767364239913, guid: a70fb4b34f8fda04f937198852376d3a, type: 3}
