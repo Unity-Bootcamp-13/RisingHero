@@ -9,7 +9,7 @@ public class GachaEffect : MonoBehaviour
     [SerializeField] private Transform rewardParentPanel;
     [SerializeField] private GameObject[] buttonsToDisable;
 
-    public IEnumerator SpawnRewards(List<int> itemIds)
+    public IEnumerator SpawnRewards(List<int> itemIds, int groupId)
     {
         SetButtons(false);
 
@@ -22,7 +22,16 @@ public class GachaEffect : MonoBehaviour
         {
             var obj = Instantiate(rewardPrefab, rewardParentPanel);
             var image = obj.GetComponent<Image>();
-            var sprite = Resources.Load<Sprite>($"Icons/{id}");
+            Sprite sprite = null;
+            if (groupId == 101)
+            {
+                sprite = Resources.Load<Sprite>($"Icons/Weapon/{id}");
+            }
+            else if (groupId == 201)
+            {
+                sprite = Resources.Load<Sprite>($"Icons/Skill/{id}");
+            }
+
             if (sprite != null)
             {
                 image.sprite = sprite;
