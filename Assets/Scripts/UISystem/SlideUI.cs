@@ -57,11 +57,15 @@ public class SlideUI : MonoBehaviour
         RightSkillPanel.anchoredPosition = RightSkillHiddenPosition;
         LeftSkillPanel.anchoredPosition = LeftSkillHiddenPosition;
 
-        // 화면 밖에 배치 (예: +250은 화면 밖)
-        WarpPanelShowPosition = WarpPanel.anchoredPosition;
-        WarpPanelHidePosition = WarpPanelShowPosition + new Vector2(500f, 0f); // 오른쪽으로 벗어나게 설정
-        // 처음엔 숨겨진 위치에 배치
-        WarpPanel.anchoredPosition = WarpPanelHidePosition;
+        if (WarpPanel != null)
+        {
+            // 화면 밖에 배치 (예: +250은 화면 밖)
+            WarpPanelShowPosition = WarpPanel.anchoredPosition;
+            WarpPanelHidePosition = WarpPanelShowPosition + new Vector2(500f, 0f); // 오른쪽으로 벗어나게 설정
+                                                                                   // 처음엔 숨겨진 위치에 배치
+            WarpPanel.anchoredPosition = WarpPanelHidePosition;
+
+        }
 
     }
 
