@@ -1,5 +1,4 @@
-﻿using UnityEditor.Overlays;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class StageUI : MonoBehaviour
 {
