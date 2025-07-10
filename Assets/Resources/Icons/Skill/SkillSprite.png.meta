@@ -200,6 +200,50 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: SkillSprite_4
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 564
+        width: 309
+        height: 353
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d91db5ae6b912c947a43055566d4e3fa
+      internalID: -202156750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillSprite_5
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 575
+        width: 286
+        height: 329
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c3dd871366b0e9408a2fc12b4663a0e
+      internalID: -1893605383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -218,6 +262,8 @@ TextureImporter:
       SkillSprite_1: -83823400
       SkillSprite_2: -2012888781
       SkillSprite_3: 1237380779
+      SkillSprite_4: -202156750
+      SkillSprite_5: -1893605383
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

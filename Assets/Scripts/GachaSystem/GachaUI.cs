@@ -18,6 +18,8 @@ public class GachaUI : MonoBehaviour
     [SerializeField] private GameObject weaponGachaResultPanel;
     [SerializeField] private GameObject skillGachaResultPanel;
 
+    [SerializeField] private GameObject CloseButton;
+
     private ISaveService saveService;
     private Gacha gacha;
 
@@ -39,6 +41,7 @@ public class GachaUI : MonoBehaviour
         {
             return;
         }
+        CloseButton.SetActive(false);
 
         save.diamond -= cost;
         saveService.Save(save);

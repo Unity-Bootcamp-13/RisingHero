@@ -16,6 +16,7 @@ public class SlideUI : MonoBehaviour
 
     [SerializeField] private RectTransform RightSkillPanel;
     [SerializeField] private RectTransform LeftSkillPanel;
+    [SerializeField] private GameObject MiddleSkillPanel;
     [SerializeField] private Button closeSkillButton;
 
     [SerializeField] private RectTransform WarpPanel;
@@ -133,6 +134,12 @@ public class SlideUI : MonoBehaviour
 
     public void OnClickSkillClose()
     {
+        if (MiddleSkillPanel.gameObject.activeSelf)
+        {
+            MiddleSkillPanel.gameObject.SetActive(false);
+            return;
+        }
+
         if (LeftSkillPanel.anchoredPosition == LeftSkillShownPosition)
         {
             HideSkillLeftPanel();
