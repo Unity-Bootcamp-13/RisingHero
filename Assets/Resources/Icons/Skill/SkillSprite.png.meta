@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: fe8762df3b68ba8439090a135c1be8c8
+guid: 8ca4bf934ecb3a1429fb8988a2afb976
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4727633781103762509
-    second: Box_0
+      213: -2988908600873726314
+    second: SkillSprite_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -97,7 +97,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -113,23 +113,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Box_0
+      name: SkillSprite_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 37
-        width: 256
-        height: 182
+        x: 691
+        y: 543
+        width: 292
+        height: 306
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d4c93d630edeb9140800000000000000
-      internalID: 4727633781103762509
+      spriteID: 8b24135e922d52444b94c8102e6eaa28
+      internalID: 666156951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillSprite_1
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 138
+        width: 307
+        height: 349
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f10c7ed28c2732f4d8279a7823a52dfd
+      internalID: -83823400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillSprite_2
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 137
+        width: 277
+        height: 386
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5101032b78afed74e9e7c6763b91ad9e
+      internalID: -2012888781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillSprite_3
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 128
+        width: 361
+        height: 387
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3980118bab6a09946844b0678080f304
+      internalID: 1237380779
       vertices: []
       indices: 
       edges: []
@@ -138,7 +204,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e4838c41a9bad754a85b3def4b29ef63
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +214,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Box_0: 4727633781103762509
+      SkillSprite_0: 666156951
+      SkillSprite_1: -83823400
+      SkillSprite_2: -2012888781
+      SkillSprite_3: 1237380779
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
