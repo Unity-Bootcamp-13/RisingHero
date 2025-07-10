@@ -29,7 +29,6 @@ public class EnemySpawner : MonoBehaviour
     {
         if (saveService == null)
         {
-            Debug.LogError("[EnemySpawner] SaveService가 초기화되지 않았습니다.");
             return;
         }
 
@@ -49,10 +48,6 @@ public class EnemySpawner : MonoBehaviour
             if (type.HasValue)
             {
                 SpawnEnemy(type.Value, monsterCount);
-            }
-            else
-            {
-                Debug.Log($"[EnemySpawner] Stage {stage}는 몬스터 생성이 없습니다 (예: 보스 스테이지).");
             }
 
             yield return new WaitUntil(() => AliveEnemyManager.GetAliveEnemyCount() == 0);

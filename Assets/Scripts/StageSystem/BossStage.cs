@@ -21,13 +21,11 @@ public class BossStage : MonoBehaviour
     {
         if (timer == null)
         {
-            Debug.LogError("[BossStage] Timer가 연결되지 않았습니다.");
             return;
         }
 
         if (bossList == null || bossList.Count == 0)
         {
-            Debug.LogError("[BossStage] 보스 리스트가 비어 있습니다.");
             return;
         }
 
@@ -39,7 +37,6 @@ public class BossStage : MonoBehaviour
         int bossIndex = GetBossIndexFromStage(currentStage);
         if (bossIndex < 0 || bossIndex >= bossList.Count)
         {
-            Debug.LogError($"[BossStage] 현재 스테이지({currentStage})에 해당하는 보스 인덱스({bossIndex})가 유효하지 않습니다.");
             return;
         }
 

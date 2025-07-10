@@ -37,7 +37,6 @@ public class BossAttack : MonoBehaviour
     {
         if (playerTransform == null || bossAttackPrefab == null || bossImpactParticle == null)
         {
-            Debug.LogWarning("BossAttack component is missing references.");
             return;
         }
 

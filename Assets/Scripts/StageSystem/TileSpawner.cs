@@ -17,7 +17,6 @@ public class TileSpawner : MonoBehaviour
     {
         if (saveService == null)
         {
-            Debug.LogError("[TileSpawner] SaveService가 초기화되지 않았습니다.");
             return;
         }
 
@@ -33,10 +32,6 @@ public class TileSpawner : MonoBehaviour
         if (tilePrefab != null)
         {
             Instantiate(tilePrefab, Vector3.zero, Quaternion.identity);
-        }
-        else
-        {
-            Debug.LogWarning($"[TileSpawner] 스테이지({stage})에 해당하는 타일이 없습니다.");
         }
     }
 }

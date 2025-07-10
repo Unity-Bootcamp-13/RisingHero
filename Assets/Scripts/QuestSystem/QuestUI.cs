@@ -30,15 +30,8 @@ public class QuestUI : MonoBehaviour
             questPanel.SetActive(false);
             return;
         }
-
-
-        Debug.Log($"[UpdateQuestUI] TitleText before: {questTitleText.text}");
-        Debug.Log($"[UpdateQuestUI] CurrentQuest Type: {current.Type}");
-
         questTitleText.text = current.Type.ToString();
         questProgressText.text = $"{current.CurrentValue} / {current.GoalValue}";
-
-        Debug.Log($"[UpdateQuestUI] TitleText after: {questTitleText.text}");
     }
 
     public void SetQuest(Quest quest)

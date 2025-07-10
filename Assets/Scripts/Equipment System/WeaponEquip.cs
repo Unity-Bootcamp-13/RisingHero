@@ -20,7 +20,6 @@ public class WeaponEquip : MonoBehaviour
     {
         if (saveService == null || weaponStatus == null)
         {
-            Debug.LogError("[WeaponEquip] 의존성이 초기화되지 않았습니다.");
             return;
         }
 
@@ -54,7 +53,6 @@ public class WeaponEquip : MonoBehaviour
     {
         if (saveService == null || weaponStatus == null)
         {
-            Debug.LogError("[WeaponEquip] 의존성이 초기화되지 않았습니다.");
             return;
         }
 
@@ -65,6 +63,5 @@ public class WeaponEquip : MonoBehaviour
         EquippedWeapon = weapon;
 
         weaponStatus.ApplyAllWeaponStats();
-        Debug.Log($"[WeaponEquip] 무기 장착됨: {weapon.weaponName} (레벨 {level})");
     }
 }

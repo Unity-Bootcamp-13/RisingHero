@@ -40,8 +40,6 @@ public class Quest
         if (CurrentValue > GoalValue)
             CurrentValue = GoalValue;
 
-        Debug.Log("퀘스트 진척도가 증가함.");
-
     }
 
     public bool CanComplete()

@@ -26,11 +26,6 @@ public class StageButton : MonoBehaviour
         button = GetComponent<Button>();
         background = GetComponent<Image>();
         stageText = GetComponentInChildren<TMP_Text>();
-
-        if (button == null || background == null || stageText == null)
-        {
-            Debug.LogError("[StageButton] 버튼 또는 UI 컴포넌트 연결 실패");
-        }
     }
 
     private void Start()
@@ -42,7 +37,6 @@ public class StageButton : MonoBehaviour
     {
         if (saveService == null)
         {
-            Debug.LogError("[StageButton] SaveService가 초기화되지 않았습니다.");
             return;
         }
 
@@ -86,7 +80,6 @@ public class StageButton : MonoBehaviour
 
     public void OnClick()
     {
-        Debug.Log($"[StageButton] Stage {stageNumber} 선택됨");
         saveService = new JsonSaveService();
 
         // 1. 먼저 현재 데이터 로드

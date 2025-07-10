@@ -61,7 +61,6 @@ public class KillCounter : MonoBehaviour
         if (currentKills >= killGoal)
         {
             isActive = false;
-            Debug.Log("[KillCounter] 목표 달성");
             OnClear?.Invoke();
         }
     }
@@ -71,7 +70,6 @@ public class KillCounter : MonoBehaviour
         if (!isActive) return;
 
         isActive = false;
-        Debug.Log("[KillCounter] 실패");
         OnFail.Invoke();
     }
 

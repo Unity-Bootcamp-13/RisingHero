@@ -8,7 +8,6 @@ public static class CSVLoader
         TextAsset csvFile = Resources.Load<TextAsset>($"CSV/{fileName}");
         if (csvFile == null)
         {
-            Debug.LogError($"[CSVLoader] 파일을 찾을 수 없습니다: {fileName}");
             return new List<T>();
         }
 

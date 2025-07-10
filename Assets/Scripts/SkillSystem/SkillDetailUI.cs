@@ -13,6 +13,7 @@ public class SkillDetailUI : MonoBehaviour
     [SerializeField] private TMP_Text descriptionText;
     [SerializeField] private Button levelUpButton;
     [SerializeField] private Button equipButton;
+    [SerializeField] private SkillReplacePopupUI skillReplacePopupUI;
 
     private SkillData currentSkillData;
     private SkillEquip skillEquip;
@@ -58,27 +59,28 @@ public class SkillDetailUI : MonoBehaviour
 
     private void OnClickEquip()
     {
-        if (currentSkillData == null) return;
+        if (currentSkillData == null)
+        {
+            return;
+        }
 
         var equipped = skillEquip.GetEquippedSkillIds();
+
         if (equipped.Contains(currentSkillData.ID))
         {
-            Debug.Log("[SkillDetailUI] 이미 장착된 스킬입니다.");
             return;
         }
 
         if (equipped.Count >= equipSlotUIs.Count)
         {
-            Debug.Log("[SkillDetailUI] 빈 슬롯이 없습니다.");
+            skillReplacePopupUI.Show(currentSkillData, skillEquip, UpdateEquipSlotUI);
             return;
         }
 
-        // 저장소 반영
         skillEquip.EquipSkill(currentSkillData.ID);
-
-        // UI 슬롯에 표시
         UpdateEquipSlotUI();
     }
+
 
     private void UpdateEquipSlotUI()
     {

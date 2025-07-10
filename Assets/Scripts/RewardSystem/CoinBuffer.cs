@@ -38,7 +38,6 @@ public class CoinBuffer : MonoBehaviour
     {
         if (saveService == null)
         {
-            Debug.LogError("[CoinBuffer] SaveService가 초기화되지 않았습니다.");
             return;
         }
 

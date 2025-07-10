@@ -37,7 +37,6 @@ public class GachaUI : MonoBehaviour
         var save = saveService.Load();
         if (save.diamond < cost)
         {
-            Debug.Log("다이아몬드가 부족합니다.");
             return;
         }
 
@@ -54,7 +53,5 @@ public class GachaUI : MonoBehaviour
         var gachaEffect = resultPanel.GetComponent<GachaEffect>();
         if (gachaEffect != null)
             StartCoroutine(gachaEffect.SpawnRewards(results, groupId));
-
-        Debug.Log($"[GachaUI] group {groupId}에서 {count}회 가챠 완료");
     }
 }

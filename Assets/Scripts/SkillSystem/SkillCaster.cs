@@ -32,13 +32,11 @@ public class SkillCaster : MonoBehaviour
 
         if (cooldownTimers.TryGetValue(skillData.ID, out float remainingTime) && remainingTime > 0f)
         {
-            Debug.Log($"[SkillCaster] {skillData.Name} 스킬은 쿨타임 {remainingTime:F1}초 남음");
             return;
         }
 
         if (!playerMana.HasEnoughMana(skillData.ManaCost))
         {
-            Debug.Log($"[SkillCaster] 마나 부족: {skillData.ManaCost} 필요");
             return;
         }
 

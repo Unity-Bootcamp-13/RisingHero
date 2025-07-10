@@ -36,7 +36,6 @@ public class Gacha
     {
         if (!weightTable.ContainsKey(groupId))
         {
-            Debug.LogWarning($"[GachaManager] groupId {groupId} ¾øÀ½");
             return -1;
         }
 
@@ -94,7 +93,6 @@ public class Gacha
             save.ownedWeapons.Add(new OwnedWeapon(weaponId, 1, 1));
         }
         saveService.Save(save);
-        Debug.Log($"[GachaManager] ¹«±â È¹µæ: {weaponId}");
     }
 
     private void GrantSkill(int skillId)
@@ -110,6 +108,5 @@ public class Gacha
             save.skillLevels.Add(new SkillLevelData(skillId, 1, 1));
         }
         saveService.Save(save);
-        Debug.Log($"[GachaManager] ½ºÅ³ È¹µæ: {skillId}");
     }
 }

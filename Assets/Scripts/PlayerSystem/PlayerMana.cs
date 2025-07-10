@@ -27,7 +27,6 @@ public class PlayerMana : MonoBehaviour
     public void ConsumeMana(int cost)
     {
         currentMana = Mathf.Max(currentMana - cost, 0);
-        Debug.Log($"[PlayerMana] 마나 {cost} 소모 → 현재 마나: {currentMana}");
     }
 
     public int GetCurrentMana() => currentMana;
@@ -36,11 +35,6 @@ public class PlayerMana : MonoBehaviour
     {
         int before = currentMana;
         currentMana = Mathf.Min(currentMana + amount, maxMana);
-
-        if (currentMana > before)
-        {
-            Debug.Log($"[PlayerMana] 마나 {amount} 회복 → 현재 마나: {currentMana}");
-        }
     }
 
     private IEnumerator AutoRecoverRoutine()

@@ -22,8 +22,6 @@ public class StageSceneLoader : IStageSceneLoader
 
         if (Application.CanStreamedLevelBeLoaded(sceneName))
         {
-            Debug.Log($"[StageSceneLoader] 씬 이동: {sceneName}");
-
             // 슬라이드 연출 객체 획득
             slideScene = Object.FindFirstObjectByType<SlideScene>();
 

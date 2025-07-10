@@ -50,10 +50,8 @@ public class StageClear : MonoBehaviour
 
     private void OnStageClear()
     {
-        Debug.Log("[StageClear] 엘리트 스테이지 클리어!");
         if (saveService == null)
         {
-            Debug.LogError("[StageClear] SaveService가 할당되지 않았습니다.");
             return;
         }
 
@@ -69,17 +67,14 @@ public class StageClear : MonoBehaviour
 
     private void OnStageFail()
     {
-        Debug.Log("[StageClear] 엘리트 스테이지 실패!");
         if (stageUI != null)
             stageUI.ShowDefeatWindow();
     }
 
     private void OnBossStageClear()
     {
-        Debug.Log("[StageClear] 보스 스테이지 클리어!");
         if (saveService == null)
         {
-            Debug.LogError("[StageClear] SaveService가 할당되지 않았습니다.");
             return;
         }
 

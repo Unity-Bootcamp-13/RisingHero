@@ -23,7 +23,6 @@ public class EliteStage : MonoBehaviour
     {
         if (killCounter == null || timer == null)
         {
-            Debug.LogError("[EliteStage] KillCounter 또는 Timer가 연결되지 않았습니다.");
             return;
         }
 

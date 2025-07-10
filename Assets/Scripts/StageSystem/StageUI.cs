@@ -79,7 +79,6 @@ public class StageUI : MonoBehaviour
     public void OnClickCurrentNormalStage()
     {
         // 다음 스테이지로 넘어가는 로직을 여기에 작성
-        Debug.Log("일반 스테이지로 넘어갑니다.");
         HideClearWindow();
         stageSceneLoader.LoadStage(saveData.currentStage, saveData.topStage);
 
@@ -88,7 +87,6 @@ public class StageUI : MonoBehaviour
     public void OnClickNextEliteStage()
     {
         // 엘리트 스테이지로 넘어가는 로직을 여기에 작성
-        Debug.Log("엘리트 스테이지로 넘어갑니다.");
         saveData = saveService.Load();
         saveData.currentStage = saveData.topStage + 1; // 엘리트 스테이지는 최상위 스테이지 다음 단계
         saveService.Save(saveData); // 스테이지 변경 사항 저장
@@ -99,7 +97,6 @@ public class StageUI : MonoBehaviour
     public void OnClickNextChapterNormalStage()
     {
         // 보스에서 다음 챕터 노말 스테이지로 이동 (ex 19 -> 21)
-        Debug.Log("다음 챕터 일반 스테이지로 넘어갑니다.");
         saveData = saveService.Load();
         saveData.currentStage += 2;
         saveService.Save(saveData);
@@ -110,7 +107,6 @@ public class StageUI : MonoBehaviour
     public void OnClickRetry()
     {
         // 재시작 로직을 여기에 작성
-        Debug.Log("스테이지를 재시작합니다.");
         HideDefeatWindow();
         stageSceneLoader.LoadStage(saveData.currentStage, saveData.topStage);
     }
@@ -118,7 +114,6 @@ public class StageUI : MonoBehaviour
     public void onClickPreviousStage()
     {
         // 이전 스테이지로 돌아가는 로직을 여기에 작성
-        Debug.Log("이전 스테이지로 돌아갑니다.");
         saveData = saveService.Load();
 
         saveData.currentStage -= 1; // 현재 스테이지를 이전 단계로 설정

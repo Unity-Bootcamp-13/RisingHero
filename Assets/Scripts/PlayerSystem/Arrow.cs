@@ -21,7 +21,6 @@ public class Arrow : MonoBehaviour
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle + 90f);
-        Debug.Log($"[Arrow] Shoot with baseDamage={damage}");
     }
 
     private void Update()
@@ -43,7 +42,6 @@ public class Arrow : MonoBehaviour
             if (Random.value < critChance)
             {
                 finalDamage = Mathf.RoundToInt(baseDamage * critMultiplier);
-                Debug.Log($"치명타! {finalDamage} 데미지");
             }
             target.TakeDamage(finalDamage);
             Despawn();

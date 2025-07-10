@@ -17,7 +17,6 @@ public class JsonSaveService : ISaveService
         cachedData = data; // 캐싱
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(savePath, json);
-        Debug.Log("[SaveService] 저장 완료: " + savePath);
     }
 
     public PlayerSaveData Load()

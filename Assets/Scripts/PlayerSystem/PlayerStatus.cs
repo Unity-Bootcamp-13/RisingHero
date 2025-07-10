@@ -26,7 +26,6 @@ public class PlayerStatus : MonoBehaviour
         {
             float value = stat.baseValue + stat.growthPerLevel * (level - 1);
             ApplyStat(stat.statType, value);
-            Debug.Log($"[½ºÅÈ Àû¿ë] {stat.statType} +{value} (Lv.{level})");
         }
     }
 

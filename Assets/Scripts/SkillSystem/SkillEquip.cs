@@ -41,4 +41,16 @@ public class SkillEquip : MonoBehaviour
     }
 
     public IReadOnlyList<int> GetEquippedSkillIds() => equippedSkillIds.AsReadOnly();
+
+    public void ReplaceSkillAtSlot(int slotIndex, int newSkillId)
+    {
+        if (slotIndex < 0 || slotIndex >= equippedSkillIds.Count)
+        {
+            return;
+        }
+
+        equippedSkillIds[slotIndex] = newSkillId;
+        saveData.equippedSkillIds = equippedSkillIds;
+        saveService.Save(saveData);
+    }
 }

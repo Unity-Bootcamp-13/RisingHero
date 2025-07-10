@@ -35,7 +35,6 @@ public class WeaponStatus : MonoBehaviour
     {
         if (saveService == null || allWeapons == null || playerStatus == null)
         {
-            Debug.LogError("[WeaponStatus] 초기화되지 않은 구성 요소가 있습니다.");
             return;
         }
 

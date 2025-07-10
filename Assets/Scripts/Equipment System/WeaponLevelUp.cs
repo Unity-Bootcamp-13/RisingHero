@@ -23,7 +23,6 @@ public class WeaponLevelUp : MonoBehaviour
     {
         if (saveService == null)
         {
-            Debug.LogError("[WeaponLevelUp] SaveService가 초기화되지 않았습니다.");
             return false;
         }
 
@@ -31,27 +30,23 @@ public class WeaponLevelUp : MonoBehaviour
         var owned = save.ownedWeapons.Find(w => w.weaponId == weaponId);
         if (owned == null)
         {
-            Debug.LogWarning("해당 무기를 보유하고 있지 않습니다.");
             return false;
         }
 
         var weaponData = weaponStatus.FindWeaponDataById(weaponId);
         if (weaponData == null)
         {
-            Debug.LogWarning("무기 데이터를 찾을 수 없습니다.");
             return false;
         }
 
         if (owned.level >= weaponData.maxLevel)
         {
-            Debug.Log("이미 최대 레벨입니다.");
             return false;
         }
 
         int cost = CalculateUpgradeCost(owned.level);
         if (save.coin < cost)
         {
-            Debug.Log("코인이 부족합니다.");
             return false;
         }
 
@@ -66,7 +61,6 @@ public class WeaponLevelUp : MonoBehaviour
         }
 
         saveService.Save(save);
-        Debug.Log($"[WeaponLevelUp] 무기 ID {weaponId} → Lv.{owned.level} (Cost: {cost})");
 
         return true;
     }

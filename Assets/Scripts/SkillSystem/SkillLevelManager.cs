@@ -24,7 +24,6 @@ public class SkillLevelManager
 
         if (saveData.coin < cost)
         {
-            Debug.Log("[SkillLevelManager] 코인이 부족합니다.");
             return false;
         }
 
@@ -32,7 +31,6 @@ public class SkillLevelManager
         SetLevel(skillId, currentLevel + 1);
         saveService.Save(saveData);
 
-        Debug.Log($"[SkillLevelManager] 스킬 {skillId} 레벨업 완료 → Lv.{currentLevel + 1} (코인 {cost} 소모)");
         return true;
     }
 

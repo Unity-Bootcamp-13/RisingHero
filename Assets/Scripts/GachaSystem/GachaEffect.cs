@@ -37,10 +37,6 @@ public class GachaEffect : MonoBehaviour
                 image.sprite = sprite;
                 image.enabled = true;
             }
-            else
-            {
-                Debug.LogWarning($"[GachaEffect] ID {id}에 해당하는 Sprite를 찾을 수 없습니다.");
-            }
             yield return new WaitForSeconds(0.1f);
         }
 

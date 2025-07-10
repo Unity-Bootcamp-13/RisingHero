@@ -18,7 +18,6 @@ public class SkillUI : MonoBehaviour
         skillData = SkillLoader.Instance.GetSkillData(skillId);
         if (skillData == null)
         {
-            Debug.LogError($"[SkillUI] Skill ID {skillId} 에 해당하는 스킬 데이터를 찾을 수 없습니다.");
             return;
         }
 

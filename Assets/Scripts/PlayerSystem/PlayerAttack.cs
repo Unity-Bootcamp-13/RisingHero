@@ -70,7 +70,6 @@ public class PlayerAttack : MonoBehaviour
         var equippedWeapon = weaponEquip?.EquippedWeapon; // 쏘는 발사체가 무기 SO에 저장된 Prefab을 발사함
         if (equippedWeapon == null || equippedWeapon.projectilePrefab == null)
         {
-            Debug.LogWarning("장착 무기나 투사체가 없습니다.");
             return;
         }
 
@@ -90,7 +89,6 @@ public class PlayerAttack : MonoBehaviour
         if (arrow.TryGetComponent(out Arrow arrowScript)) // SO로부터 발사체 Prefab 가져오기
         {
             arrowScript.Shoot(direction, status.arrowDamage, status.critChance, status.critDamage);
-            Debug.Log($"[공격 시작] arrowDamage={status.arrowDamage}, EquippedWeapon={equippedWeapon.weaponName}");
         }
 
         StartCoroutine(ResetAttack(0.4f));

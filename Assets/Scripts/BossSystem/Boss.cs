@@ -18,10 +18,7 @@ public class Boss : Enemy
     protected override void Die()
     {
         base.Die();
-
-        // 보스 전용 사망 처리 (예: 게임 클리어 UI)
         Debug.Log("Boss defeated!");
-        // GameClearManager.Instance.ShowClearUI(); // 필요 시 여기에 연결
     }
 
     protected override void OnEnable()

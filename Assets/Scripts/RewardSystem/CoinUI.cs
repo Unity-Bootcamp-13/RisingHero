@@ -20,7 +20,6 @@ public class CoinUI : MonoBehaviour
     {
         if (saveService == null)
         {
-            Debug.LogError("[CoinUI] SaveService가 초기화되지 않았습니다.");
             return;
         }
 
