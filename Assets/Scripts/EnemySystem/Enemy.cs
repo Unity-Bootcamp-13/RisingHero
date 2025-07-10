@@ -67,7 +67,8 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        killCounter.AddKill();
+        if(killCounter != null)
+            killCounter.AddKill();
     }
 
     private void OnHpChanged(float ratio)

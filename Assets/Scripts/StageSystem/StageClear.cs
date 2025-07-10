@@ -3,6 +3,7 @@ using UnityEngine;
 public class StageClear : MonoBehaviour
 {
     [SerializeField] private EliteStage eliteStage;
+    [SerializeField] private BossStage bossStage;
     [SerializeField] private StageUI stageUI;
     [SerializeField] private CharacterHealth playerHealth;
 
@@ -19,6 +20,12 @@ public class StageClear : MonoBehaviour
         {
             eliteStage.OnClear += OnStageClear;
             eliteStage.OnFail += OnStageFail;
+        }
+
+        if (bossStage != null)
+        {
+            bossStage.OnClear += OnBossStageClear;
+            bossStage.OnFail += OnStageFail;
         }
 
         if (playerHealth != null)
@@ -65,5 +72,31 @@ public class StageClear : MonoBehaviour
         Debug.Log("[StageClear] 엘리트 스테이지 실패!");
         if (stageUI != null)
             stageUI.ShowDefeatWindow();
+    }
+
+    private void OnBossStageClear()
+    {
+        Debug.Log("[StageClear] 보스 스테이지 클리어!");
+        if (saveService == null)
+        {
+            Debug.LogError("[StageClear] SaveService가 할당되지 않았습니다.");
+            return;
+        }
+
+
+        var saveData = saveService.Load();
+
+        if (saveData.currentStage == 29)
+        {
+            saveData.topStage += 1;
+            stageUI.ShowClearAllStageWindow();
+            return;
+        }
+
+        saveData.topStage += 3;
+        saveService.Save(saveData);
+
+        if (stageUI != null)
+            stageUI.ShowClearBossWindow();
     }
 }
