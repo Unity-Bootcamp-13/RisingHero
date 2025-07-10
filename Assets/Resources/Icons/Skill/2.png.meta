@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8a585f61f2e69e644a6cf991c94784e2
+guid: a758d62a3d89c5047bf55c10335793ca
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1483665779731714255
-    second: Bomb_0
+      213: 5365685992905743159
+    second: Aura01_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -97,7 +97,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bomb_0
+      name: Aura01_0
       rect:
         serializedVersion: 2
-        x: 25
+        x: 0
         y: 0
-        width: 206
-        height: 256
+        width: 1024
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 13f20b985d5f86be0800000000000000
-      internalID: -1483665779731714255
+      spriteID: 73b9f6f5bfeb67a40800000000000000
+      internalID: 5365685992905743159
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Bomb_0: -1483665779731714255
+      Aura01_0: 5365685992905743159
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
