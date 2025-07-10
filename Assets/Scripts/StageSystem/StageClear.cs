@@ -8,6 +8,7 @@ public class StageClear : MonoBehaviour
     [SerializeField] private CharacterHealth playerHealth;
 
     private ISaveService saveService;
+    private bool isFinishi;
 
     public void Initialize(ISaveService saveService)
     {
@@ -34,6 +35,11 @@ public class StageClear : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        isFinishi = false;
+    }
+
     private void OnDestroy()
     {
         if (eliteStage != null)
@@ -54,21 +60,36 @@ public class StageClear : MonoBehaviour
         {
             return;
         }
+        if (isFinishi)
+            return;
+
+        isFinishi = true;
 
         var saveData = saveService.Load();
         saveData.topStage += 1;
+        saveData.diamond += 3000;
         saveService.Save(saveData);
 
         CoinBuffer.Instance.Initialize(saveService);
 
+
         if (stageUI != null)
             stageUI.ShowClearWindow();
+
+        Time.timeScale = 0f;
     }
 
     private void OnStageFail()
     {
+        if (isFinishi)
+            return;
+
+        isFinishi = true;
+
         if (stageUI != null)
             stageUI.ShowDefeatWindow();
+
+        Time.timeScale = 0f;
     }
 
     private void OnBossStageClear()
@@ -77,6 +98,10 @@ public class StageClear : MonoBehaviour
         {
             return;
         }
+        if (isFinishi)
+            return;
+
+        isFinishi = true;
 
 
         var saveData = saveService.Load();
@@ -89,9 +114,12 @@ public class StageClear : MonoBehaviour
         }
 
         saveData.topStage += 3;
+        saveData.diamond += 10000;
         saveService.Save(saveData);
 
         if (stageUI != null)
             stageUI.ShowClearBossWindow();
+
+        Time.timeScale = 0f;
     }
 }
