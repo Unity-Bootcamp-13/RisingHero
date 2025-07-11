@@ -5,6 +5,8 @@ public class WeaponEquip : MonoBehaviour
     [Header("기본 무기")]
     [SerializeField] private WeaponData defaultWeapon; // 런타임 탐색보다 낫다.
 
+    [SerializeField] private WeaponSlotUI weaponSlotUI;
+
     public WeaponData EquippedWeapon { get; private set; }
 
     private ISaveService saveService;
@@ -19,34 +21,40 @@ public class WeaponEquip : MonoBehaviour
     private void Start()
     {
         if (saveService == null || weaponStatus == null)
-        {
             return;
-        }
 
         var saveData = saveService.Load();
+        bool updated = false;
 
-        if (!saveData.ownedWeapons.Exists(w => w.weaponId == defaultWeapon.weaponId)) // 만약 무기가 없을경우 첫번째 무기를 해금해주는 코드
+        if (!saveData.ownedWeapons.Exists(w => w.weaponId == defaultWeapon.weaponId))
         {
             saveData.ownedWeapons.Add(new OwnedWeapon(defaultWeapon.weaponId, 1));
-            saveService.Save(saveData);
+            updated = true;
         }
 
-        if (weaponStatus.FindWeaponDataById(saveData.equippedWeaponId) == null) // 만약 무기를 장착하지 않았을 경우 첫번째 무기를 장착하는 코드
+        if (weaponStatus.FindWeaponDataById(saveData.equippedWeaponId) == null)
         {
             saveData.equippedWeaponId = defaultWeapon.weaponId;
-            saveService.Save(saveData);
+            updated = true;
         }
 
-        // 장착중인 무기를 찾고, 보유한 무기를 찾음
+        if (updated)
+            saveService.Save(saveData);
+
         var equippedWeaponData = weaponStatus.FindWeaponDataById(saveData.equippedWeaponId);
         var ownedWeapon = saveData.ownedWeapons.Find(w => w.weaponId == saveData.equippedWeaponId);
 
-        if (equippedWeaponData != null && ownedWeapon != null) // 무기 장착
+        if (equippedWeaponData != null && ownedWeapon != null)
         {
             EquippedWeapon = equippedWeaponData;
         }
 
-        weaponStatus.ApplyAllWeaponStats(); // 보유 효과 적용
+        weaponStatus.ApplyAllWeaponStats();
+
+        if (updated && weaponSlotUI != null)
+        {
+            weaponSlotUI.Initialize(saveService);
+        }
     }
 
     public void Equip(WeaponData weapon, int level) // 장착 로직, 장착하면 저장하고, 장착 효과를 적용하는 코드

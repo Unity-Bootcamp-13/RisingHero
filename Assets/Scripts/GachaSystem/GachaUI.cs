@@ -1,9 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// OnClick을 사용하기 때문에 Component
-/// </summary>
 public class GachaUI : MonoBehaviour
 {
     private int weaponGachaGroupId = 101;
@@ -17,16 +14,23 @@ public class GachaUI : MonoBehaviour
     [Header("결과 패널 연결")]
     [SerializeField] private GameObject weaponGachaResultPanel;
     [SerializeField] private GameObject skillGachaResultPanel;
-
     [SerializeField] private GameObject CloseButton;
 
     private ISaveService saveService;
     private Gacha gacha;
+    private WeaponSlotUI weaponSlotUI;
+    private WeaponStatus weaponStatus;
 
-    public void Initialize(ISaveService saveService, Gacha gacha)
+    public void Initialize(ISaveService saveService, Gacha gacha, WeaponSlotUI weaponSlotUI)
     {
         this.saveService = saveService;
         this.gacha = gacha;
+        this.weaponSlotUI = weaponSlotUI;
+    }
+
+    public void SetWeaponStatus(WeaponStatus weaponStatus) // 추가
+    {
+        this.weaponStatus = weaponStatus;
     }
 
     public void OnClickWeaponGachaOne() => TryGacha(weaponGachaGroupId, 1, weaponSingleCost, weaponGachaResultPanel);
@@ -38,9 +42,8 @@ public class GachaUI : MonoBehaviour
     {
         var save = saveService.Load();
         if (save.diamond < cost)
-        {
             return;
-        }
+
         CloseButton.SetActive(false);
 
         save.diamond -= cost;
@@ -53,8 +56,23 @@ public class GachaUI : MonoBehaviour
         }
 
         resultPanel.SetActive(true);
+
+        // 무기 가챠일 경우 상태 갱신
+        if (groupId == weaponGachaGroupId)
+        {
+            saveService.ReloadFromFile();
+            weaponStatus?.ApplyAllWeaponStats();
+            weaponSlotUI?.Initialize(saveService);
+        }
+
         var gachaEffect = resultPanel.GetComponent<GachaEffect>();
         if (gachaEffect != null)
-            StartCoroutine(gachaEffect.SpawnRewards(results, groupId));
+            StartCoroutine(HandleGachaEffect(gachaEffect, results, groupId));
+    }
+
+    private System.Collections.IEnumerator HandleGachaEffect(GachaEffect gachaEffect, List<int> results, int groupId)
+    {
+        yield return StartCoroutine(gachaEffect.SpawnRewards(results, groupId));
+        CloseButton.SetActive(true);
     }
 }

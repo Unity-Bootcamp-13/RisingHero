@@ -43,7 +43,7 @@ public class StageButton : MonoBehaviour
         StageData = saveService.Load();
 
 
-        stageText.text = $"Stage{stageNumber}";
+        //stageText.text = $"Stage{stageNumber}";
 
         if (stageNumber <= StageData.topStage)
         {

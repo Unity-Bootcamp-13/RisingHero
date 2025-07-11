@@ -5,7 +5,7 @@ public class StageClear : MonoBehaviour
     [SerializeField] private EliteStage eliteStage;
     [SerializeField] private BossStage bossStage;
     [SerializeField] private StageUI stageUI;
-    [SerializeField] private CharacterHealth playerHealth;
+    [SerializeField] private PlayerHealth playerHealth;
 
     private ISaveService saveService;
     private bool isFinishi;
@@ -65,7 +65,14 @@ public class StageClear : MonoBehaviour
 
         isFinishi = true;
 
+
         var saveData = saveService.Load();
+        if (saveData.currentStage == 28)
+        {
+            stageUI.ShowClearAllStageWindow();
+            return;
+        }
+
         saveData.topStage += 1;
         saveData.diamond += 3000;
         saveService.Save(saveData);

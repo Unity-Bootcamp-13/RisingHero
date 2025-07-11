@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private WeaponEquip weaponEquip;
 
     [Header("플레이어 컴포넌트")]
-    [SerializeField] private CharacterHealth characterHealth;
+    [SerializeField] private PlayerHealth characterHealth;
     [SerializeField] private PlayerMana playerMana;
 
     [Header("UI")]
@@ -20,6 +20,6 @@ public class PlayerManager : MonoBehaviour
         playerUI.Initialize(characterHealth, playerMana);
     }
 
-    public CharacterHealth GetHealth() => characterHealth;
+    public PlayerHealth GetHealth() => characterHealth;
     public PlayerMana GetMana() => playerMana;
 }

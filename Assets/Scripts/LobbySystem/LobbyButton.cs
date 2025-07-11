@@ -15,12 +15,12 @@ public class LobbyButton : MonoBehaviour
     public void onClickStart()
     {
         var saveData = saveService.Load();
+
         if (saveData.currentStage > saveData.topStage)
         {
             saveData.currentStage = saveData.topStage;
             saveService.Save(saveData);
         }
-
 
         stageSceneLoader.LoadStage(saveData.currentStage, saveData.topStage);
     }

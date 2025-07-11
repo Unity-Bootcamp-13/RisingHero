@@ -45,4 +45,14 @@ public class JsonSaveService : ISaveService
 
         cachedData = null;
     }
+
+    public PlayerSaveData ReloadFromFile()
+    {
+        if (File.Exists(savePath))
+        {
+            string json = File.ReadAllText(savePath);
+            cachedData = JsonUtility.FromJson<PlayerSaveData>(json);
+        }
+        return cachedData;
+    }
 }

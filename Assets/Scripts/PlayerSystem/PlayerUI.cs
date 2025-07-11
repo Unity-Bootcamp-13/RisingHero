@@ -13,10 +13,10 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private Image mpFillImage;
     [SerializeField] private TMP_Text currentMpText;
 
-    private CharacterHealth health;
+    private PlayerHealth health;
     private PlayerMana mana;
 
-    public void Initialize(CharacterHealth health, PlayerMana mana)
+    public void Initialize(PlayerHealth health, PlayerMana mana)
     {
         this.health = health;
         this.mana = mana;
@@ -25,9 +25,9 @@ public class PlayerUI : MonoBehaviour
         UpdateMpUI();
 
         health.OnDamaged += _ => UpdateHpUI();
+        health.OnHealed += _ => UpdateHpUI();
         health.OnDie += UpdateHpUI;
 
-        // MP는 회복 이벤트가 없으므로 주기적으로 갱신
         StartCoroutine(UpdateMpRoutine());
     }
 
@@ -44,7 +44,7 @@ public class PlayerUI : MonoBehaviour
     {
         if (mana == null) return;
 
-        float fill = (float)mana.GetCurrentMana() / 100f; // 100기준 정규화. 필요 시 maxMana 받아서 적용
+        float fill = (float)mana.GetCurrentMana() / 100f; // 필요시 maxMana 기준으로 변경
         mpFillImage.fillAmount = fill;
         currentMpText.text = mana.GetCurrentMana().ToString("N0");
     }
@@ -54,7 +54,7 @@ public class PlayerUI : MonoBehaviour
         while (true)
         {
             UpdateMpUI();
-            yield return new WaitForSeconds(0.2f); // 부하 고려해서 주기 조절
+            yield return new WaitForSeconds(0.2f);
         }
     }
 }

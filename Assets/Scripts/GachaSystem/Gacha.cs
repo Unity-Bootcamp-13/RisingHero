@@ -82,6 +82,8 @@ public class Gacha
 
     private void GrantWeapon(int weaponId)
     {
+        Debug.Log($"[Gacha] 무기 지급 실행됨: {weaponId}");
+
         var save = saveService.Load();
         var owned = save.ownedWeapons.Find(w => w.weaponId == weaponId);
         if (owned != null)
@@ -90,6 +92,7 @@ public class Gacha
         }
         else
         {
+            Debug.Log($"[Gacha] 신규 무기 추가: {weaponId}");
             save.ownedWeapons.Add(new OwnedWeapon(weaponId, 1, 1));
         }
         saveService.Save(save);

@@ -17,6 +17,11 @@ public class WeaponSlotUI : MonoBehaviour
     {
         this.saveService = saveService;
 
+        foreach (Transform child in slotParent)
+        {
+            Destroy(child.gameObject);
+        }
+
         var weapons = weaponStatus.GetAllWeapons();
 
         foreach (var weapon in weapons)

@@ -37,7 +37,7 @@ public class PlayerStatus : MonoBehaviour
                 arrowDamage += Mathf.RoundToInt(value);
                 break;
             case WeaponStatType.AttackCooldown:
-                attackCooldown += value;
+                attackCooldown -= value;
                 break;
             case WeaponStatType.CritChance:
                 critChance += value;

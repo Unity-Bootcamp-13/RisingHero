@@ -21,18 +21,6 @@ public class WeaponData : ScriptableObject
     [Header("투사체 설정")]
     public GameObject projectilePrefab;
 
-    public static Color GetColorByRarity(WeaponRarity rarity)
-    {
-        return rarity switch
-        {
-            WeaponRarity.Common => Color.gray,
-            WeaponRarity.Rare => Color.green,
-            WeaponRarity.Epic => new Color(0.6f, 0.2f, 0.8f),
-            WeaponRarity.Legendary => new Color(0.9f, 0.7f, 0.1f),
-            _ => Color.white
-        };
-    }
-
     /// <summary>
     /// 코드가 중복되긴 하지만 무기는 보유, 장착의 상태만 있어서 유지
     /// </summary>

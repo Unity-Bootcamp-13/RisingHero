@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class CharacterHealth : MonoBehaviour, IDamageable
+public class PlayerHealth : MonoBehaviour, IDamageable
 {
     [SerializeField] private int maxHp = 100;
     private int currentHp;
@@ -10,12 +10,25 @@ public class CharacterHealth : MonoBehaviour, IDamageable
     [SerializeField] private float invincibleTime = 1f;
     private bool isInvincible = false;
 
+    [Header("자동 회복 설정")]
+    [SerializeField] private bool enableRegen = true;
+    [SerializeField] private int regenAmount = 1;
+    [SerializeField] private float regenInterval = 1.0f;
+
     public event Action OnDie;
     public event Action<int> OnDamaged;
+    public event Action<int> OnHealed; 
+
+    private Coroutine regenCoroutine;
 
     private void Awake()
     {
         currentHp = maxHp;
+
+        if (enableRegen)
+        {
+            regenCoroutine = StartCoroutine(AutoRegenCoroutine());
+        }
     }
 
     public void TakeDamage(int amount)
@@ -29,6 +42,9 @@ public class CharacterHealth : MonoBehaviour, IDamageable
         {
             currentHp = 0;
             OnDie?.Invoke();
+
+            if (regenCoroutine != null)
+                StopCoroutine(regenCoroutine);
         }
         else
         {
@@ -41,6 +57,27 @@ public class CharacterHealth : MonoBehaviour, IDamageable
         isInvincible = true;
         yield return new WaitForSeconds(invincibleTime);
         isInvincible = false;
+    }
+
+    private IEnumerator AutoRegenCoroutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(regenInterval);
+
+            if (currentHp > 0 && currentHp < maxHp)
+            {
+                int before = currentHp;
+                currentHp += regenAmount;
+                if (currentHp > maxHp) currentHp = maxHp;
+
+                int healedAmount = currentHp - before;
+                if (healedAmount > 0)
+                {
+                    OnHealed?.Invoke(healedAmount);
+                }
+            }
+        }
     }
 
     public void SetInvincible(bool value)

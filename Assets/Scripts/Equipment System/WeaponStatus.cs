@@ -15,7 +15,7 @@ public class WeaponStatus : MonoBehaviour
 
     public bool IsUnlocked(int weaponId)
     {
-        var save = saveService?.Load();
+        var save = saveService?.ReloadFromFile();
         return save?.ownedWeapons.Exists(w => w.weaponId == weaponId) ?? false;
     }
 
@@ -35,10 +35,12 @@ public class WeaponStatus : MonoBehaviour
     {
         if (saveService == null || allWeapons == null || playerStatus == null)
         {
+            Debug.LogWarning("WeaponStatus: 필수 의존성이 누락되었습니다.");
             return;
         }
 
-        var save = saveService.Load();
+        var save = saveService.ReloadFromFile();
+
         playerStatus.ResetToBaseStats();
 
         foreach (var weapon in allWeapons)
@@ -46,10 +48,13 @@ public class WeaponStatus : MonoBehaviour
             var owned = save.ownedWeapons.Find(w => w.weaponId == weapon.weaponId);
             if (owned != null)
             {
+                Debug.Log($"보유 무기 적용됨: {weapon.weaponId} / 레벨: {owned.level}");
+
                 playerStatus.ApplyWeaponStats(weapon.ownedStats, owned.level);
 
                 if (save.equippedWeaponId == weapon.weaponId)
                 {
+                    Debug.Log($"장착 무기 효과 적용됨: {weapon.weaponId}");
                     playerStatus.ApplyWeaponStats(weapon.equippedStats, owned.level);
                 }
             }
