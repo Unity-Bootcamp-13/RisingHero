@@ -15,29 +15,23 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int coinValue = 1;
     [SerializeField] private PoolType coinPoolType = PoolType.Coin;
 
-    [SerializeField] private KillCounter killCounter; // 주입 확인
+    // 기존 주입 필드가 있더라도 이제는 사용하지 않습니다.
+    [SerializeField] private KillCounter killCounter;
 
     internal EnemyHealth health;
     private SpriteRenderer myRenderer;
     private Color originalColor;
 
-    /// <summary>
-    /// 얘가 StageManger를 찾는 형식으로 구현된 이유는
-    /// Prefab의 형태로 저장되어 있기때문에 Inspector창에서 참조 받을 수 없기 때문이다.
-    /// </summary>
-    /// 
     public void Initialize(KillCounter killCounter)
     {
-        this.killCounter = killCounter;
+        this.killCounter = killCounter; // 필요 없다면 필드와 함께 제거 가능
     }
 
     protected virtual void Awake()
     {
-        GameObject stageManagerObj = GameObject.Find("StageManager"); // 이 방식 고정.
+        GameObject stageManagerObj = GameObject.Find("StageManager");
         if (stageManagerObj != null)
-        {
             damageTextSpawner = stageManagerObj.GetComponent<DamageTextSpawner>();
-        }
 
         health = GetComponent<EnemyHealth>();
         health.OnDie += Die;
@@ -48,7 +42,7 @@ public class Enemy : MonoBehaviour
             damageTextSpawner?.ShowDamageText(damage, transform.position);
         };
 
-        myRenderer = GetComponent<SpriteRenderer>(); // 피격 시 빨간색으로 Sprite가 변하는데, 다시 소환 됐을때 원래 색깔로 돌리는 코드.
+        myRenderer = GetComponent<SpriteRenderer>();
         if (myRenderer != null)
             originalColor = myRenderer.color;
     }
@@ -60,15 +54,13 @@ public class Enemy : MonoBehaviour
         if (Random.value <= coinDropChance)
         {
             var coin = StrictPool.Instance.SpawnFromPool(coinPoolType, transform.position, Quaternion.identity);
-
             if (coin.TryGetComponent(out Coin coinComponent))
             {
                 coinComponent.SetValue(coinValue);
             }
         }
 
-        if(killCounter != null)
-            killCounter.AddKill();
+        GameEvents.RaiseEnemyKilled();
     }
 
     private void OnHpChanged(float ratio)
@@ -80,13 +72,10 @@ public class Enemy : MonoBehaviour
     protected virtual void OnEnable()
     {
         if (myRenderer != null)
-        {
             myRenderer.color = originalColor;
-        }
 
         StopAllCoroutines();
         health?.ResetHealth();
-
         AliveEnemyManager.Register(this);
     }
 
@@ -100,21 +89,16 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("Player") && Time.time - lastHitTime >= hitCooldown)
         {
             lastHitTime = Time.time;
-
             if (other.TryGetComponent(out IDamageable damageable))
-            {
                 damageable.TakeDamage(attackDamage);
-            }
         }
     }
 
     private IEnumerator HitFlashEffect()
     {
         if (myRenderer == null) yield break;
-
         Color hitColor = Color.red;
         float duration = 0.2f;
-
         myRenderer.color = hitColor;
         yield return new WaitForSeconds(duration);
         myRenderer.color = originalColor;

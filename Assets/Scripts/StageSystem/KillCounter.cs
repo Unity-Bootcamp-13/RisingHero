@@ -1,38 +1,25 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class KillCounter : MonoBehaviour
 {
-    [SerializeField] public Quest quest;
-    [SerializeField] private QuestManager questManager;
-    public QuestType Type;
-    public PlayerSaveData psd;
-
-    private ISaveService saveService;
-
-    [Header("UI")]
-    [SerializeField] private Slider killSlider;
-
-    [Header("설정")]
-    [SerializeField] private int killGoal = 80;
+    [Header("UI")][SerializeField] private Slider killSlider;
+    [Header("설정")][SerializeField] private int killGoal = 80;
 
     private int currentKills = 0;
+    private bool isActive = false;
 
     public System.Action OnClear;
     public System.Action OnFail;
 
-    private bool isActive = false;
-
-    public void SetQuest(Quest quest)
+    private void OnEnable()
     {
-        this.quest = quest;
+        GameEvents.EnemyKilled += OnEnemyKilled;
     }
 
-    private void Awake()
+    private void OnDisable()
     {
-        saveService = new JsonSaveService();
-        psd = saveService.Load();
+        GameEvents.EnemyKilled -= OnEnemyKilled;
     }
 
     public void StartCount(int goal)
@@ -43,17 +30,16 @@ public class KillCounter : MonoBehaviour
         UpdateUI();
     }
 
-    public void AddKill()
+    public void EndCountByFail()
     {
-        saveService = new JsonSaveService();
-        if (psd.currentQuestId == 1)
-        {
-            SetQuest(questManager.CurrentQuest);
-            quest.AddProgress(1);  // 이 시점에만 퀘스트 진행도 증가
-        }
+        if (!isActive) return;
+        isActive = false;
+        OnFail?.Invoke();
+    }
 
-        if (!isActive)
-            return;
+    private void OnEnemyKilled()
+    {
+        if (!isActive) return;
 
         currentKills++;
         UpdateUI();
@@ -65,19 +51,9 @@ public class KillCounter : MonoBehaviour
         }
     }
 
-    public void EndCountByFail()
-    {
-        if (!isActive) return;
-
-        isActive = false;
-        OnFail.Invoke();
-    }
-
     private void UpdateUI()
     {
         if (killSlider != null)
-        {
             killSlider.value = Mathf.Clamp01((float)currentKills / killGoal);
-        }
     }
 }

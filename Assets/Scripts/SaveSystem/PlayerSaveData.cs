@@ -9,11 +9,12 @@ public class PlayerSaveData
     public int diamond = 0;
     public List<OwnedWeapon> ownedWeapons = new();
     public int equippedWeaponId = -1;
-        public int currentStage = 10;
-        public int topStage = 10;
+    public int currentStage = 10;
+    public int topStage = 10;
     public int currentQuestId = -1;
     public List<int> equippedSkillIds = new();
     public List<SkillLevelData> skillLevels = new();
+    public List<QuestProgressData> questProgress = new();
 
     public PlayerSaveData()
     {
@@ -59,4 +60,12 @@ public class SkillLevelData
         this.level = level;
         this.amount = amount;
     }
+}
+
+[Serializable]
+public class QuestProgressData
+{
+    public int questId;
+    public int currentValue;
+    public bool isCompleted;
 }

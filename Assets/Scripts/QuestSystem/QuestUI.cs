@@ -8,36 +8,25 @@ public class QuestUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI questTitleText;
     [SerializeField] private TextMeshProUGUI questProgressText;
 
-    private Quest quest;
-
-
-    private void Start()
+    private void OnEnable()
     {
-        SetQuest(questManager.CurrentQuest);
+        questManager.OnQuestChanged += Handle;
+        questManager.OnProgressChanged += Handle;
+        Handle(questManager.CurrentQuest);
     }
 
-    private void Update()
+    private void OnDisable()
     {
-        UpdateQuestUI();
+        questManager.OnQuestChanged -= Handle;
+        questManager.OnProgressChanged -= Handle;
     }
 
-    public void UpdateQuestUI()
+    private void Handle(Quest current)
     {
-        Quest current = questManager.CurrentQuest;
-
-        if (current == null)
-        {
-            questPanel.SetActive(false);
-            return;
-        }
+        if (questPanel == null) return;
+        if (current == null) { questPanel.SetActive(false); return; }
+        questPanel.SetActive(true);
         questTitleText.text = current.Type.ToString();
         questProgressText.text = $"{current.CurrentValue} / {current.GoalValue}";
     }
-
-    public void SetQuest(Quest quest)
-    {
-        this.quest = quest;
-        UpdateQuestUI();
-    }
-
 }

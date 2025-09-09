@@ -5,23 +5,15 @@ using UnityEngine;
 public class QuestRepository
 {
     [System.Serializable]
-    private class QuestListWrapper
-    {
-        public List<QuestDTO> quests;
-    }
+    private class QuestListWrapper { public List<QuestDTO> quests; }
 
     private readonly string questListPath = Path.Combine(Application.streamingAssetsPath, "quest_list.json");
 
     public List<Quest> LoadQuestList()
     {
-        if (!File.Exists(questListPath))
-        {
-            return new List<Quest>();
-        }
-
+        if (!File.Exists(questListPath)) return new List<Quest>();
         string json = File.ReadAllText(questListPath);
         QuestListWrapper wrapper = JsonUtility.FromJson<QuestListWrapper>(json);
-
         var quests = new List<Quest>();
         foreach (var dto in wrapper.quests)
         {
@@ -36,4 +28,3 @@ public class QuestRepository
         return quests;
     }
 }
-

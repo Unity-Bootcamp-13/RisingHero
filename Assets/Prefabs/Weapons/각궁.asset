@@ -29,7 +29,7 @@ MonoBehaviour:
   - statType: 0
     baseValue: 50
     growthPerLevel: 10
-  - statType: 1
+  - statType: 2
     baseValue: 5
     growthPerLevel: 1
   projectilePrefab: {fileID: 4026167767364239913, guid: a70fb4b34f8fda04f937198852376d3a, type: 3}

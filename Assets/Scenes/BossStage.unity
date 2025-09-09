@@ -3760,7 +3760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6643e489e1544c4089eeff28c7e06a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questUI: {fileID: 1082148837}
+  loopQuests: 1
 --- !u!1 &311394154
 GameObject:
   m_ObjectHideFlags: 0
@@ -11251,6 +11251,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b4a1a573673fa7d4ea9c003c78e45009, type: 2}
   - {fileID: 11400000, guid: 0e2eada4500731c4aabaa23fec0a02e1, type: 2}
   - {fileID: 11400000, guid: d359287fc10e2884ba0838678667dc47, type: 2}
+  - {fileID: 11400000, guid: f2d8eaab9c444e34993affce89c8373b, type: 2}
+  - {fileID: 11400000, guid: 0e3554c7598b60d4db876e0cfe55323e, type: 2}
+  - {fileID: 11400000, guid: 86621dd609d48214ca53757011721ec9, type: 2}
+  - {fileID: 11400000, guid: d7df8f1fc0ad7b244b2e7a2a7baaa502, type: 2}
+  - {fileID: 11400000, guid: f638e154231cfe64e88ac42de66ac3b6, type: 2}
+  - {fileID: 11400000, guid: 50e4b7fbf076fa646ad4b77bb019c2e8, type: 2}
   playerStatus: {fileID: 1308021229}
 --- !u!114 &1055842161
 MonoBehaviour:
@@ -11321,18 +11327,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e172467d5f583746892921a453c41ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questManager: {fileID: 287533680}
-  Type: 0
-  psd:
-    coin: 0
-    diamond: 0
-    ownedWeapons: []
-    equippedWeaponId: -1
-    currentStage: 11
-    topStage: 11
-    currentQuestId: -1
-    equippedSkillIds: 
-    skillLevels: []
   killSlider: {fileID: 0}
   killGoal: 80
 --- !u!114 &1055842167
@@ -14857,7 +14851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultWeapon: {fileID: 11400000, guid: b4a1a573673fa7d4ea9c003c78e45009, type: 2}
-  weaponSlotUI: {fileID: 0}
+  weaponSlotUI: {fileID: 8695935857040283099}
 --- !u!114 &1308021229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17655,7 +17649,7 @@ MonoBehaviour:
   descriptionText: {fileID: 847362478}
   levelUpButton: {fileID: 1455790318}
   equipButton: {fileID: 1964617515}
-  skillReplacePopupUI: {fileID: 0}
+  skillReplacePopupUI: {fileID: 275502264}
 --- !u!1 &1540083584
 GameObject:
   m_ObjectHideFlags: 0

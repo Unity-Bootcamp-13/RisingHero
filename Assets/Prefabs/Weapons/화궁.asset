@@ -19,7 +19,7 @@ MonoBehaviour:
   maxLevel: 10
   displayName: "\uD654\uAD81"
   ownedStats:
-  - statType: 1
+  - statType: 0
     baseValue: 40
     growthPerLevel: 10
   - statType: 4

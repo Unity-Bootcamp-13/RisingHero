@@ -35,6 +35,9 @@ public class JsonSaveService : ISaveService
             Save(cachedData);
         }
 
+        if (cachedData.questProgress == null)
+            cachedData.questProgress = new List<QuestProgressData>();
+
         return cachedData;
     }
 
@@ -52,6 +55,8 @@ public class JsonSaveService : ISaveService
         {
             string json = File.ReadAllText(savePath);
             cachedData = JsonUtility.FromJson<PlayerSaveData>(json);
+            if (cachedData.questProgress == null)
+                cachedData.questProgress = new List<QuestProgressData>();
         }
         return cachedData;
     }

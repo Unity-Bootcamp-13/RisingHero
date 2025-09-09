@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 4138439121698785870}
   - component: {fileID: 4321721645429768586}
   - component: {fileID: 2978199112190030542}
+  - component: {fileID: -4576287666728699462}
   m_Layer: 0
   m_Name: LightningZonePrefab
   m_TagString: Untagged
@@ -5122,6 +5123,18 @@ MonoBehaviour:
     perlinColor: 0
     perlinColorSpeed: 1
   fadeOutReference: {fileID: 4138439121698785870}
+--- !u!114 &-4576287666728699462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5535363114806448255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f08efc782ceb25f429a16c767a72e2f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5603442650577738820
 GameObject:
   m_ObjectHideFlags: 0
